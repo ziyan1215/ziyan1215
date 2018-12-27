@@ -62,7 +62,7 @@
     {
         "uri": "https://xuziyan.ga/archive/git%E6%8E%A8%E9%80%81%E5%88%B0vps/",
         "title": "git推送到vps",
-        "tags": ["git"],
+        "tags": ["lianyi"],
         "description": ""
     },
     {
@@ -126,12 +126,6 @@
         "description": ""
     },
     {
-        "uri": "https://xuziyan.ga/tags/git/",
-        "title": "Git",
-        "tags": [],
-        "description": ""
-    },
-    {
         "uri": "https://xuziyan.ga/tags/hexo/",
         "title": "Hexo",
         "tags": [],
@@ -140,6 +134,12 @@
     {
         "uri": "https://xuziyan.ga/tags/hugo/",
         "title": "Hugo",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/lianyi/",
+        "title": "Lianyi",
         "tags": [],
         "description": ""
     },

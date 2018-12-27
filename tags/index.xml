@@ -6,19 +6,10 @@
     <description>Recent content in Tags on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 18 Dec 2018 16:14:25 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Nov 2018 16:14:25 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Git</title>
-      <link>https://xuziyan.ga/tags/git/</link>
-      <pubDate>Tue, 18 Dec 2018 16:14:25 +0000</pubDate>
-      
-      <guid>https://xuziyan.ga/tags/git/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Hexo</title>
@@ -35,6 +26,15 @@
       <pubDate>Tue, 20 Nov 2018 16:14:25 +0000</pubDate>
       
       <guid>https://xuziyan.ga/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lianyi</title>
+      <link>https://xuziyan.ga/tags/lianyi/</link>
+      <pubDate>Tue, 18 Dec 2018 16:14:25 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/lianyi/</guid>
       <description></description>
     </item>
     
