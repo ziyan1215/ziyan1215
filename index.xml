@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Archives on XuziYan</title>
-    <link>http://xuziyan.ga/archive/</link>
+    <link>https://xuziyan.ga/archive/</link>
     <description>Recent content in Archives on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 27 Dec 2018 11:49:04 +0800</lastBuildDate>
     
-	<atom:link href="http://xuziyan.ga/archive/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://xuziyan.ga/archive/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>JAVA</title>
-      <link>http://xuziyan.ga/archive/java/</link>
+      <link>https://xuziyan.ga/archive/java/</link>
       <pubDate>Thu, 27 Dec 2018 11:49:04 +0800</pubDate>
       
-      <guid>http://xuziyan.ga/archive/java/</guid>
+      <guid>https://xuziyan.ga/archive/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>联谊</title>
-      <link>http://xuziyan.ga/archive/%E8%81%94%E8%B0%8A/</link>
+      <link>https://xuziyan.ga/archive/%E8%81%94%E8%B0%8A/</link>
       <pubDate>Thu, 27 Dec 2018 11:47:33 +0800</pubDate>
       
-      <guid>http://xuziyan.ga/archive/%E8%81%94%E8%B0%8A/</guid>
+      <guid>https://xuziyan.ga/archive/%E8%81%94%E8%B0%8A/</guid>
       <description> 啦啦啦啦2018年12月27日 11:47:54 </description>
     </item>
     
     <item>
       <title>Test</title>
-      <link>http://xuziyan.ga/archive/test/</link>
+      <link>https://xuziyan.ga/archive/test/</link>
       <pubDate>Thu, 27 Dec 2018 10:29:56 +0800</pubDate>
       
-      <guid>http://xuziyan.ga/archive/test/</guid>
+      <guid>https://xuziyan.ga/archive/test/</guid>
       <description> 测试 </description>
     </item>
     
     <item>
       <title>git推送到vps</title>
-      <link>http://xuziyan.ga/archive/git%E6%8E%A8%E9%80%81%E5%88%B0vps/</link>
+      <link>https://xuziyan.ga/archive/git%E6%8E%A8%E9%80%81%E5%88%B0vps/</link>
       <pubDate>Tue, 18 Dec 2018 16:14:25 +0000</pubDate>
       
-      <guid>http://xuziyan.ga/archive/git%E6%8E%A8%E9%80%81%E5%88%B0vps/</guid>
+      <guid>https://xuziyan.ga/archive/git%E6%8E%A8%E9%80%81%E5%88%B0vps/</guid>
       <description> 实践的语句
 解决方案 本地服务
 git init git add . git commit -m &#39;add&#39; git remote add origin git@yourIP:/opt/hexo/hexo.git git pull --rebase origin master git push origin master -f  </description>
@@ -51,10 +51,10 @@ git init git add . git commit -m &#39;add&#39; git remote add origin git@yourIP:
     
     <item>
       <title>使用Travis CI自动化部署你的Hugo,Hexo博客</title>
-      <link>http://xuziyan.ga/archive/oj8dtatmwzg/</link>
+      <link>https://xuziyan.ga/archive/oj8dtatmwzg/</link>
       <pubDate>Tue, 20 Nov 2018 16:14:25 +0000</pubDate>
       
-      <guid>http://xuziyan.ga/archive/oj8dtatmwzg/</guid>
+      <guid>https://xuziyan.ga/archive/oj8dtatmwzg/</guid>
       <description>Travis CI是什么? Travis CI是在线托管的CI服务，用Travis来进行持续集成，不需要自己搭服务器。最重要的是，它对开源项目是免费的。 如果公司是用的是 gitlab,也有提供相应的持续集成服务.这里就过多赘述.
 Travis CI 配置文件 Travis 要求项目的根目录下面，必须有一个.travis.yml文件。
 当你的仓库有提交的时候,travis会自动执行你下面配置的行为.
@@ -66,10 +66,10 @@ language: node_js node_js: 10.13.0 install: - wget https://github.com/gohugoio/h
     
     <item>
       <title>让你的Hugo博客支持echarts图表</title>
-      <link>http://xuziyan.ga/archive/r5ibcpo557h/</link>
+      <link>https://xuziyan.ga/archive/r5ibcpo557h/</link>
       <pubDate>Mon, 19 Nov 2018 16:14:25 +0000</pubDate>
       
-      <guid>http://xuziyan.ga/archive/r5ibcpo557h/</guid>
+      <guid>https://xuziyan.ga/archive/r5ibcpo557h/</guid>
       <description>在之前hexo构建的博客里,有使用到图表,但是现在迁移到hugo之后,就没有相关的插件支持了.
 所以自己动手丰衣足食.
 在hugo中有支持一种特性叫做 Shortcodes.简单的来说就是一个可以传参的小模板.
@@ -80,10 +80,10 @@ XuziYan XuziYan 本文资源来源互联网，仅供学习研究使用，版权�
     
     <item>
       <title>Hugo平台博文指定时间之后不显示?</title>
-      <link>http://xuziyan.ga/archive/yqufemb0c1m/</link>
+      <link>https://xuziyan.ga/archive/yqufemb0c1m/</link>
       <pubDate>Sun, 18 Nov 2018 16:14:25 +0000</pubDate>
       
-      <guid>http://xuziyan.ga/archive/yqufemb0c1m/</guid>
+      <guid>https://xuziyan.ga/archive/yqufemb0c1m/</guid>
       <description> 自从博客切换到Hugo之后,是遇到了一些坑.
 明明正确添加到文章,页面时间调整到今天,或者是今天之后缺不能显示在文章列表里.
 原因是Hugo模板在循环遍历文件的时候,只要超过当前时间的文章都不会出现.
@@ -97,10 +97,10 @@ hugo --buildFuture  </description>
     
     <item>
       <title>Hugo博客百度SEO终极优化,熊掌号自动推送</title>
-      <link>http://xuziyan.ga/archive/0xh05yxhj3yq/</link>
+      <link>https://xuziyan.ga/archive/0xh05yxhj3yq/</link>
       <pubDate>Sat, 17 Nov 2018 16:14:25 +0000</pubDate>
       
-      <guid>http://xuziyan.ga/archive/0xh05yxhj3yq/</guid>
+      <guid>https://xuziyan.ga/archive/0xh05yxhj3yq/</guid>
       <description>在切换到Hugo平台之后,比较头疼的是之前hexo很多seo的插件不能使用了. 下面跟大家说一下我的seo优化方案.
 Meta标签优化 Description meta description，被认为是最有用的meta标签，是网站的简介信息。 content控制在100个字符以内比较好。
 &amp;lt;meta name=&#39;description&#39; itemprop=&amp;quot;description&amp;quot; content=&amp;quot;{{ if .Description }}{{ .Description }}{{ else }}{{if .IsPage}}{{substr .Summary 0 100}}{{ end }}{{ end }}&amp;quot;&amp;gt;  Keywords {{ if .Keywords }} &amp;lt;meta name=&amp;quot;keywords&amp;quot; content=&amp;quot;{{ delimit .Keywords &amp;quot;, &amp;quot; }}&amp;quot; &amp;gt; {{else}} &amp;lt;meta name=&amp;quot;keywords&amp;quot; content=&amp;quot;{{ delimit .Site.Params.Keywords &amp;quot;, &amp;quot; }}&amp;quot; &amp;gt; {{ end }}  百度熊掌号推送 说到seo熊掌号是必不可少的了,他可以做到24小时之内收录.所以这个必须不能放过.
@@ -110,10 +110,10 @@ gulp 在这里我要使用gulp来做我的自动化任务管理工具
     
     <item>
       <title>博客构建工具Hugo的基本使用</title>
-      <link>http://xuziyan.ga/archive/obvozmdf/</link>
+      <link>https://xuziyan.ga/archive/obvozmdf/</link>
       <pubDate>Thu, 15 Nov 2018 16:14:25 +0000</pubDate>
       
-      <guid>http://xuziyan.ga/archive/obvozmdf/</guid>
+      <guid>https://xuziyan.ga/archive/obvozmdf/</guid>
       <description>最终还是把博客迁移到了Hugo,当初最纠结的是这套主题在Hugo平台上没有. 但是脑子一热，花了两三天时间。这套主题。全部迁移到了Hugo平台。 接下来就给大家介绍一下Hugo的使用以及踩到的坑,以及解决方案.
 Hugo的性能 正是因为hexo的性能不能满足,在生成静态文件的时候极其不稳定.而且时间也相对比较长一些. 在相同页面数量的情况下,处理速度hugo是hexo20倍及以上.这才是我换Hugo的原因.
 配置文件 两个平台有很多共通的地方,迁移起来有很多工作是非常顺其自然的. 在配置文件上hugo也是可以使用yaml的,所以从hexo迁移过来会相对好很多. 其次hugo还可以使用json作为配置文件,为用户提供了很多选择.
