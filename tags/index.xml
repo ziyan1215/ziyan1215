@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on XuziYan</title>
+    <link>https://xuziyan.ga/tags/</link>
+    <description>Recent content in Tags on XuziYan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 18 Dec 2018 16:14:25 +0000</lastBuildDate>
+    
+	<atom:link href="https://xuziyan.ga/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git</title>
+      <link>https://xuziyan.ga/tags/git/</link>
+      <pubDate>Tue, 18 Dec 2018 16:14:25 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hexo</title>
+      <link>https://xuziyan.ga/tags/hexo/</link>
+      <pubDate>Tue, 20 Nov 2018 16:14:25 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/hexo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://xuziyan.ga/tags/hugo/</link>
+      <pubDate>Tue, 20 Nov 2018 16:14:25 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Seo</title>
+      <link>https://xuziyan.ga/tags/seo/</link>
+      <pubDate>Sat, 17 Nov 2018 16:14:25 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/seo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Travis</title>
+      <link>https://xuziyan.ga/tags/travis/</link>
+      <pubDate>Tue, 20 Nov 2018 16:14:25 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/travis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>持续集成</title>
+      <link>https://xuziyan.ga/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</link>
+      <pubDate>Tue, 20 Nov 2018 16:14:25 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

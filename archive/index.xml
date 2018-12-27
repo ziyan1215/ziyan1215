@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>XuziYan</title>
-    <link>https://xuziyan.ga/</link>
-    <description>Recent content on XuziYan</description>
+    <title>Archives on XuziYan</title>
+    <link>https://xuziyan.ga/archive/</link>
+    <description>Recent content in Archives on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 27 Dec 2018 11:49:04 +0800</lastBuildDate>
     
-	<atom:link href="https://xuziyan.ga/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://xuziyan.ga/archive/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
