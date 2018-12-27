@@ -1,104 +1,20 @@
 [
     {
-        "uri": "https://xuziyan.ga/archive/test2/",
-        "title": "软件测试2",
-        "tags": ["Test"],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/231010322/",
-        "title": "新建文本文档 - 副本",
-        "tags": ["Lianyi"],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/231010322/",
-        "title": "新建文档",
-        "tags": ["Lianyi"],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/obvozmd3/",
-        "title": "记录一下这次博客的搭建",
-        "tags": ["Hugo"],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/logo/",
-        "title": "Logo",
+        "uri": "https://xuziyan.ga/archive/2018-12-28t011917-0800/",
+        "title": "由TravisCI自动部署hugo",
         "tags": [],
         "description": ""
     },
     {
-        "uri": "https://xuziyan.ga/archive/big3/",
-        "title": "Big3",
+        "uri": "https://xuziyan.ga/archive/2018-12-28t011747-0800/",
+        "title": "搭建博客hugo",
         "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/success/",
-        "title": "SUCCESS",
-        "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/big1/",
-        "title": "Big1",
-        "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/big/",
-        "title": "Big",
-        "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/java/",
-        "title": "JAVA",
-        "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/%E8%81%94%E8%B0%8A/",
-        "title": "联谊",
-        "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/test/",
-        "title": "Test",
-        "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/test/",
-        "title": "Test",
-        "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/test2/",
-        "title": "Test2",
-        "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/23101032/",
-        "title": "软件测试",
-        "tags": ["Test"],
         "description": ""
     },
     {
         "uri": "https://xuziyan.ga/archive/23101033/",
         "title": "travisCI自动部署",
         "tags": ["Test"],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/git%E6%8E%A8%E9%80%81%E5%88%B0vps/",
-        "title": "git推送到vps",
-        "tags": ["lianyi"],
         "description": ""
     },
     {
@@ -144,12 +60,6 @@
         "description": ""
     },
     {
-        "uri": "https://xuziyan.ga/categories/",
-        "title": "",
-        "tags": [],
-        "description": ""
-    },
-    {
         "uri": "https://xuziyan.ga/archive/",
         "title": "Archives",
         "tags": [],
@@ -174,12 +84,6 @@
         "description": ""
     },
     {
-        "uri": "https://xuziyan.ga/tags/lianyi/",
-        "title": "Lianyi",
-        "tags": [],
-        "description": ""
-    },
-    {
         "uri": "https://xuziyan.ga/tags/seo/",
         "title": "Seo",
         "tags": [],
@@ -198,20 +102,8 @@
         "description": ""
     },
     {
-        "uri": "https://xuziyan.ga/categories/test/",
-        "title": "Test",
-        "tags": [],
-        "description": ""
-    },
-    {
         "uri": "https://xuziyan.ga/tags/travis/",
         "title": "Travis",
-        "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/categories/work/",
-        "title": "Work",
         "tags": [],
         "description": ""
     },

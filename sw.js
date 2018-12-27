@@ -31,10 +31,6 @@ self.__precacheManifest = [
     "revision": "efe0dadd662922c8e1b2c9bb2a9fd03a"
   },
   {
-    "url": "js/jquery.min.js",
-    "revision": "6352d0f9a395680f603c340bdff0f248"
-  },
-  {
     "url": "js/lazyload.js",
     "revision": "5a0a087606ad5b73ad985db19a150220"
   },

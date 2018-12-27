@@ -6,28 +6,10 @@
     <description>Recent content in Test on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 28 Dec 2018 00:18:06 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Dec 2018 15:34:25 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/tags/test/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>软件测试2</title>
-      <link>https://xuziyan.ga/archive/test2/</link>
-      <pubDate>Fri, 28 Dec 2018 00:18:06 +0000</pubDate>
-      
-      <guid>https://xuziyan.ga/archive/test2/</guid>
-      <description> 测试2 </description>
-    </item>
-    
-    <item>
-      <title>软件测试</title>
-      <link>https://xuziyan.ga/archive/23101032/</link>
-      <pubDate>Wed, 26 Dec 2018 23:10:15 +0000</pubDate>
-      
-      <guid>https://xuziyan.ga/archive/23101032/</guid>
-      <description> 测试 </description>
-    </item>
     
     <item>
       <title>travisCI自动部署</title>
