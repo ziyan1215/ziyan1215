@@ -6,10 +6,24 @@
     <description>Recent content in Hugo on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 20 Nov 2018 16:14:25 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Dec 2018 16:14:25 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>记录一下这次博客的搭建</title>
+      <link>https://xuziyan.ga/archive/obvozmd3/</link>
+      <pubDate>Thu, 27 Dec 2018 16:14:25 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/obvozmd3/</guid>
+      <description>最终还是选了github page 因为用自己的vps 自动部署搞起来比较麻烦
+git github 新增一个github.io
+git init  本地 ...clone  hugo 安装hugo Windows下Hugo提供了Chocolatey方式的安装，通过如下命令即可。
+choco install hugo -confirm  验证安装
+安转完成后，我们打开终端，输入如下命令进行验证是否安装成功
+hugo version  创建一个站点 hugo new site quickstart  添加一个主题 cd quickstart;\ git init;\ git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke;\ # 编辑你的 config.toml 配置文件 # 添加一个叫 Ananke 的主题 echo &#39;theme = &amp;quot;ananke&amp;quot;&#39; &amp;gt;&amp;gt; config.toml  新建一篇文章 hugo new posts/my-first-post.md  本地开启Hugo服务 hugo server -D  构建静态站点 hugo  Hugo-theme Travis CI brew install hugo  Debian and Ubuntu平台下</description>
+    </item>
     
     <item>
       <title>使用Travis CI自动化部署你的Hugo,Hexo博客</title>
