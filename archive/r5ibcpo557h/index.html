@@ -1,186 +1,24 @@
-<!DOCTYPE html>
-<html lang="zh">
-	<head>
-		<meta name="generator" content="Hugo 0.53" />
-		
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="HandheldFriendly" content="True">
-		<meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" />
-		<meta name="wap-font-scale" content="no">
-		<meta name="360-site-verification" content="0903ba33c82867d1f7bd8831e32a7e34" />
-		<meta name="sogou_site_verification" content="E8uWFBcf4a"/>
-		
-		
-		<meta name="author" content="XuziYan">
-		<meta name='description' itemprop="description" content="在之前hexo构建的博客里,有使用到图表,但是现在迁移到hugo之后,就没有相关的插件支持了.
+<!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hugo 0.53"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"><meta name="wap-font-scale" content="no"><meta name="360-site-verification" content="0903ba33c82867d1f7bd8831e32a7e34"><meta name="sogou_site_verification" content="E8uWFBcf4a"><meta name="author" content="XuziYan"><meta name="description" itemprop="description" content="在之前hexo构建的博客里,有使用到图表,但是现在迁移到hugo之后,就没有相关的插件支持了.
 所以自己动手丰衣足食.
 在hugo中有支持一种特性叫做 Shortcodes.简单的来说就是一个可以传参的小模板.
 创建Shortcodes 创建 ./layouts/Shortcodes/echarts.html文件
-&amp;lt;div id=&amp;quot;echarts{{ .Get `height` }">
-		 
-		<meta name="keywords" content="Hugo, 博客, Shortcodes, echarts" >
-		
-		
-		<meta property="og:locale" content="en_US">
-		<meta property="og:title" content="让你的Hugo博客支持echarts图表">
-		<meta property="og:image" content="https://xuziyan.ga/images/logo2.png">
-		<meta property="og:description" content="在之前hexo构建的博客里,有使用到图表,但是现在迁移到hugo之后,就没有相关的插件支持了.
+&amp;lt;div id=&amp;quot;echarts{{ .Get `height` }"><meta name="keywords" content="Hugo, 博客, Shortcodes, echarts"><meta property="og:locale" content="en_US"><meta property="og:title" content="让你的Hugo博客支持echarts图表"><meta property="og:image" content="https://xuziyan.ga/images/logo2.png"><meta property="og:description" content="在之前hexo构建的博客里,有使用到图表,但是现在迁移到hugo之后,就没有相关的插件支持了.
 所以自己动手丰衣足食.
 在hugo中有支持一种特性叫做 Shortcodes.简单的来说就是一个可以传参的小模板.
 创建Shortcodes 创建 ./layouts/Shortcodes/echarts.html文件
-&amp;lt;div id=&amp;quot;echarts{{ .Get `height` }">
-		<meta property="og:site_name" content="XuziYan">
-
-		<title>让你的Hugo博客支持echarts图表 | Xuzi</title>
-		<link rel="shortcut icon" href="https://xuziyan.ga/images/favicon.ico">
-		
-		<link rel="manifest" href="/manifest.json">
-		<link rel="stylesheet" href="https://xuziyan.ga/lib/font-awesome/css/font-awesome.min.css">
-		
-		<link rel="stylesheet" href="https://xuziyan.ga/lib/justified-gallery/justifiedGallery.min.css">
-		<link rel="stylesheet" href="https://xuziyan.ga/css/style.css">
-
-		
-
-		
-		
-		<script src="https://xuziyan.ga/lib/highlight.min.js"></script>
-		<script>hljs.initHighlightingOnLoad();</script>
-		
-		<script src="https://xuziyan.ga/lib/jquery/jquery.min.js"></script>
-		<script>
-			document.addEventListener("error", function (e) {
+&amp;lt;div id=&amp;quot;echarts{{ .Get `height` }"><meta property="og:site_name" content="XuziYan"><title>让你的Hugo博客支持echarts图表 | Xuzi</title><link rel="shortcut icon" href="https://xuziyan.ga/images/favicon.ico"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="https://xuziyan.ga/lib/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="https://xuziyan.ga/lib/justified-gallery/justifiedGallery.min.css"><link rel="stylesheet" href="https://xuziyan.ga/css/style.css"><script src="https://xuziyan.ga/lib/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="https://xuziyan.ga/lib/jquery/jquery.min.js"></script><script>document.addEventListener("error", function (e) {
 			  var elem = e.target;
 			  if (elem.tagName.toLowerCase() == 'img') {
 				elem.style.display='none'
 			  }
-			}, true);
-			</script>
-		<script type="application/ld+json">
-			{
+			}, true);</script><script type="application/ld+json">{
 				"@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
 				"@id": "https://xuziyan.ga/archive/r5ibcpo557h/",
 				"appid": "1613049289050283", 
 				"title": "让你的Hugo博客支持echarts图表 | 前端大爆炸! - WEB BANG! BANG!! BANG!!!", 
 				"images": [],
 				"pubDate": "2018-11-19T16:14:25"
-			} 
-			</script>
-	</head>
-
-<body>
-    <div id="header-post">
-        <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
-        <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
-        <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
-        <span id="menu">
-          <span id="nav">
-            <ul>
-              <li> <a href="/">Home</a></li>
-<li> <a href=" /archive/">Archives</a></li>
-<li> <a href="/about/">About</a></li>
-
-            </ul>
-          </span>
-          <br/>
-          <span id="actions">
-            <ul>
-                
-                <li><a class="icon" href="https://xuziyan.ga/archive/yqufemb0c1m/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
-                
-                
-                <li><a class="icon" href="https://xuziyan.ga/archive/oj8dtatmwzg/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
-                
-              <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
-              <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
-            </ul>
-            <span id="i-prev" class="info" style="display:none;">Previous post</span>
-            <span id="i-next" class="info" style="display:none;">Next post</span>
-            <span id="i-top" class="info" style="display:none;">Back to top</span>
-            <span id="i-share" class="info" style="display:none;">Share post</span>
-          </span>
-          <br/>
-          <div id="share" style="display: none">
-              <ul>
-        <li><a class="icon" href="http://v.t.sina.com.cn/share/share.php?u=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&text=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-weibo " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&text=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&title=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&is_video=false&description=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="mailto:?subject=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8&body=Check out this article: https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&title=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&title=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&title=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&title=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
- </ul>
-      
-          </div>
-          <div id="toc">
-                <nav id="TableOfContents">
-<ul>
-<li><a href="#创建shortcodes">创建Shortcodes</a></li>
-<li><a href="#使用">使用</a></li>
-<li><a href="#效果">效果</a></li>
-</ul>
-</nav>
-          </div>
-        </span>
-      </div>
-      
-    <div class="content index width mx-auto px3 my3">
-        <section id="wrapper" class="home">
-                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-                    <header>
-                    <h1 class="posttitle" itemprop="name headline">
-                            让你的Hugo博客支持echarts图表
-                        </h1>
-                      <div class="meta">
-                        <div class="postdate">
-                                <time datetime='2018-11-19' itemprop="datePublished">2018-11-19</time>
-                            </div>
-                        <div class="article-tag">
-                            <i class="fa fa-eye"></i>
-                            <span id="busuanzi_container_page_pv">
-                                <span id="busuanzi_value_page_pv">0</span>
-                              </span>
-                            </span>
-                        </div>
-                        
-                        <div class="article-tag">
-                            <i class="fa fa-tag"></i>
-                            
-                            <a href="/tags/hugo">
-                               Hugo</a> 
-                             
-                        </div>
-                        
-                        
-                        
-                        <div class="article-tag-box">
-                               
-                        </div>
-
-                        
-                      </div>
-                    </header>
-                    
-
-                    <div class="content" itemprop="articleBody">
-                            
-                            
-
-<p>在之前hexo构建的博客里,有使用到图表,但是现在迁移到hugo之后,就没有相关的插件支持了.</p>
-
-<p>所以自己动手丰衣足食.</p>
-
-<p>在hugo中有支持一种特性叫做 <code>Shortcodes</code>.简单的来说就是一个可以传参的小模板.</p>
-
-<h1 id="创建shortcodes">创建Shortcodes</h1>
-
-<p>创建 <code>./layouts/Shortcodes/echarts.html</code>文件</p>
-
-<pre><code class="language-html">&lt;div id=&quot;echarts{{ .Get `height` }}&quot; style=&quot;width: 100%;height: {{.Get `height`}}px;margin: 0 auto&quot;&gt;&lt;/div&gt;
+			}</script></head><body><div id="header-post"><a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a> <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a> <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a> <span id="menu"><span id="nav"><ul><li><a href="/">Home</a></li><li><a href="/archive/">Archives</a></li><li><a href="/about/">About</a></li></ul></span><br><span id="actions"><ul><li><a class="icon" href="https://xuziyan.ga/archive/yqufemb0c1m/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li><li><a class="icon" href="https://xuziyan.ga/archive/oj8dtatmwzg/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li><li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li><li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li></ul><span id="i-prev" class="info" style="display:none;">Previous post</span> <span id="i-next" class="info" style="display:none;">Next post</span> <span id="i-top" class="info" style="display:none;">Back to top</span> <span id="i-share" class="info" style="display:none;">Share post</span></span><br><div id="share" style="display: none"><ul><li><a class="icon" href="http://v.t.sina.com.cn/share/share.php?u=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&text=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-weibo" aria-hidden="true"></i></a></li><li><a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f"><i class="fa fa-facebook" aria-hidden="true"></i></a></li><li><a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&text=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-twitter" aria-hidden="true"></i></a></li><li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&title=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li><li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&is_video=false&description=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li><li><a class="icon" href="mailto:?subject=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8&body=Check out this article: https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f"><i class="fa fa-envelope" aria-hidden="true"></i></a></li><li><a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&title=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-get-pocket" aria-hidden="true"></i></a></li><li><a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&title=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-reddit" aria-hidden="true"></i></a></li><li><a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&title=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-stumbleupon" aria-hidden="true"></i></a></li><li><a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2fr5ibcpo557h%2f&title=%e8%ae%a9%e4%bd%a0%e7%9a%84Hugo%e5%8d%9a%e5%ae%a2%e6%94%af%e6%8c%81echarts%e5%9b%be%e8%a1%a8"><i class="fa fa-digg" aria-hidden="true"></i></a></li></ul></div><div id="toc"><nav id="TableOfContents"><ul><li><a href="#创建shortcodes">创建Shortcodes</a></li><li><a href="#使用">使用</a></li><li><a href="#效果">效果</a></li></ul></nav></div></span></div><div class="content index width mx-auto px3 my3"><section id="wrapper" class="home"><article class="post" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 class="posttitle" itemprop="name headline">让你的Hugo博客支持echarts图表</h1><div class="meta"><div class="postdate"><time datetime="2018-11-19" itemprop="datePublished">2018-11-19</time></div><div class="article-tag"><i class="fa fa-eye"></i> <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span></span></div><div class="article-tag"><i class="fa fa-tag"></i> <a href="/tags/hugo">Hugo</a></div><div class="article-tag-box"></div></div></header><div class="content" itemprop="articleBody"><p>在之前hexo构建的博客里,有使用到图表,但是现在迁移到hugo之后,就没有相关的插件支持了.</p><p>所以自己动手丰衣足食.</p><p>在hugo中有支持一种特性叫做 <code>Shortcodes</code>.简单的来说就是一个可以传参的小模板.</p><h1 id="创建shortcodes">创建Shortcodes</h1><p>创建 <code>./layouts/Shortcodes/echarts.html</code>文件</p><pre><code class="language-html">&lt;div id=&quot;echarts{{ .Get `height` }}&quot; style=&quot;width: 100%;height: {{.Get `height`}}px;margin: 0 auto&quot;&gt;&lt;/div&gt;
 &lt;script src=&quot;https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
     // 基于准备好的dom，初始化echarts实例
@@ -190,22 +28,7 @@
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 &lt;/script&gt;
-</code></pre>
-
-<h1 id="使用">使用</h1>
-
-<p>在 Shortcodes 插入echarts的配置数据,这样你就可以再页面中看到一个完整的图表了</p>
-
-<div id='raw'>
-<p style="opacity: 0;">
-XuziYan
-XuziYan
-本文资源来源互联网，仅供学习研究使用，版权归该资源的合法拥有者所有，
-XuziYan, web前端博客, 性能优化, 网页制作, 前端, js, html5, css, node.js
-</p>
-
-    <script>
-        $(function () {
+</code></pre><h1 id="使用">使用</h1><p>在 Shortcodes 插入echarts的配置数据,这样你就可以再页面中看到一个完整的图表了</p><div id="raw"><p style="opacity: 0;">XuziYan XuziYan 本文资源来源互联网，仅供学习研究使用，版权归该资源的合法拥有者所有， XuziYan, web前端博客, 性能优化, 网页制作, 前端, js, html5, css, node.js</p><script>$(function () {
             var html = "\n\x3cpre\x3e\n\x3ccode class=\x22language-json hljs\x22\x3e\n\x3cspan class=\x22hljs-string\x22\x3e\x22{{\x22\x3c\/span\x3e \x26lt; echarts height=\x3cspan class=\x22hljs-string\x22\x3e\x22400\x22\x3c\/span\x3e \x26gt; \x3cspan class=\x22hljs-string\x22\x3e\x22}}\x22\x3c\/span\x3e\n\x3cbr\x3e\n{\x3cspan class=\x22hljs-attr\x22\x3e\x22textStyle\x22\x3c\/span\x3e:{\x3cspan class=\x22hljs-attr\x22\x3e\x22color\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22#fff\x22\x3c\/span\x3e},\x3cspan class=\x22hljs-attr\x22\x3e\x22title\x22\x3c\/span\x3e:{\x3cspan class=\x22hljs-attr\x22\x3e\x22text\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x222018年11月国内浏览器数据统计\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22subtext\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22浏览器数据分析\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22x\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22center\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22textStyle\x22\x3c\/span\x3e:{\x3cspan class=\x22hljs-attr\x22\x3e\x22color\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22#fff\x22\x3c\/span\x3e}},\x3cspan class=\x22hljs-attr\x22\x3e\x22tooltip\x22\x3c\/span\x3e:{\x3cspan class=\x22hljs-attr\x22\x3e\x22trigger\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22item\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22formatter\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22{a} \x26lt;br\/\x26gt;{b} : {c} ({d}%)\x22\x3c\/span\x3e},\x3cspan class=\x22hljs-attr\x22\x3e\x22legend\x22\x3c\/span\x3e:{\x3cspan class=\x22hljs-attr\x22\x3e\x22type\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22scroll\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22orient\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22vertical\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22right\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e10\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22top\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e120\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22bottom\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e20\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22data\x22\x3c\/span\x3e:[\x3cspan class=\x22hljs-string\x22\x3e\x22Chrome\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-string\x22\x3e\x22IE 9.0\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-string\x22\x3e\x22IE 11.0\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-string\x22\x3e\x22QQ\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-string\x22\x3e\x22IE 8.0\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-string\x22\x3e\x222345\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-string\x22\x3e\x22搜狗高速\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-string\x22\x3e\x22Firefox\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-string\x22\x3e\x22Safari\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-string\x22\x3e\x22其他\x22\x3c\/span\x3e],\x3cspan class=\x22hljs-attr\x22\x3e\x22textStyle\x22\x3c\/span\x3e:{\x3cspan class=\x22hljs-attr\x22\x3e\x22color\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22#fff\x22\x3c\/span\x3e}},\x3cspan class=\x22hljs-attr\x22\x3e\x22series\x22\x3c\/span\x3e:[{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22浏览器用户比例\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22type\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22pie\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22radius\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x2255%\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22center\x22\x3c\/span\x3e:[\x3cspan class=\x22hljs-string\x22\x3e\x2250%\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-string\x22\x3e\x2260%\x22\x3c\/span\x3e],\x3cspan class=\x22hljs-attr\x22\x3e\x22data\x22\x3c\/span\x3e:[{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22Chrome\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22value\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e46.88\x3c\/span\x3e},{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22IE 9.0\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22value\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e7.4\x3c\/span\x3e},{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22IE 11.0\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22value\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e6.21\x3c\/span\x3e},{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22QQ\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22value\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e5.75\x3c\/span\x3e},{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22IE 8.0\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22value\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e5.74\x3c\/span\x3e},{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x222345\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22value\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e5.68\x3c\/span\x3e},{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22搜狗高速\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22value\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e4.74\x3c\/span\x3e},{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22Firefox\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22value\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e2.54\x3c\/span\x3e},{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22Safari\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22value\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e2.48\x3c\/span\x3e},{\x3cspan class=\x22hljs-attr\x22\x3e\x22name\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22其他\x22\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22value\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e12.59\x3c\/span\x3e}],\x3cspan class=\x22hljs-attr\x22\x3e\x22itemStyle\x22\x3c\/span\x3e:{\x3cspan class=\x22hljs-attr\x22\x3e\x22emphasis\x22\x3c\/span\x3e:{\x3cspan class=\x22hljs-attr\x22\x3e\x22shadowBlur\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e10\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22shadowOffsetX\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-number\x22\x3e0\x3c\/span\x3e,\x3cspan class=\x22hljs-attr\x22\x3e\x22shadowColor\x22\x3c\/span\x3e:\x3cspan class=\x22hljs-string\x22\x3e\x22rgba(0, 0, 0, 0.5)\x22\x3c\/span\x3e}}}]}\n\x3cbr\x3e\n\x3cspan class=\x22hljs-string\x22\x3e\x22{{\x22\x3c\/span\x3e \x26lt; \/echarts \x26gt; \x3cspan class=\x22hljs-string\x22\x3e\x22}}\x22\x3c\/span\x3e\n\x3c\/code\x3e\n\x3c\/pre\x3e\n"
             html = html.replace(/"{/g, "{")
             html = html.replace(/{"/g, "{")
@@ -219,33 +42,11 @@ XuziYan, web前端博客, 性能优化, 网页制作, 前端, js, html5, css, no
                 $('#raw > h1').hide()
             }
             $('button.preview').hide()
-        })
-
-    </script>
-</div>
-
-<h1 id="效果">效果</h1>
-
-<div id="echarts400" style="width: 100%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
-<script type="text/javascript">
-    
-    var myChart = echarts.init(document.getElementById('echarts400'));
+        })</script></div><h1 id="效果">效果</h1><div id="echarts400" style="width: 100%;height: 400px;margin: 0 auto"></div><script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script><script type="text/javascript">var myChart = echarts.init(document.getElementById('echarts400'));
     
     var option = JSON.parse("\n    {\"textStyle\":{\"color\":\"#fff\"},\"title\":{\"text\":\"2018年11月国内浏览器数据统计\",\"subtext\":\"浏览器数据分析\",\"x\":\"center\",\"textStyle\":{\"color\":\"#fff\"}},\"tooltip\":{\"trigger\":\"item\",\"formatter\":\"{a} \u003cbr/\u003e{b} : {c} ({d}%)\"},\"legend\":{\"type\":\"scroll\",\"orient\":\"vertical\",\"right\":10,\"top\":120,\"bottom\":20,\"data\":[\"Chrome\",\"IE 9.0\",\"IE 11.0\",\"QQ\",\"IE 8.0\",\"2345\",\"搜狗高速\",\"Firefox\",\"Safari\",\"其他\"],\"textStyle\":{\"color\":\"#fff\"}},\"series\":[{\"name\":\"浏览器用户比例\",\"type\":\"pie\",\"radius\":\"55%\",\"center\":[\"50%\",\"60%\"],\"data\":[{\"name\":\"Chrome\",\"value\":46.88},{\"name\":\"IE 9.0\",\"value\":7.4},{\"name\":\"IE 11.0\",\"value\":6.21},{\"name\":\"QQ\",\"value\":5.75},{\"name\":\"IE 8.0\",\"value\":5.74},{\"name\":\"2345\",\"value\":5.68},{\"name\":\"搜狗高速\",\"value\":4.74},{\"name\":\"Firefox\",\"value\":2.54},{\"name\":\"Safari\",\"value\":2.48},{\"name\":\"其他\",\"value\":12.59}],\"itemStyle\":{\"emphasis\":{\"shadowBlur\":10,\"shadowOffsetX\":0,\"shadowColor\":\"rgba(0, 0, 0, 0.5)\"}}}]}\n")
     
-    myChart.setOption(option);
-</script>
-
-                            <h2> 本文链接：</h2>
-                            <a href='https://xuziyan.ga/archive/r5ibcpo557h/' target="_blank">https://xuziyan.ga/archive/r5ibcpo557h/</a>
-                    </div>
-                  </article>
-                  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-<div class="blog-post-comments"></div>
-<script>
-    new Valine({
+    myChart.setOption(option);</script><h2>本文链接：</h2><a href="https://xuziyan.ga/archive/r5ibcpo557h/" target="_blank">https://xuziyan.ga/archive/r5ibcpo557h/</a></div></article><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine/dist/Valine.min.js"></script><div class="blog-post-comments"></div><script>new Valine({
         el: '.blog-post-comments', 
         app_id: 'RklimuckFp5qKalglwQv9VIv-gzGzoHsz', 
         app_key: 'oFa0Y4kpYJz3svGKqDeCF46D', 
@@ -253,43 +54,7 @@ XuziYan, web前端博客, 性能优化, 网页制作, 前端, js, html5, css, no
         avatar:'robohash',
         notify:true,
         verify:true
-    });
-</script>
-
-                  
-                  
-        </section>
-
-    </div>
-      
-  <footer id="footer">
-    <div class="footer-left">
-        Copyright © 2018  XuziYan <a href="http://www.miitbeian.gov.cn" rel="external nofollow noopener noreferrer" target="_blank">xxx</a>
-      
-   </div>
-    <div class="footer-right">
-      <nav>
-        <ul>
-          <li> <a href="/">Home</a></li>
-<li> <a href=" /archive/">Archives</a></li>
-<li> <a href="/about/">About</a></li>
-
-        </ul>
-      </nav>
-    </div>
-  </footer>
-    
-<script src="https://xuziyan.ga/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
-<script src="https://xuziyan.ga/lib/typed.js"></script>
-<script src="https://xuziyan.ga/js/main.js"></script>
-
-
-
-
-
-<script async src=""></script>
-<script>
-(function(){
+    });</script></section></div><footer id="footer"><div class="footer-left">Copyright © 2018 XuziYan <a href="http://www.miitbeian.gov.cn" rel="external nofollow noopener noreferrer" target="_blank">xxx</a></div><div class="footer-right"><nav><ul><li><a href="/">Home</a></li><li><a href="/archive/">Archives</a></li><li><a href="/about/">About</a></li></ul></nav></div></footer><script src="https://xuziyan.ga/lib/justified-gallery/jquery.justifiedGallery.min.js"></script><script src="https://xuziyan.ga/lib/typed.js"></script><script src="https://xuziyan.ga/js/main.js"></script><script async src=""></script><script>(function(){
   if(location.host!=='alili.tech')return;
   var ga = document.createElement('script');
   var curProtocol = window.location.protocol.split(':')[0];
@@ -301,12 +66,7 @@ XuziYan, web前端博客, 性能优化, 网页制作, 前端, js, html5, css, no
   gtag('js', new Date());
 
   gtag('config', 'UA-129382678-1');
-})()
-</script>
-
-
-  <script>
-  (function(){
+})()</script><script>(function(){
     if(location.host!=='alili.tech')return;
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -318,21 +78,7 @@ XuziYan, web前端博客, 性能优化, 网页制作, 前端, js, html5, css, no
       }
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
-  })();
-  </script>
-
-
-  
-
-
-
-
-
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-  if ('serviceWorker' in navigator) {
+  })();</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
           navigator.serviceWorker
               .register('/sw.js')
@@ -343,9 +89,4 @@ XuziYan, web前端博客, 性能优化, 网页制作, 前端, js, html5, css, no
                   console.log('SW registration failed: ', registrationError);
               });
       });
-  }
-  </script>
-</body>
-
-</html>
-
+  }</script></body></html>
