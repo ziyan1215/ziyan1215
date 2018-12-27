@@ -6,10 +6,19 @@
     <description>Recent content in Test on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 27 Dec 2018 10:29:56 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 27 Dec 2018 17:37:28 +0800</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/categories/test/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>软件测试</title>
+      <link>https://xuziyan.ga/archive/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Thu, 27 Dec 2018 17:37:28 +0800</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/</guid>
+      <description> 测试 </description>
+    </item>
     
     <item>
       <title>Test</title>
