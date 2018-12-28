@@ -1,5 +1,17 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1545987858/",
+        "title": "LoadRunner录制adf框架经验",
+        "tags": ["LoadRunner"],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1545987472/",
+        "title": "LoadRunner实战",
+        "tags": ["LoadRunner"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1545974928/",
         "title": "CentOS7搭建git服务器",
         "tags": ["Linux"],
@@ -80,6 +92,12 @@
     {
         "uri": "https://xuziyan.ga/tags/linux/",
         "title": "Linux",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/loadrunner/",
+        "title": "Loadrunner",
         "tags": [],
         "description": ""
     },
