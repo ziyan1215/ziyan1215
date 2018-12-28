@@ -1,20 +1,38 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1545974928/",
+        "title": "CentOS7搭建git服务器",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1545974550/",
+        "title": "Linux常用命令",
+        "tags": ["Linux"],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1545973462/",
+        "title": "git init与git init --bare demo.git的区别",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1545971875/",
+        "title": "Git基本用法",
+        "tags": ["Git"],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1545969891/",
+        "title": "GIT常用命令",
+        "tags": ["Git"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/about/",
         "title": "About Me",
         "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/1545966892/",
-        "title": "Blog的使用hidden",
-        "tags": [],
-        "description": ""
-    },
-    {
-        "uri": "https://xuziyan.ga/archive/1545966883/",
-        "title": "Blog的使用",
-        "tags": ["Test"],
         "description": ""
     },
     {
@@ -50,6 +68,18 @@
     {
         "uri": "https://xuziyan.ga/categories/",
         "title": "Categories",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/git/",
+        "title": "Git",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/linux/",
+        "title": "Linux",
         "tags": [],
         "description": ""
     },

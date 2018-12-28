@@ -13,26 +13,18 @@
 		
 		
 		<meta name="author" content="XuziYan">
-		<meta name='description' itemprop="description" content="#步骤 通过Travis CI 自动部署
-本地写完md
-上传git
-自动部署
-2018年12月27日 15:51:34">
-		
-		<meta name="keywords" content="XuziYan, web前端博客, 性能优化, 网页制作, 前端, js, html5, css, node.js" >
+		<meta name='description' itemprop="description" content="常用命令 git init 项目初始化 git clone 拉取项目 git add . 添加到暂存区 git commit -m 添加commit信息 git push 将本地分支推送到服务器上去 git pull origin master 本地与服务器端同步 git log 查看日志 git status 查看当前状态 git tag 查看版本号 git diff 查看尚未提交的更新  实际">
+		 
+		<meta name="keywords" content="Git" >
 		
 		
 		<meta property="og:locale" content="en_US">
-		<meta property="og:title" content="由TravisCI自动部署hugo">
+		<meta property="og:title" content="GIT常用命令">
 		<meta property="og:image" content="https://xuziyan.ga/images/logo2.png">
-		<meta property="og:description" content="#步骤 通过Travis CI 自动部署
-本地写完md
-上传git
-自动部署
-2018年12月27日 15:51:34">
+		<meta property="og:description" content="常用命令 git init 项目初始化 git clone 拉取项目 git add . 添加到暂存区 git commit -m 添加commit信息 git push 将本地分支推送到服务器上去 git pull origin master 本地与服务器端同步 git log 查看日志 git status 查看当前状态 git tag 查看版本号 git diff 查看尚未提交的更新  实际">
 		<meta property="og:site_name" content="XuziYan">
 
-		<title>由TravisCI自动部署hugo | Xuzi</title>
+		<title>GIT常用命令 | Xuzi</title>
 		<link rel="shortcut icon" href="https://xuziyan.ga/images/favicon.ico">
 		
 		<link rel="manifest" href="/manifest.json">
@@ -60,11 +52,11 @@
 		<script type="application/ld+json">
 			{
 				"@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-				"@id": "https://xuziyan.ga/archive/2018-12-28t011917-0800/",
+				"@id": "https://xuziyan.ga/archive/1545969891/",
 				"appid": "1613049289050283", 
-				"title": "由TravisCI自动部署hugo | 前端大爆炸! - WEB BANG! BANG!! BANG!!!", 
+				"title": "GIT常用命令 | 前端大爆炸! - WEB BANG! BANG!! BANG!!!", 
 				"images": [],
-				"pubDate": "2018-12-28T01:19:17"
+				"pubDate": "2018-12-28T12:04:51"
 			} 
 			</script>
 	</head>
@@ -87,10 +79,10 @@
           <span id="actions">
             <ul>
                 
-                <li><a class="icon" href="https://xuziyan.ga/archive/2018-12-28t011747-0800/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+                <li><a class="icon" href="https://xuziyan.ga/archive/2018-12-28t011917-0800/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
                 
                 
-                <li><a class="icon" href="https://xuziyan.ga/archive/1545969891/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+                <li><a class="icon" href="https://xuziyan.ga/archive/1545971875/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
                 
               <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
               <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -103,23 +95,30 @@
           <br/>
           <div id="share" style="display: none">
               <ul>
-        <li><a class="icon" href="http://v.t.sina.com.cn/share/share.php?u=https%3a%2f%2fxuziyan.ga%2farchive%2f2018-12-28t011917-0800%2f&text=%e7%94%b1TravisCI%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo"><i class="fa fa-weibo " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fxuziyan.ga%2farchive%2f2018-12-28t011917-0800%2f"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fxuziyan.ga%2farchive%2f2018-12-28t011917-0800%2f&text=%e7%94%b1TravisCI%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fxuziyan.ga%2farchive%2f2018-12-28t011917-0800%2f&title=%e7%94%b1TravisCI%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fxuziyan.ga%2farchive%2f2018-12-28t011917-0800%2f&is_video=false&description=%e7%94%b1TravisCI%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="mailto:?subject=%e7%94%b1TravisCI%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo&body=Check out this article: https%3a%2f%2fxuziyan.ga%2farchive%2f2018-12-28t011917-0800%2f"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fxuziyan.ga%2farchive%2f2018-12-28t011917-0800%2f&title=%e7%94%b1TravisCI%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2f2018-12-28t011917-0800%2f&title=%e7%94%b1TravisCI%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2f2018-12-28t011917-0800%2f&title=%e7%94%b1TravisCI%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-        <li><a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2f2018-12-28t011917-0800%2f&title=%e7%94%b1TravisCI%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="http://v.t.sina.com.cn/share/share.php?u=https%3a%2f%2fxuziyan.ga%2farchive%2f1545969891%2f&text=GIT%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4"><i class="fa fa-weibo " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fxuziyan.ga%2farchive%2f1545969891%2f"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1545969891%2f&text=GIT%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1545969891%2f&title=GIT%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1545969891%2f&is_video=false&description=GIT%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="mailto:?subject=GIT%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4&body=Check out this article: https%3a%2f%2fxuziyan.ga%2farchive%2f1545969891%2f"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1545969891%2f&title=GIT%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1545969891%2f&title=GIT%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1545969891%2f&title=GIT%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+        <li><a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1545969891%2f&title=GIT%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
  </ul>
       
           </div>
           <div id="toc">
                 <nav id="TableOfContents">
 <ul>
-<li><a href="#步骤">#步骤</a></li>
+<li><a href="#常用命令">常用命令</a></li>
+<li><a href="#实际运用">实际运用</a>
+<ul>
+<li><a href="#拉取远程仓库内容">拉取远程仓库内容</a></li>
+<li><a href="#推送本地到远程仓库">推送本地到远程仓库</a></li>
+<li><a href="#创建dev分支">创建dev分支</a></li>
+</ul></li>
+<li><a href="#解决冲突">解决冲突</a></li>
 </ul>
 </nav>
           </div>
@@ -131,7 +130,7 @@
                 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
                     <header>
                     <h1 class="posttitle" itemprop="name headline">
-                            由TravisCI自动部署hugo
+                            GIT常用命令
                         </h1>
                       <div class="meta">
                         <div class="postdate">
@@ -143,6 +142,14 @@
                                 <span id="busuanzi_value_page_pv">0</span>
                               </span>
                             </span>
+                        </div>
+                        
+                        <div class="article-tag">
+                            <i class="fa fa-tag"></i>
+                            
+                            <a href="/tags/git">
+                               Git</a> 
+                             
                         </div>
                         
                         
@@ -160,20 +167,106 @@
                             
                             
 
-<h1 id="步骤">#步骤</h1>
+<h1 id="常用命令">常用命令</h1>
 
-<p>通过Travis CI 自动部署</p>
+<pre><code>git init 项目初始化
+git clone 拉取项目
+git add . 添加到暂存区
+git commit -m 添加commit信息
+git push 将本地分支推送到服务器上去
+git pull origin master 本地与服务器端同步
+git log 查看日志
+git status 查看当前状态
+git tag 查看版本号
+git diff 查看尚未提交的更新
+</code></pre>
 
-<p>本地写完md</p>
+<hr />
 
-<p>上传git</p>
+<h1 id="实际运用">实际运用</h1>
 
-<p>自动部署</p>
+<h2 id="拉取远程仓库内容">拉取远程仓库内容</h2>
 
-<p>2018年12月27日 15:51:34</p>
+<pre><code>git pull  origin master
+</code></pre>
+
+<h2 id="推送本地到远程仓库">推送本地到远程仓库</h2>
+
+<pre><code>git push -u origin master
+</code></pre>
+
+<h2 id="创建dev分支">创建dev分支</h2>
+
+<pre><code>git checkout -b dev
+</code></pre>
+
+<blockquote>
+<p>git checkout命令加上-b参数表示创建并切换，相当于以下两条命令</p>
+</blockquote>
+
+<pre><code>git branch dev
+ git checkout dev
+</code></pre>
+
+<p>用git branch命令查看当前分支</p>
+
+<pre><code>git branch
+</code></pre>
+
+<p>我们把dev分支的工作成果合并到master分支上（需要切换回master分支）</p>
+
+<pre><code>git checkout master
+
+git merge dev
+</code></pre>
+
+<p>然后提交</p>
+
+<p>Git鼓励大量使用分支：</p>
+
+<pre><code class="language-bash">
+查看分支：git branch
+
+创建分支：git branch &lt;name&gt;
+
+切换分支：git checkout &lt;name&gt;
+
+创建+切换分支：git checkout -b &lt;name&gt;
+
+合并某分支到当前分支：git merge &lt;name&gt;
+
+删除分支：git branch -d &lt;name&gt;
+#更新本地的远程分支
+git fetch origin
+#本地与远处的差集（显示远程有而本地没有的commit信息）
+git log master..origin/master
+#统计文件的改动
+git diff --stat master origin/master
+</code></pre>
+
+<hr />
+
+<h1 id="解决冲突">解决冲突</h1>
+
+<blockquote>
+<p>在git pull的过程中，如果有冲突，那么除了冲突的文件之外，其它的文件都会做为staged区的文件保存起来。</p>
+
+<p>本地的push和merge会形成MERGE-HEAD(FETCH-HEAD), HEAD（PUSH-HEAD）这样的引用。</p>
+
+<p>HEAD代表本地最近成功push后形成的引用。MERGE-HEAD表示成功pull后形成的引用。</p>
+
+<p>可以通过MERGE-HEAD或者HEAD来实现类型与svn revet的效果</p>
+
+<p>将本地的冲突文件冲掉，不仅需要reset到MERGE-HEAD或者HEAD,还需要&ndash;hard。</p>
+
+<p>没有后面的hard，不会冲掉本地工作区。只会冲掉stage区。</p>
+</blockquote>
+
+<pre><code>git reset --hard FETCH_HEAD
+</code></pre>
 
                             <h2> 本文链接：</h2>
-                            <a href='https://xuziyan.ga/archive/2018-12-28t011917-0800/' target="_blank">https://xuziyan.ga/archive/2018-12-28t011917-0800/</a>
+                            <a href='https://xuziyan.ga/archive/1545969891/' target="_blank">https://xuziyan.ga/archive/1545969891/</a>
                     </div>
                   </article>
                   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
@@ -190,43 +283,6 @@
         verify:true
     });
 </script>
-
-                  
-                    <ul id="more-post-list" class="archive readmore">
-    <h3>其他推荐</h3>
-
-    
-    
-    
-        <li>
-<a href="/archive/1545974928/">CentOS7搭建git服务器<aside class="dates">2018-12-28</aside></a>
-        </li>
-    
-        <li>
-<a href="/archive/1545974550/">Linux常用命令<aside class="dates">2018-12-28</aside></a>
-        </li>
-    
-        <li>
-<a href="/archive/1545973462/">git init与git init --bare demo.git的区别<aside class="dates">2018-12-28</aside></a>
-        </li>
-    
-        <li>
-<a href="/archive/1545971875/">Git基本用法<aside class="dates">2018-12-28</aside></a>
-        </li>
-    
-        <li>
-<a href="/archive/1545969891/">GIT常用命令<aside class="dates">2018-12-28</aside></a>
-        </li>
-    
-        <li>
-<a href="/archive/2018-12-28t011747-0800/">搭建博客hugo<aside class="dates">2018-12-28</aside></a>
-        </li>
-    
-        <li>
-<a href="/archive/23101033/">travisCI自动部署<aside class="dates">2018-12-26</aside></a>
-        </li>
-    
-</ul>
 
                   
                   

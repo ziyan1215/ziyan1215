@@ -6,27 +6,72 @@
     <description>Recent content in Archives on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 28 Dec 2018 11:14:52 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Dec 2018 13:28:48 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/archive/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Blog的使用hidden</title>
-      <link>https://xuziyan.ga/archive/1545966892/</link>
-      <pubDate>Fri, 28 Dec 2018 11:14:52 +0000</pubDate>
+      <title>CentOS7搭建git服务器</title>
+      <link>https://xuziyan.ga/archive/1545974928/</link>
+      <pubDate>Fri, 28 Dec 2018 13:28:48 +0000</pubDate>
       
-      <guid>https://xuziyan.ga/archive/1545966892/</guid>
-      <description>隐藏的文章 hugo server &amp;ndash;buildFuture hugo new archive/test/blog的使用hidden.md</description>
+      <guid>https://xuziyan.ga/archive/1545974928/</guid>
+      <description>安装Git yum –y install git  初始化 git init --bare hexo.git  将远程的ssr公匙加入到文件中 /home/git/.ssh/authorized_keys  远程用户clone F:\LyDocument\hugo\blog\public&amp;gt;git clone git@xuziyan.tk:/opt/hexo/hexo.git/ Cloning into &#39;hexo&#39;... git@xuziyan.tk&#39;s password: warning: You appear to have cloned an empty repository.  查询 F:\LyDocument\hugo\blog\public\hexo&amp;gt;git status On branch master No commits yet  新增文件提交 git add -A git commit -m &amp;quot;add&amp;quot; F:\LyDocument\hugo\blog\public\hexo&amp;gt;git push origin master git@xuziyan.tk&#39;s password: ounting objects: 107, done. Delta compression using up to 4 threads. Compressing objects: 100% (94/94), done.</description>
     </item>
     
     <item>
-      <title>Blog的使用</title>
-      <link>https://xuziyan.ga/archive/1545966883/</link>
-      <pubDate>Fri, 28 Dec 2018 11:14:43 +0000</pubDate>
+      <title>Linux常用命令</title>
+      <link>https://xuziyan.ga/archive/1545974550/</link>
+      <pubDate>Fri, 28 Dec 2018 13:22:30 +0000</pubDate>
       
-      <guid>https://xuziyan.ga/archive/1545966883/</guid>
-      <description>测试 2018年12月28日 11:15:21</description>
+      <guid>https://xuziyan.ga/archive/1545974550/</guid>
+      <description> 常用命令 查找文件 [root@vultr hexo]# find / -name nginx /usr/sbin/nginx  查找历史语句 [root@vultr hexo]# history | grep nginx 85 yum install -y git nginx 87 ps -ef|grep nginx  待添加 &amp;hellip; </description>
+    </item>
+    
+    <item>
+      <title>git init与git init --bare demo.git的区别</title>
+      <link>https://xuziyan.ga/archive/1545973462/</link>
+      <pubDate>Fri, 28 Dec 2018 13:04:22 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1545973462/</guid>
+      <description>用法与区别 初始化一个git仓库，一般用于本地 git init 初始化一个裸仓库，一般用于远程仓库 git init --bare demo.git  注意事项 假如在vps上面安装git后，用git init --bare demo.git来初始化了一个远程仓库
+那么在本地上传commit到vps的远程仓库上的话，文件是不会显示出来的。
+通过命令git --work-tree=/opt/demo --git-dir=/opt/demo.git checkout -f
+设定一个work-tree才会把文件显示出来。</description>
+    </item>
+    
+    <item>
+      <title>Git基本用法</title>
+      <link>https://xuziyan.ga/archive/1545971875/</link>
+      <pubDate>Fri, 28 Dec 2018 12:37:55 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1545971875/</guid>
+      <description>安装完后的配置 安装完成后，还需要最后一步设置，在命令行输入：
+$ git config --global user.name &amp;quot;Your Name&amp;quot;
+$ git config --global user.email &amp;quot;email@example.com&amp;quot;
+因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。你也许会担心，如果有人故意冒充别人怎么办？这个不必担心，首先我们相信大家都是善良无知的群众，其次，真的有冒充的也是有办法可查的。
+注意git config命令的&amp;ndash;global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
+查看用户名以及邮箱：
+Administrator@LY-20170308GWTH MINGW64 /d/exercise (master) $ git config user.name xuziyan Administrator@LY-20170308GWTH MINGW64 /d/exercise (master) $ git config user.email xuziyanmiss@gmail.com  配置Git仓库 通过git init命令把这个目录变成Git可以管理的仓库：
+第一步，用命令git add告诉Git，把文件添加到仓库：
+$ git add readme.txt
+第二步，用命令git commit告诉Git，把文件提交到仓库：
+$ git commit -m &amp;quot;wrote a readme file&amp;quot;
+要关联一个远程库，使用命令:
+git remote add origin git@server-name:path/repo-name.git；
+关联后，使用命令第一次推送master分支的所有内容:
+git push -u origin master</description>
+    </item>
+    
+    <item>
+      <title>GIT常用命令</title>
+      <link>https://xuziyan.ga/archive/1545969891/</link>
+      <pubDate>Fri, 28 Dec 2018 12:04:51 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1545969891/</guid>
+      <description>常用命令 git init 项目初始化 git clone 拉取项目 git add . 添加到暂存区 git commit -m 添加commit信息 git push 将本地分支推送到服务器上去 git pull origin master 本地与服务器端同步 git log 查看日志 git status 查看当前状态 git tag 查看版本号 git diff 查看尚未提交的更新  实际运用 拉取远程仓库内容 git pull origin master  推送本地到远程仓库 git push -u origin master  创建dev分支 git checkout -b dev   git checkout命令加上-b参数表示创建并切换，相当于以下两条命令
+ git branch dev git checkout dev  用git branch命令查看当前分支</description>
     </item>
     
     <item>
