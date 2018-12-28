@@ -2,7 +2,7 @@
     {
         "uri": "https://xuziyan.ga/archive/1545974928/",
         "title": "CentOS7搭建git服务器",
-        "tags": [],
+        "tags": ["Linux"],
         "description": ""
     },
     {
@@ -14,7 +14,7 @@
     {
         "uri": "https://xuziyan.ga/archive/1545973462/",
         "title": "git init与git init --bare demo.git的区别",
-        "tags": [],
+        "tags": ["Git"],
         "description": ""
     },
     {

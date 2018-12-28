@@ -6,10 +6,19 @@
     <description>Recent content in Linux on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 28 Dec 2018 13:22:30 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Dec 2018 13:28:48 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CentOS7搭建git服务器</title>
+      <link>https://xuziyan.ga/archive/1545974928/</link>
+      <pubDate>Fri, 28 Dec 2018 13:28:48 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1545974928/</guid>
+      <description>安装Git yum –y install git  初始化 git init --bare hexo.git  将远程的ssr公匙加入到文件中 /home/git/.ssh/authorized_keys  远程用户clone F:\LyDocument\hugo\blog\public&amp;gt;git clone git@xuziyan.tk:/opt/hexo/hexo.git/ Cloning into &#39;hexo&#39;... git@xuziyan.tk&#39;s password: warning: You appear to have cloned an empty repository.  查询 F:\LyDocument\hugo\blog\public\hexo&amp;gt;git status On branch master No commits yet  新增文件提交 git add -A git commit -m &amp;quot;add&amp;quot; F:\LyDocument\hugo\blog\public\hexo&amp;gt;git push origin master git@xuziyan.tk&#39;s password: ounting objects: 107, done. Delta compression using up to 4 threads. Compressing objects: 100% (94/94), done.</description>
+    </item>
     
     <item>
       <title>Linux常用命令</title>
