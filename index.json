@@ -1,5 +1,11 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1546071281/",
+        "title": "Gulp入门",
+        "tags": ["Gulp"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1546067579/",
         "title": "Seo初探",
         "tags": ["Seo"],
@@ -92,6 +98,12 @@
     {
         "uri": "https://xuziyan.ga/tags/git/",
         "title": "Git",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/gulp/",
+        "title": "Gulp",
         "tags": [],
         "description": ""
     },
