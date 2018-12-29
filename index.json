@@ -1,5 +1,11 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1546067579/",
+        "title": "Seo初探",
+        "tags": ["Seo"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1545987858/",
         "title": "LoadRunner录制adf框架经验",
         "tags": ["LoadRunner"],
@@ -98,6 +104,12 @@
     {
         "uri": "https://xuziyan.ga/tags/loadrunner/",
         "title": "Loadrunner",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/seo/",
+        "title": "Seo",
         "tags": [],
         "description": ""
     },
