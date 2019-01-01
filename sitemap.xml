@@ -3,6 +3,20 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://xuziyan.ga/archive/1546353054/</loc>
+    <lastmod>2019-01-01T22:30:54+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuziyan.ga/archive/1546352162/</loc>
+    <lastmod>2019-01-01T22:16:02+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://xuziyan.ga/archive/1546071281/</loc>
     <lastmod>2018-12-29T16:14:41+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -102,7 +116,7 @@
   
   <url>
     <loc>https://xuziyan.ga/archive/</loc>
-    <lastmod>2018-12-29T16:14:41+00:00</lastmod>
+    <lastmod>2019-01-01T22:30:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -123,6 +137,13 @@
   <url>
     <loc>https://xuziyan.ga/tags/gulp/</loc>
     <lastmod>2018-12-29T16:14:41+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuziyan.ga/tags/life/</loc>
+    <lastmod>2019-01-01T22:30:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -164,7 +185,7 @@
   
   <url>
     <loc>https://xuziyan.ga/</loc>
-    <lastmod>2018-12-29T16:14:41+00:00</lastmod>
+    <lastmod>2019-01-01T22:30:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
