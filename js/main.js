@@ -96,16 +96,16 @@ $(function () {
     
     var options = {
       strings: [ 
-        str + "Who??^1000",
-        str + "It's me ^3000",
-        str +'Haha, make a joke',
+        //str + "Who??^1000",
+        //str + "It's me ^3000",
+        str +'written by...',
         str +data.author,
         // str+"Welcome to my blog. ^1000",
         // str+"Here you can learn the JavaScript",
         // str+"Here you can learn the Css",
       ],
-      typeSpeed: 20,
-      startDelay:300,
+      typeSpeed: 30,
+      startDelay:500,
       // loop: true,
     }
     var typed = new Typed(".description .typed", options);

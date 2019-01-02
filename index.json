@@ -1,5 +1,17 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1546417063/",
+        "title": "我的网络收藏夹",
+        "tags": ["Other", "tools"],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1546400558/",
+        "title": "Jar包在CMD运行后乱码",
+        "tags": ["JAVA"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1546353054/",
         "title": "2019年新年快乐",
         "tags": ["life"],
@@ -120,6 +132,12 @@
         "description": ""
     },
     {
+        "uri": "https://xuziyan.ga/tags/java/",
+        "title": "Java",
+        "tags": [],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/tags/life/",
         "title": "Life",
         "tags": [],
@@ -138,6 +156,12 @@
         "description": ""
     },
     {
+        "uri": "https://xuziyan.ga/tags/other/",
+        "title": "Other",
+        "tags": [],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/tags/seo/",
         "title": "Seo",
         "tags": [],
@@ -152,6 +176,12 @@
     {
         "uri": "https://xuziyan.ga/tags/test/",
         "title": "Test",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/tools/",
+        "title": "Tools",
         "tags": [],
         "description": ""
     },

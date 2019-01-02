@@ -6,10 +6,35 @@
     <description>Recent content in Archives on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 01 Jan 2019 22:30:54 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Jan 2019 16:17:43 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/archive/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>我的网络收藏夹</title>
+      <link>https://xuziyan.ga/archive/1546417063/</link>
+      <pubDate>Wed, 02 Jan 2019 16:17:43 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1546417063/</guid>
+      <description>开源项目 highlightjs
+工具类 百度搜索资源平台 google</description>
+    </item>
+    
+    <item>
+      <title>Jar包在CMD运行后乱码</title>
+      <link>https://xuziyan.ga/archive/1546400558/</link>
+      <pubDate>Wed, 02 Jan 2019 11:42:38 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1546400558/</guid>
+      <description>  问题来源：今天写了个小的应用，把网络请求的内容转成文件保存到本地。在eclipse测试通过后打包成jar包在cmd执行后发现文件内容乱码
+ 处理方法  设定cmd的编码为utf-8
+打开cmd执行 (GBK(默认) chcp 936）
+chcp 65001
+ 运行jar语句加入编码设置
+java -Dfile.encoding=utf-8 -jar sb.jar
+  </description>
+    </item>
     
     <item>
       <title>2019年新年快乐</title>

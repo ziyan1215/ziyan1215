@@ -23,8 +23,12 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "css/style.css",
+    "url": "css/style - 副本.css",
     "revision": "934bd2f4737c0e28cb90019ff24fda0c"
+  },
+  {
+    "url": "css/style.css",
+    "revision": "a090df25a5a360beb7cbb683c0816ac4"
   },
   {
     "url": "js/av-min.js",
@@ -36,7 +40,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/main.js",
-    "revision": "4ffdc40f2bf8f9f5fbbee8688c570ae1"
+    "revision": "590567ee41a0d53aff8c380eab5f3267"
   },
   {
     "url": "lib/font-awesome/css/font-awesome.css",

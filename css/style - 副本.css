@@ -1433,83 +1433,62 @@ pre code {
     padding: 0
 }
 
-//加入hightlight主题样式https://github.com/highlightjs/highlight.js/tree/master/src/styles
-/*
-Atom One Dark With support for ReasonML by Gidi Morris, based off work by Daniel Gamage
-Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
-*/
 .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  line-height: 1.3em;
-  color: #abb2bf;
-  background: #282c34;
-  border-radius: 5px;
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    /* background:#474949; */
+    color: #d1d9e1;
 }
-.hljs-keyword, .hljs-operator {
-  color: #F92672;
-}
-.hljs-pattern-match {
-  color: #F92672;
-}
-.hljs-pattern-match .hljs-constructor {
-  color: #61aeee;
-}
-.hljs-function {
-  color: #61aeee;
-}
-.hljs-function .hljs-params {
-  color: #A6E22E;
-}
-.hljs-function .hljs-params .hljs-typing {
-  color: #FD971F;
-}
-.hljs-module-access .hljs-module {
-  color: #7e57c2;
-}
-.hljs-constructor {
-  color: #e2b93d;
-}
-.hljs-constructor .hljs-string {
-  color: #9CCC65;
-}
-.hljs-comment, .hljs-quote {
-  color: #b18eb1;
-  font-style: italic;
-}
-.hljs-doctag, .hljs-formula {
-  color: #c678dd;
-}
-.hljs-section, .hljs-name, .hljs-selector-tag, .hljs-deletion, .hljs-subst {
-  color: #e06c75;
-}
-.hljs-literal {
-  color: #56b6c2;
-}
-.hljs-string, .hljs-regexp, .hljs-addition, .hljs-attribute, .hljs-meta-string {
-  color: #98c379;
-}
-.hljs-built_in, .hljs-class .hljs-title {
-  color: #e6c07b;
-}
-.hljs-attr, .hljs-variable, .hljs-template-variable, .hljs-type, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-number {
-  color: #d19a66;
-}
-.hljs-symbol, .hljs-bullet, .hljs-link, .hljs-meta, .hljs-selector-id, .hljs-title {
-  color: #61aeee;
-}
-.hljs-emphasis {
-  font-style: italic;
-}
-.hljs-strong {
-  font-weight: bold;
-}
-.hljs-link {
-  text-decoration: underline;
-}
-//hljs结束
 
+.hljs-comment,.hljs-quote {
+    color: #969896;
+    font-style: italic
+}
+
+.hljs-keyword,.hljs-selector-tag,.hljs-literal,.hljs-type,.hljs-addition {
+    color: #cc99cc
+}
+
+.hljs-number,.hljs-selector-attr,.hljs-selector-pseudo {
+    color: #f99157
+}
+
+.hljs-string,.hljs-doctag,.hljs-regexp {
+    color: #8abeb7
+}
+
+.hljs-title,.hljs-name,.hljs-section,.hljs-built_in {
+    color: #b5bd68
+}
+
+.hljs-variable,.hljs-template-variable,.hljs-selector-id,.hljs-class .hljs-title {
+    color: #ffcc66
+}
+
+.hljs-section,.hljs-name,.hljs-strong {
+    font-weight: bold
+}
+
+.hljs-symbol,.hljs-bullet,.hljs-subst,.hljs-meta,.hljs-link {
+    color: #f99157
+}
+
+.hljs-deletion {
+    color: #dc322f
+}
+
+.hljs-formula {
+    background: #eee8d5
+}
+
+.hljs-attr,.hljs-attribute {
+    color: #81a2be
+}
+
+.hljs-emphasis {
+    font-style: italic
+}
 
 
 .coding {

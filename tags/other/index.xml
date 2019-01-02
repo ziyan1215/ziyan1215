@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Other on XuziYan</title>
+    <link>https://xuziyan.ga/tags/other/</link>
+    <description>Recent content in Other on XuziYan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 02 Jan 2019 16:17:43 +0000</lastBuildDate>
+    
+	<atom:link href="https://xuziyan.ga/tags/other/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>我的网络收藏夹</title>
+      <link>https://xuziyan.ga/archive/1546417063/</link>
+      <pubDate>Wed, 02 Jan 2019 16:17:43 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1546417063/</guid>
+      <description>开源项目 highlightjs
+工具类 百度搜索资源平台 google</description>
+    </item>
+    
+  </channel>
+</rss>
