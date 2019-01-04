@@ -1,5 +1,29 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1546591306/",
+        "title": "Oracle数据库修改字符集方法",
+        "tags": ["Oracle"],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1546590921/",
+        "title": "Oracle字符集",
+        "tags": ["Oracle"],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1546588698/",
+        "title": "Dmp导入后乱码的解决方法",
+        "tags": ["Oracle"],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1546588114/",
+        "title": "Oracle11G导出空表方法",
+        "tags": ["Oracle"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1546417063/",
         "title": "我的网络收藏夹",
         "tags": ["Other", "tools"],
@@ -152,6 +176,12 @@
     {
         "uri": "https://xuziyan.ga/tags/loadrunner/",
         "title": "Loadrunner",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/oracle/",
+        "title": "Oracle",
         "tags": [],
         "description": ""
     },
