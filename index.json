@@ -1,11 +1,5 @@
 [
     {
-        "uri": "https://xuziyan.ga/archive/test/",
-        "title": "Test",
-        "tags": [],
-        "description": ""
-    },
-    {
         "uri": "https://xuziyan.ga/archive/1546591306/",
         "title": "Oracle数据库修改字符集方法",
         "tags": ["Oracle"],
