@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on XuziYan</title>
+    <link>https://xuziyan.ga/tags/</link>
+    <description>Recent content in Tags on XuziYan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 28 Dec 2018 13:04:22 +0000</lastBuildDate>
+    
+	<atom:link href="https://xuziyan.ga/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git</title>
+      <link>https://xuziyan.ga/tags/git/</link>
+      <pubDate>Fri, 28 Dec 2018 13:04:22 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gulp</title>
+      <link>https://xuziyan.ga/tags/gulp/</link>
+      <pubDate>Sat, 29 Dec 2018 16:14:41 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/gulp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://xuziyan.ga/tags/java/</link>
+      <pubDate>Wed, 02 Jan 2019 11:42:38 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Life</title>
+      <link>https://xuziyan.ga/tags/life/</link>
+      <pubDate>Tue, 01 Jan 2019 22:30:54 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/life/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://xuziyan.ga/tags/linux/</link>
+      <pubDate>Fri, 28 Dec 2018 13:28:48 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Loadrunner</title>
+      <link>https://xuziyan.ga/tags/loadrunner/</link>
+      <pubDate>Fri, 28 Dec 2018 17:04:18 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/loadrunner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Oracle</title>
+      <link>https://xuziyan.ga/tags/oracle/</link>
+      <pubDate>Fri, 04 Jan 2019 16:41:46 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Other</title>
+      <link>https://xuziyan.ga/tags/other/</link>
+      <pubDate>Wed, 02 Jan 2019 16:17:43 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/other/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Seo</title>
+      <link>https://xuziyan.ga/tags/seo/</link>
+      <pubDate>Sat, 29 Dec 2018 15:12:59 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/seo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>https://xuziyan.ga/tags/test/</link>
+      <pubDate>Wed, 26 Dec 2018 15:34:25 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>https://xuziyan.ga/tags/tools/</link>
+      <pubDate>Wed, 02 Jan 2019 16:17:43 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/tags/tools/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
