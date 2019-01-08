@@ -1,5 +1,23 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1546939102/",
+        "title": "Netstat查看某端口号被谁占用",
+        "tags": ["Windows"],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1546930122/",
+        "title": "通过ip限制Oracle数据库访问的方法",
+        "tags": ["Oracle"],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/archive/1546928060/",
+        "title": "Oracle常用语句",
+        "tags": ["Oracle"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1546591306/",
         "title": "Oracle数据库修改字符集方法",
         "tags": ["Oracle"],
@@ -32,19 +50,19 @@
     {
         "uri": "https://xuziyan.ga/archive/1546400558/",
         "title": "Jar包在CMD运行后乱码",
-        "tags": ["JAVA"],
+        "tags": ["Java"],
         "description": ""
     },
     {
         "uri": "https://xuziyan.ga/archive/1546353054/",
         "title": "2019年新年快乐",
-        "tags": ["life"],
+        "tags": ["Life"],
         "description": ""
     },
     {
         "uri": "https://xuziyan.ga/archive/1546352162/",
         "title": "2019年",
-        "tags": ["life"],
+        "tags": ["Life"],
         "description": ""
     },
     {
@@ -212,6 +230,12 @@
     {
         "uri": "https://xuziyan.ga/tags/tools/",
         "title": "Tools",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/windows/",
+        "title": "Windows",
         "tags": [],
         "description": ""
     },

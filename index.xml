@@ -6,10 +6,50 @@
     <description>Recent content on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 04 Jan 2019 16:41:46 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 Jan 2019 17:18:22 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Netstat查看某端口号被谁占用</title>
+      <link>https://xuziyan.ga/archive/1546939102/</link>
+      <pubDate>Tue, 08 Jan 2019 17:18:22 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1546939102/</guid>
+      <description>列出所有端口的情况 在cmd窗口下执行 netstat -ano
+查看被占用端口对应的PID 输入命令：netstat -aon|findstr &amp;quot;1313&amp;quot;
+查看是哪个进程或者程序占用了1313端口 tasklist|findstr &amp;quot;10328&amp;quot;
+到任务管理器结束相应的进程 或者直接输入命令： taskkill /im hugo.exe /f
+C:\Users\Administrator&amp;gt;netstat -aon|findstr &amp;quot;1313&amp;quot; TCP 127.0.0.1:1313 0.0.0.0:0 LISTENING 10328 TCP 127.0.0.1:1313 127.0.0.1:61709 ESTABLISHED 10328 TCP 127.0.0.1:1313 127.0.0.1:61710 ESTABLISHED 10328 TCP 127.0.0.1:1313 127.0.0.1:61720 ESTABLISHED 10328 TCP 127.0.0.1:1313 127.0.0.1:61722 ESTABLISHED 10328 TCP 127.0.0.1:1313 127.0.0.1:61723 ESTABLISHED 10328 TCP 127.0.0.1:1313 127.0.0.1:61724 ESTABLISHED 10328 TCP 127.0.0.1:1313 127.0.0.1:61732 ESTABLISHED 10328 TCP 127.0.0.1:1313 127.0.0.1:61999 ESTABLISHED 10328 TCP 127.0.0.1:61709 127.0.0.1:1313 ESTABLISHED 8312 TCP 127.</description>
+    </item>
+    
+    <item>
+      <title>通过ip限制Oracle数据库访问的方法</title>
+      <link>https://xuziyan.ga/archive/1546930122/</link>
+      <pubDate>Tue, 08 Jan 2019 14:48:42 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1546930122/</guid>
+      <description>Windows环境 通过路径：F:\app\orcl\product\12.1.0\dbhome_1\NETWORK\ADMIN找到sqlnet.ora 文件
+增加以下内容来设置允许访问的ip： tcp.validnode_checking=yes
+tcp.invited_nodes=(192.168.6.195,192.168.6.196,192.168.6.55)
+到window服务里重启服务 在任务管理器里面找到OracleOraDb10g_home1TNSListener 右键停止，再右键启动即可。 重启监听之后要等几分钟，数据库才能真正连上
+linux环境 通过路径：/opt/oracle/11g/product/11.2.0/dbhome_1/network/admin 找到sqlnet.ora 文件
+增加以下内容来设置允许访问的ip： tcp.validnode_checking=yes
+tcp.invited_nodes=(192.168.6.195,192.168.6.196,192.168.6.55)
+特别说明 因为linux下是默认没有这个文件的，可以从windows下copy过来
+重启服务 打开xshell，进入oracle账号，重启监听即可
+# su – oracle $lsnrctl stop --停止监听 $lsnrctl start --启动监听  重启监听之后要等几分钟，数据库才能真正连上</description>
+    </item>
+    
+    <item>
+      <title>Oracle常用语句</title>
+      <link>https://xuziyan.ga/archive/1546928060/</link>
+      <pubDate>Tue, 08 Jan 2019 14:14:20 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1546928060/</guid>
+      <description>查询 -----查询所有对象个数 select object_type,count(*) from user_objects group by object_type; --查看表空间 select * from dba_tablespaces --查看用户和默认表空间的关系 select username,default_tablespace from dba_users; --查看表空间文件路径 select tablespace_name,file_id,bytes/1024/1024,file_name from dba_data_files order by file_id; select count(*) from WP_UDB_ROLE_OPERATION;--计算表行数 --查看服务器版本 select * from v$version --查看字符集 select * from nls_database_parameters --查看默认表空间 select * from database_properties where property_name=&#39;DEFAULT_TEMP_TABLESPACE&#39;; --查看临时表空间状态 select tablespace_name,file_name,bytes/1024/1024 file_size,autoextensible from dba_temp_files; select count(*) from user_tables;-----某个用户下所有表 select count(*) from dba_tables;------数据库下所有表 --会话字符集环境 select * from nls_session_parameters; --客户端字符集环境 select * from nls_instance_parameters; --数据库服务器字符集 select * from nls_database_parameters; -- 有数据库连接时用以下语句解决 select sid,serial# from v$session where username=&#39;programmer&#39; alter system kill session &#39;15,19095&#39;;  创建 --新建表空间 CREATE SMALLFILE TABLESPACE orcl DATAFILE &#39;/opt/oradata/orcl&#39; --非oracle下的目录 SIZE 300M AUTOEXTEND ON NEXT 100K MAXSIZE UNLIMITED LOGGING EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO --新建临时表空间 CREATE temporary TABLESPACE tstemp tempfile &#39;/opt/oradata/tstemp&#39; --非oracle下的目录 SIZE 32M AUTOEXTEND ON NEXT 100K MAXSIZE UNLIMITED EXTENT MANAGEMENT LOCAL --删除表 drop table xzy; --删除用户 drop user pts cascade; --删除表空间 drop tablespace gwypts including contents and datafiles cascade constraints; DELETE FROM WP_UDB_ROLE_OPERATION;--删除表内容 --新建用户，并且给用户赋权限 CREATE USER pts PROFILE &amp;quot;DEFAULT&amp;quot; IDENTIFIED BY pts DEFAULT TABLESPACE pts TEMPORARY TABLESPACE &amp;quot;TEMP&amp;quot; ACCOUNT UNLOCK; grant resource,connect,imp_full_database,exp_full_database,CREATE ANY JOB to pts; --授权语句 grant connect,resource,dba to pts grant all privileges to pts -- Create table 创建版本语句 create table VERSION ( VERSIONID VARCHAR2(50), UPDTDATE DATE ); insert into version(versionid,updtdate) values(&#39;V2.</description>
+    </item>
     
     <item>
       <title>Oracle数据库修改字符集方法</title>
@@ -87,7 +127,7 @@ linux下查看系统的环境变量：
       <pubDate>Wed, 02 Jan 2019 16:17:43 +0000</pubDate>
       
       <guid>https://xuziyan.ga/archive/1546417063/</guid>
-      <description>工具类 百度搜索资源平台 travis-ci google stackoverflow VPS：vultr leancloud
+      <description>工具类 java7API 百度搜索资源平台 travis-ci google stackoverflow VPS：vultr leancloud
 开源项目-JAVA spring-framework spring-boot mybatis-3 commons-lang log4j guava incubator-dubbo WxJava （微信开发 Java SDK）
 stackoverflow上Java相关回答整理翻译 99-problems-JAVA JAVA设计模式 JAVA资料库 Java-Interview（Star:7k） Java学习+面试指南 interViews elasticsearch proxyee-down
 开源项目 CS-Notes highlight.js valine.js commentit ant.design 开源网盘系统：Cloudreve
