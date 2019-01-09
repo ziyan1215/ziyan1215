@@ -6,18 +6,19 @@
     <description>Recent content in Archives on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 09 Jan 2019 10:57:22 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Jan 2019 12:53:15 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/archive/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>TestEchart</title>
-      <link>https://xuziyan.ga/archive/1547002642/</link>
-      <pubDate>Wed, 09 Jan 2019 10:57:22 +0000</pubDate>
+      <title>TestEchartSH</title>
+      <link>https://xuziyan.ga/archive/1547009595/</link>
+      <pubDate>Wed, 09 Jan 2019 12:53:15 +0000</pubDate>
       
-      <guid>https://xuziyan.ga/archive/1547002642/</guid>
-      <description>  var myChart = echarts.init(document.getElementById(&#39;echarts400&#39;)); var option = JSON.parse(&#34;{\&#34;xAxis\&#34;:{type: &#39;category&#39;,data: [&#39;Mon&#39;, &#39;Tue&#39;, &#39;Wed&#39;, &#39;Thu&#39;, &#39;Fri&#39;, &#39;Sat&#39;, &#39;Sun&#39;]},\&#34;yAxis\&#34;:{type: &#39;value&#39;},\&#34;series\&#34;: [{data: [820, 932, 901, 934, 1290, 1330, 1320],type: &#39;line&#39;}]}&#34;) myChart.setOption(option);  </description>
+      <guid>https://xuziyan.ga/archive/1547009595/</guid>
+      <description> 通过shortcode来生成,引入echart图表
+   var myChart = echarts.init(document.getElementById(&#39;echarts400&#39;)); var option = JSON.parse(&#34;{\&#34;textStyle\&#34;:{\&#34;color\&#34;:\&#34;#fff\&#34;},\&#34;title\&#34;:{\&#34;text\&#34;:\&#34;ECharts 入门示例\&#34;,\&#34;textStyle\&#34;:{\&#34;color\&#34;:\&#34;#fff\&#34;}},\&#34;tooltip\&#34;:{},\&#34;legend\&#34;:{\&#34;data\&#34;:[\&#34;销量\&#34;],\&#34;textStyle\&#34;:{\&#34;color\&#34;:\&#34;#fff\&#34;}},\&#34;xAxis\&#34;:{\&#34;data\&#34;:[\&#34;衬衫\&#34;,\&#34;羊毛衫\&#34;,\&#34;雪纺衫\&#34;,\&#34;裤子\&#34;,\&#34;高跟鞋\&#34;,\&#34;袜子\&#34;]},\&#34;yAxis\&#34;:{},\&#34;series\&#34;:[{\&#34;name\&#34;:\&#34;销量\&#34;,\&#34;type\&#34;:\&#34;bar\&#34;,\&#34;data\&#34;:[5,20,36,10,10,20]}]}&#34;) myChart.setOption(option);  </description>
     </item>
     
     <item>
