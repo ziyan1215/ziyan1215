@@ -6,10 +6,22 @@
     <description>Recent content in Tools on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 09 Jan 2019 12:53:15 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 15 Jan 2019 17:46:09 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Windows右键获取管理员权限</title>
+      <link>https://xuziyan.ga/archive/1547545569/</link>
+      <pubDate>Tue, 15 Jan 2019 17:46:09 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1547545569/</guid>
+      <description>有时候我们删除文件时提示需要获取管理员权限，这个方法可以实现
+ 步骤一 新建一个txt文件，然后把文件的后缀名改成.reg
+步骤二 编辑该文件，在文件中加入如下内容
+Windows Registry Editor Version 5.00 [HKEY_CLASSES_ROOT\*\shell\runas] @=&amp;quot;获取管理员权限&amp;quot; &amp;quot;NoWorkingDirectory&amp;quot;=&amp;quot;&amp;quot; [HKEY_CLASSES_ROOT\*\shell\runas\command] @=&amp;quot;cmd.exe /c takeown /f \&amp;quot;%1\&amp;quot; &amp;amp;&amp;amp; icacls \&amp;quot;%1\&amp;quot; /grant administrators:F&amp;quot; &amp;quot;IsolatedCommand&amp;quot;=&amp;quot;cmd.exe /c takeown /f \&amp;quot;%1\&amp;quot; &amp;amp;&amp;amp; icacls \&amp;quot;%1\&amp;quot; /grant administrators:F&amp;quot; [HKEY_CLASSES_ROOT\exefile\shell\runas2] @=&amp;quot;获取管理员权限&amp;quot; &amp;quot;NoWorkingDirectory&amp;quot;=&amp;quot;&amp;quot; [HKEY_CLASSES_ROOT\exefile\shell\runas2\command] @=&amp;quot;cmd.exe /c takeown /f \&amp;quot;%1\&amp;quot; &amp;amp;&amp;amp; icacls \&amp;quot;%1\&amp;quot; /grant administrators:F&amp;quot; &amp;quot;IsolatedCommand&amp;quot;=&amp;quot;cmd.exe /c takeown /f \&amp;quot;%1\&amp;quot; &amp;amp;&amp;amp; icacls \&amp;quot;%1\&amp;quot; /grant administrators:F&amp;quot; [HKEY_CLASSES_ROOT\Directory\shell\runas] @=&amp;quot;获取管理员权限&amp;quot; &amp;quot;NoWorkingDirectory&amp;quot;=&amp;quot;&amp;quot; [HKEY_CLASSES_ROOT\Directory\shell\runas\command] @=&amp;quot;cmd.exe /c takeown /f \&amp;quot;%1\&amp;quot; /r /d y &amp;amp;&amp;amp; icacls \&amp;quot;%1\&amp;quot; /grant administrators:F /t&amp;quot; &amp;quot;IsolatedCommand&amp;quot;=&amp;quot;cmd.</description>
+    </item>
     
     <item>
       <title>TestEchartSH</title>
