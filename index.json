@@ -1,5 +1,11 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1548058711/",
+        "title": "Java基础之集合",
+        "tags": ["Java"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1548056542/",
         "title": "Junit4加载spring配置文件进行单元测试",
         "tags": ["Java", "Junit"],
