@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on XuziYan</title>
-    <link>https://xuziyan.ga/tags/java/</link>
-    <description>Recent content in Java on XuziYan</description>
+    <title>Junit on XuziYan</title>
+    <link>https://xuziyan.ga/tags/junit/</link>
+    <description>Recent content in Junit on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 21 Jan 2019 15:42:22 +0000</lastBuildDate>
     
-	<atom:link href="https://xuziyan.ga/tags/java/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://xuziyan.ga/tags/junit/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,21 +19,6 @@
       <guid>https://xuziyan.ga/archive/1548056542/</guid>
       <description>  配置BaseTest，然后后面的测试类继承此类即可进行单元测试
  基类 @RunWith(SpringJUnit4ClassRunner.class) // 告诉junit spring配置文件 @ContextConfiguration({ &amp;quot;classpath:spring/spring-dao.xml&amp;quot;, &amp;quot;classpath:spring/spring-service.xml&amp;quot; }) public class BaseTest { }  测试类 public class AreaDaoTest extends BaseTest{ @Autowired private AreaDao areaDao; @Test public void testQueryArea() {	List&amp;lt;Area&amp;gt; listArea=new ArrayList&amp;lt;Area&amp;gt;(); listArea=areaDao.queryArea(); System.out.println(listArea.size()); } }  </description>
-    </item>
-    
-    <item>
-      <title>Jar包在CMD运行后乱码</title>
-      <link>https://xuziyan.ga/archive/1546400558/</link>
-      <pubDate>Wed, 02 Jan 2019 11:42:38 +0000</pubDate>
-      
-      <guid>https://xuziyan.ga/archive/1546400558/</guid>
-      <description>  问题来源：今天写了个小的应用，把网络请求的内容转成文件保存到本地。在eclipse测试通过后打包成jar包在cmd执行后发现文件内容乱码
- 处理方法  设定cmd的编码为utf-8
-打开cmd执行 (GBK(默认) chcp 936）
-chcp 65001
- 运行jar语句加入编码设置
-java -Dfile.encoding=utf-8 -jar sb.jar
-  </description>
     </item>
     
   </channel>

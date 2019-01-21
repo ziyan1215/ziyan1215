@@ -1,5 +1,11 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1548056542/",
+        "title": "Junit4加载spring配置文件进行单元测试",
+        "tags": ["Java", "Junit"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1547545569/",
         "title": "Windows右键获取管理员权限",
         "tags": ["Tools"],
@@ -200,6 +206,12 @@
     {
         "uri": "https://xuziyan.ga/tags/java/",
         "title": "Java",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/junit/",
+        "title": "Junit",
         "tags": [],
         "description": ""
     },
