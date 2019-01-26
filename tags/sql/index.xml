@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sql on XuziYan</title>
+    <link>https://xuziyan.ga/tags/sql/</link>
+    <description>Recent content in Sql on XuziYan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 26 Jan 2019 11:37:51 +0000</lastBuildDate>
+    
+	<atom:link href="https://xuziyan.ga/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sql经典题目的mysql实现①</title>
+      <link>https://xuziyan.ga/archive/1548473871/</link>
+      <pubDate>Sat, 26 Jan 2019 11:37:51 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1548473871/</guid>
+      <description>数据准备请看文章底部 点击我查看
+ 题目 1、查询“01”课程比“02”课程成绩高的所有学生的学号 select a.s_id from (select sc.s_id, sc.s_score from score sc where sc.c_id=&#39;01&#39;) a, (select sc.s_id, sc.s_score from score sc where sc.c_id=&#39;02&#39;) b where a.s_score&amp;gt;b.s_score and a.s_id=b.s_id    s_id     02   04   
+2、查询平均成绩大于60分的同学的学号和平均成绩 select sc.s_id , avg(sc.s_score) from score sc group by sc.s_id having avg(sc.s_score)&amp;gt;60    s_id avg(sc.s_score)     01 89.</description>
+    </item>
+    
+  </channel>
+</rss>

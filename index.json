@@ -1,5 +1,11 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1548473871/",
+        "title": "Sql经典题目的mysql实现①",
+        "tags": ["Sql"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1548124598/",
         "title": "Linux计划任务程序crond简单应用",
         "tags": ["Linux"],
@@ -260,6 +266,12 @@
     {
         "uri": "https://xuziyan.ga/tags/seo/",
         "title": "Seo",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/sql/",
+        "title": "Sql",
         "tags": [],
         "description": ""
     },
