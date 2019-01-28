@@ -6,10 +6,19 @@
     <description>Recent content in Sql on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 26 Jan 2019 11:37:51 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 26 Jan 2019 17:16:50 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/tags/sql/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sql经典题目的mysql实现②</title>
+      <link>https://xuziyan.ga/archive/1548494210/</link>
+      <pubDate>Sat, 26 Jan 2019 17:16:50 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1548494210/</guid>
+      <description>25、查询各科成绩前三名的记录（不考虑成绩并列情况）： select t1.s_id,t1.c_id,t1.s_score from score t1 where exists ( select count(1) from score where t1.c_id = c_id and t1.s_score &amp;lt; s_score having count(1) &amp;lt; 3 ) order by t1.c_id,s_score desc;  26、查询每门课程被选修的学生数： -- 思路： 成绩表有修的应该就有选 select c_id,count(s_id) from score group by c_id; -- 27、查询出只选修一门课程的全部学生的学号和姓名： select s.s_id,s_name ,count(s_score) from score s,student where s.s_id=student.s_id group by s_id having count(s_score) =1;  28、查询男生、女生人数： select sum(case when s.s_sex=&#39;男&#39; then 1 else 0 end) as 男生人数, sum(case when s.</description>
+    </item>
     
     <item>
       <title>Sql经典题目的mysql实现①</title>
