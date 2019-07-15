@@ -1,5 +1,11 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1563203474/",
+        "title": "NewJob",
+        "tags": ["日常"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1548494210/",
         "title": "Sql经典题目的mysql实现②",
         "tags": ["Sql"],
@@ -308,6 +314,12 @@
     {
         "uri": "https://xuziyan.ga/",
         "title": "XuziYan",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/%E6%97%A5%E5%B8%B8/",
+        "title": "日常",
         "tags": [],
         "description": ""
     }]
