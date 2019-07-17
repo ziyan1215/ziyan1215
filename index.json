@@ -1,5 +1,11 @@
 [
     {
+        "uri": "https://xuziyan.ga/archive/1563379192/",
+        "title": "ES入门",
+        "tags": ["Elasticsearch"],
+        "description": ""
+    },
+    {
         "uri": "https://xuziyan.ga/archive/1563203474/",
         "title": "NewJob",
         "tags": ["日常"],
@@ -218,6 +224,12 @@
     {
         "uri": "https://xuziyan.ga/categories/",
         "title": "Categories",
+        "tags": [],
+        "description": ""
+    },
+    {
+        "uri": "https://xuziyan.ga/tags/elasticsearch/",
+        "title": "Elasticsearch",
         "tags": [],
         "description": ""
     },
