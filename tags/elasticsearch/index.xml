@@ -6,10 +6,37 @@
     <description>Recent content in Elasticsearch on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 17 Jul 2019 23:59:52 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jul 2019 10:09:40 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ES基本操作</title>
+      <link>https://xuziyan.ga/archive/1563415780/</link>
+      <pubDate>Thu, 18 Jul 2019 10:09:40 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1563415780/</guid>
+      <description>2节 ElasticSearch基本操作 2.1 倒排索引  Elasticsearch 使用一种称为 倒排索引 的结构，它适用于快速的全文搜索。一个倒排索引由文档中所有不重复词的列表构成，对于其中每个词，有一个包含它的文档列表。
+ 示例：
+(1)：假设文档集合包含五个文档，每个文档内容如图所示，在图中最左端一栏是每个文档对应的文档编号。我们的任务就是对这个文档集合建立倒排索引。 (2):中文和英文等语言不同，单词之间没有明确分隔符号，所以首先要用分词系统将文档自动切分成单词序列。这样每个文档就转换为由单词序列构成的数据流，为了系统后续处理方便，需要对每个不同的单词赋予唯一的单词编号，同时记录下哪些文档包含这个单词，在如此处理结束后，我们可以得到最简单的倒排索引
+“单词ID”：记录了每个单词的单词编号；
+“单词”：是对应的单词；
+“倒排列表：即每个单词对应的倒排列表
+(3):索引系统还可以记录除此之外的更多信息,下图还记载了单词频率信息（TF）即这个单词在某个文档中的出现次数，之所以要记录这个信息，是因为词频信息在搜索结果排序时，计算查询和文档相似度是很重要的一个计算因子，所以将其记录在倒排列表中，以方便后续排序时进行分值计算。
+(4):倒排列表中还可以记录单词在某个文档出现的位置信息
+(1,&amp;lt;11&amp;gt;,1),(2,&amp;lt;7&amp;gt;,1),(3,&amp;lt;3,9&amp;gt;,2)
+有了这个索引系统，搜索引擎可以很方便地响应用户的查询，比如用户输入查询词“Facebook”，搜索系统查找倒排索引，从中可以读出包含这个单词的文档，这些文档就是提供给用户的搜索结果，而利用单词频率信息、文档频率信息即可以对这些候选搜索结果进行排序，计算文档和查询的相似性，按照相似性得分由高到低排序输出，此即为搜索系统的部分内部流程。
+2.1.1 倒排索引原理 1.The quick brown fox jumped over the lazy dog
+2.Quick brown foxes leap over lazy dogs in summer
+计算相关度分数时，文档1的匹配度高，分数会比文档2高
+问题：
+ Quick 和 quick 以独立的词条出现，然而用户可能认为它们是相同的词。
+ fox 和 foxes 非常相似, 就像 dog 和 dogs ；他们有相同的词根。
+ jumped 和 leap, 尽管没有相同的词根，但他们的意思很相近。他们是同义词。
+ 搜索含有 Quick fox的文档是搜索不到的
+  使用标准化规则(normalization)： 建立倒排索引的时候，会对拆分出的各个单词进行相应的处理，以提升后面搜索的时候能够搜索到相关联的文档的概率</description>
+    </item>
     
     <item>
       <title>ES入门</title>
@@ -17,11 +44,16 @@
       <pubDate>Wed, 17 Jul 2019 23:59:52 +0000</pubDate>
       
       <guid>https://xuziyan.ga/archive/1563379192/</guid>
-      <description> 什么是ElasticSearch  ElasticSearch是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTfulweb接口。ElasticSearch是用Java开发的，并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。构建在全文检索开源软件Lucene之上的Elasticsearch，不仅能对海量规模的数据完成分布式索引与检索，还能提供数据聚合分析。据国际权威的数据库产品评测机构DBEngines的统计，在2016年1月，Elasticsearch已超过Solr等，成为排名第一的搜索引擎类应用
-概括：基于Restful标准的高扩展高可用的实时数据分析的全文搜索工具
- 架构 安装  在官网下载elasticsearch、kibana解压后启动即可（前提是安装有java环境）
- ElasticSearch基本操作 2.1 倒排索引  Elasticsearch 使用一种称为 倒排索引 的结构，它适用于快速的全文搜索。一个倒排索引由文档中所有不重复词的列表构成，对于其中每个词，有一个包含它的文档列表。
- </description>
+      <description>1 ElasticSearch概述 1.1 什么是ElasticSearch  ElasticSearch是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTfulweb接口。ElasticSearch是用Java开发的，并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。构建在全文检索开源软件Lucene之上的Elasticsearch，不仅能对海量规模的数据完成分布式索引与检索，还能提供数据聚合分析。据国际权威的数据库产品评测机构DBEngines的统计，在2016年1月，Elasticsearch已超过Solr等，成为排名第一的搜索引擎类应用 概括：基于Restful标准的高扩展高可用的实时数据分析的全文搜索工具
+ 1.2 ElasticSearch的基本概念 1.3 Elasticsearch的架构  Gateway层   es用来存储索引文件的一个文件系统且它支持很多类型，例如：本地磁盘、共享存储（做snapshot的时候需要用到）、hadoop的hdfs分布式存储、亚马逊的S3。它的主要职责是用来对数据进行长持久化以及整个集群重启之后可以通过gateway重新恢复数据。
+  Distributed Lucene Directory   Gateway上层就是一个lucene的分布式框架，lucene是做检索的，但是它是一个单机的搜索引擎，像这种es分布式搜索引擎系统，虽然底层用lucene，但是需要在每个节点上都运行lucene进行相应的索引、查询以及更新，所以需要做成一个分布式的运行框架来满足业务的需要。
+  四大模块组件   districted lucene directory之上就是一些es的模块，Index Module是索引模块，就是对数据建立索引也就是通常所说的建立一些倒排索引等；Search Module是搜索模块，就是对数据进行查询搜索；Mapping模块是数据映射与解析模块，就是你的数据的每个字段可以根据你建立的表结构通过mapping进行映射解析，如果你没有建立表结构，es就会根据你的数据类型推测你的数据结构之后自己生成一个mapping，然后都是根据这个mapping进行解析你的数据；River模块在es2.0之后应该是被取消了，它的意思表示是第三方插件，例如可以通过一些自定义的脚本将传统的数据库（mysql）等数据源通过格式化转换后直接同步到es集群里，这个river大部分是自己写的，写出来的东西质量参差不齐，将这些东西集成到es中会引发很多内部bug，严重影响了es的正常应用，所以在es2.0之后考虑将其去掉。
+  Discovery、Script   es4大模块组件之上有 Discovery模块：es是一个集群包含很多节点，很多节点需要互相发现对方，然后组成一个集群包括选主的，这些es都是用的discovery模块，默认使用的是 Zen，也可是使用EC2；es查询还可以支撑多种script即脚本语言，包括mvel、js、python等等。
+  Transport协议层   再上一层就是es的通讯接口Transport，支持的也比较多：Thrift、Memcached以及Http，默认的是http，JMX就是java的一个远程监控管理框架，因为es是通过java实现的。
+  RESTful接口层   最上层就是es暴露给我们的访问接口，官方推荐的方案就是这种Restful接口，直接发送http请求，方便后续使用nginx做代理、分发包括可能后续会做权限的管理，通过http很容易做这方面的管理。如果使用java客户端它是直接调用api，在做负载均衡以及权限管理还是不太好做。
+ 1.4 RESTfull API  一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。在目前主流的三种Web服务交互方案中，REST相比于SOAP（Simple Object Access protocol，简单对象访问协议）以及XML-RPC更加简单明了。
+(Representational State Transfer 意思是：表述性状态传递)
+ 它使用典型的HTTP方法，诸如GET,POST.</description>
     </item>
     
   </channel>

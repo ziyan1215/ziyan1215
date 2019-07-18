@@ -1,0 +1,1750 @@
+<!DOCTYPE html><html lang="zh"><head><meta name="generator" content="Hugo 0.53"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="initial-scale=1,width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"><meta name="wap-font-scale" content="no"><meta name="author" content="XuziYan"><meta name="description" itemprop="description" content="2节 ElasticSearch基本操作 2.1 倒排索引  Elasticsearch 使用一种称为 倒排索引 的结构，它适用于快速的全文搜索。一个倒排索引由文档中所有不重复词的列表构成，对于其中每个词，有一个包含它的文档列表。
+ 示例：
+(1)：假设文档集合包含五个文档，每个文档内容如图所示，在图中最左端一栏是每个文档对应的文档编号。我们的任务就是对这个文档集合建立倒排索引。 (2):中文和英"><meta name="keywords" content="ES基本操作"><meta property="og:locale" content="en_US"><meta property="og:title" content="ES基本操作"><meta property="og:image" content="https://xuziyan.ga/images/logo2.png"><meta property="og:description" content="2节 ElasticSearch基本操作 2.1 倒排索引  Elasticsearch 使用一种称为 倒排索引 的结构，它适用于快速的全文搜索。一个倒排索引由文档中所有不重复词的列表构成，对于其中每个词，有一个包含它的文档列表。
+ 示例：
+(1)：假设文档集合包含五个文档，每个文档内容如图所示，在图中最左端一栏是每个文档对应的文档编号。我们的任务就是对这个文档集合建立倒排索引。 (2):中文和英"><meta property="og:site_name" content="XuziYan"><title>ES基本操作 | Xuzi</title><link rel="shortcut icon" href="https://xuziyan.ga/images/i.ico"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="https://xuziyan.ga/lib/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="https://xuziyan.ga/lib/justified-gallery/justifiedGallery.min.css"><link rel="stylesheet" href="https://xuziyan.ga/css/style.css"><script src="https://xuziyan.ga/lib/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><script src="https://xuziyan.ga/lib/jquery/jquery.min.js"></script><script>document.addEventListener("error", function (e) {
+			  var elem = e.target;
+			  if (elem.tagName.toLowerCase() == 'img') {
+				elem.style.display='none'
+			  }
+			}, true);</script><script type="application/ld+json">{
+				"@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+				"@id": "https://xuziyan.ga/archive/1563415780/",
+				"appid": "1621056720407734", 
+				"title": "ES基本操作 | Xuzi JAVA!!!", 
+				"images": [],
+				"pubDate": "2019-07-18T10:09:40"
+			}</script></head><body><div id="header-post"><a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a> <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a> <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a> <span id="menu"><span id="nav"><ul><li><a href="/">Home</a></li><li><a href="/archive/">Archives</a></li><li><a href="/about/">About</a></li></ul></span><br><span id="actions"><ul><li><a class="icon" href="https://xuziyan.ga/archive/1563379192/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li><li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li><li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li></ul><span id="i-prev" class="info" style="display:none;">Previous post</span> <span id="i-next" class="info" style="display:none;">Next post</span> <span id="i-top" class="info" style="display:none;">Back to top</span> <span id="i-share" class="info" style="display:none;">Share post</span></span><br><div id="share" style="display: none"><ul><li><a class="icon" href="http://v.t.sina.com.cn/share/share.php?u=https%3a%2f%2fxuziyan.ga%2farchive%2f1563415780%2f&text=ES%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"><i class="fa fa-weibo" aria-hidden="true"></i></a></li><li><a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fxuziyan.ga%2farchive%2f1563415780%2f"><i class="fa fa-facebook" aria-hidden="true"></i></a></li><li><a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1563415780%2f&text=ES%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"><i class="fa fa-twitter" aria-hidden="true"></i></a></li><li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1563415780%2f&title=ES%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li><li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1563415780%2f&is_video=false&description=ES%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li><li><a class="icon" href="mailto:?subject=ES%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c&body=Check out this article: https%3a%2f%2fxuziyan.ga%2farchive%2f1563415780%2f"><i class="fa fa-envelope" aria-hidden="true"></i></a></li><li><a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1563415780%2f&title=ES%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"><i class="fa fa-get-pocket" aria-hidden="true"></i></a></li><li><a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1563415780%2f&title=ES%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"><i class="fa fa-reddit" aria-hidden="true"></i></a></li><li><a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1563415780%2f&title=ES%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"><i class="fa fa-stumbleupon" aria-hidden="true"></i></a></li><li><a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fxuziyan.ga%2farchive%2f1563415780%2f&title=ES%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c"><i class="fa fa-digg" aria-hidden="true"></i></a></li></ul></div><div id="toc"><nav id="TableOfContents"><ul><li><ul><li><a href="#2节-elasticsearch基本操作">2节 ElasticSearch基本操作</a><ul><li><a href="#2-1-倒排索引">2.1 倒排索引</a><ul><li><a href="#2-1-1-倒排索引原理">2.1.1 倒排索引原理</a></li><li><a href="#2-1-2-分词器介绍及内置分词器">2.1.2 分词器介绍及内置分词器</a></li></ul></li><li><a href="#2-2-使用elasticsearch-api-实现crud">2.2 使用ElasticSearch API 实现CRUD</a></li><li><a href="#2-3-批量获取文档">2.3 批量获取文档</a></li><li><a href="#2-4-使用bulk-api-实现批量操作">2.4 使用Bulk API 实现批量操作</a><ul><li><ul><li><a href="#bulk的格式">bulk的格式：</a></li><li><a href="#action-行为">action:(行为)</a></li><li><a href="#create-和index的区别">create 和index的区别</a></li><li><a href="#bulk一次最大处理多少数据量">bulk一次最大处理多少数据量：</a></li></ul></li></ul></li><li><a href="#2-5-版本控制">2.5 版本控制</a></li><li><a href="#2-6-什么是mapping">2.6 什么是Mapping</a></li><li><a href="#2-7-基本查询-query查询">2.7 基本查询(Query查询)</a><ul><li><a href="#2-7-1数据准备">2.7.1数据准备</a></li><li><a href="#2-7-2-term查询和terms查询">2.7.2 term查询和terms查询</a></li><li><a href="#2-7-3-控制查询返回的数量">2.7.3 控制查询返回的数量</a></li><li><a href="#2-7-4-返回版本号">2.7.4 返回版本号</a></li><li><a href="#2-7-5-match查询">2.7.5 match查询</a></li><li><a href="#2-7-6-指定返回的字段">2.7.6 指定返回的字段</a></li><li><a href="#2-7-7控制加载的字段">2.7.7控制加载的字段</a></li><li><a href="#2-7-8-排序">2.7.8 排序</a></li><li><a href="#2-7-9-前缀匹配查询">2.7.9 前缀匹配查询</a></li><li><a href="#2-7-10-范围查询">2.7.10 范围查询</a></li><li><a href="#2-7-11-wildcard查询">2.7.11 wildcard查询</a></li><li><a href="#2-7-12-fuzzy实现模糊查询">2.7.12 fuzzy实现模糊查询</a></li><li><a href="#2-7-13-高亮搜索结果">2.7.13 高亮搜索结果</a></li></ul></li><li><a href="#2-8-filter查询">2.8 Filter查询</a><ul><li><a href="#2-8-1-简单的过滤查询">2.8.1 简单的过滤查询</a></li><li><a href="#2-8-2-bool过滤查询">2.8.2 bool过滤查询</a></li><li><a href="#2-8-3-范围过滤">2.8.3 范围过滤</a></li><li><a href="#2-8-4-过滤非空">2.8.4 过滤非空</a></li><li><a href="#2-8-5-过滤器缓存">2.8.5 过滤器缓存</a></li></ul></li><li><a href="#2-9-聚合查询">2.9 聚合查询</a></li><li><a href="#2-10-复合查询">2.10 复合查询</a><ul><li><a href="#2-10-1-使用bool查询">2.10.1 使用bool查询</a></li><li><a href="#2-10-2-constant-score查询">2.10.2 constant_score查询</a></li></ul></li><li><a href="#2-11-嵌套字段">2.11 嵌套字段</a><ul><li><a href="#2-11-1嵌套对象映射">2.11.1嵌套对象映射</a></li><li><a href="#2-11-2嵌套对象查询">2.11.2嵌套对象查询</a></li><li><a href="#2-11-3-使用嵌套字段排序">2.11.3 使用嵌套字段排序</a></li><li><a href="#2-11-4-嵌套字段聚合">2.11.4 嵌套字段聚合</a></li><li><a href="#2-11-5逆向嵌套聚合">2.11.5逆向嵌套聚合</a></li></ul></li></ul></li><li><a href="#3-elasticsearch原理">3 ElasticSearch原理</a><ul><li><a href="#3-1-解析es的分布式架构">3.1 解析es的分布式架构</a><ul><li><a href="#3-1-1-分布式架构的透明隐藏特性">3.1.1 分布式架构的透明隐藏特性</a></li><li><a href="#3-1-2-扩容机制">3.1.2 扩容机制</a></li><li><a href="#3-1-3-rebalance">3.1.3 rebalance</a></li><li><a href="#3-1-4-master节点">3.1.4 master节点</a></li><li><a href="#3-1-5-节点对等">3.1.5 节点对等</a></li></ul></li><li><a href="#3-2-分片和副本机制">3.2 分片和副本机制</a></li><li><a href="#3-3-单节点环境下创建索引分析">3.3 单节点环境下创建索引分析</a></li><li><a href="#3-4-两个节点环境下创建索引分析">3.4 两个节点环境下创建索引分析</a></li><li><a href="#3-5-水平扩容的过程">3.5 水平扩容的过程</a></li><li><a href="#3-6-elasticsearch的容错机制">3.6 ElasticSearch的容错机制</a></li><li><a href="#3-7-文档的核心元数据">3.7 文档的核心元数据</a></li><li><a href="#3-8-文档id生成方式">3.8 文档id生成方式</a></li><li><a href="#3-9-source元数据分析">3.9 _source元数据分析</a></li><li><a href="#3-10-改变文档内容原理解析">3.10 改变文档内容原理解析</a></li><li><a href="#3-11-基于groovy脚本执行partial-update">3.11 基于groovy脚本执行partial update</a></li><li><a href="#3-12-partial-update-处理并发冲突">3.12 partial update 处理并发冲突</a></li><li><a href="#3-13-文档数据路由原理解析">3.13 文档数据路由原理解析</a></li><li><a href="#3-14-文档增删改内部原理">3.14 文档增删改内部原理</a></li><li><a href="#3-15-写一致性原理和quorum机制">3.15 写一致性原理和quorum机制</a></li><li><a href="#3-16-文档查询内部原理">3.16 文档查询内部原理</a></li><li><a href="#3-17-bulk批量操作的json格式解析">3.17 bulk批量操作的json格式解析</a></li><li><a href="#3-18-查询结果分析">3.18 查询结果分析</a></li><li><a href="#3-19-多index-多type查询模式">3.19 多index，多type查询模式</a></li><li><a href="#3-20-分页查询中的deep-paging问题">3.20 分页查询中的deep paging问题</a></li><li><a href="#3-21-query-string查询及copy-to解析">3.21 query string查询及copy_to解析</a></li><li><a href="#3-22-字符串排序问题">3.22 字符串排序问题</a></li><li><a href="#3-23-如何计算相关度分数">3.23 如何计算相关度分数</a></li><li><a href="#3-24-doc-values-解析">3.24 Doc Values 解析</a></li><li><a href="#3-25-基于scroll技术滚动搜索大量数据">3.25 基于scroll技术滚动搜索大量数据</a></li><li><a href="#3-26-dynamic-mapping策略">3.26 dynamic mapping策略</a></li><li><a href="#3-27-重建索引">3.27 重建索引</a></li><li><a href="#3-28-索引不可变的原因">3.28 索引不可变的原因</a></li></ul></li><li><a href="#4-在java应用中访问elasticsearch">4 在Java应用中访问ElasticSearch</a><ul><li><a href="#4-1-在java应用中实现查询文档">4.1 在Java应用中实现查询文档</a></li><li><a href="#4-2-在java应用中实现添加文档">4.2 在Java应用中实现添加文档</a></li></ul></li></ul></li></ul></nav></div></span></div><div class="content index width mx-auto px3 my3"><section id="wrapper" class="home"><article class="post" itemscope itemtype="http://schema.org/BlogPosting"><header><h1 class="posttitle" itemprop="name headline">ES基本操作</h1><div class="meta"><div class="postdate"><time datetime="2019-07-18" itemprop="datePublished">2019-07-18</time></div><div class="article-tag"><i class="fa fa-eye"></i> <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span></span></div><div class="article-tag"><i class="fa fa-tag"></i> <a href="/tags/elasticsearch">Elasticsearch</a></div><div class="article-tag-box"></div></div></header><div class="content" itemprop="articleBody"><h2 id="2节-elasticsearch基本操作">2节 ElasticSearch基本操作</h2><h3 id="2-1-倒排索引">2.1 倒排索引</h3><blockquote><p>Elasticsearch 使用一种称为 倒排索引 的结构，它适用于快速的全文搜索。一个倒排索引由文档中所有不重复词的列表构成，对于其中每个词，有一个包含它的文档列表。</p></blockquote><p>示例：</p><p>(1)：假设文档集合包含五个文档，每个文档内容如图所示，在图中最左端一栏是每个文档对应的文档编号。我们的任务就是对这个文档集合建立倒排索引。 <img src="http://localhost:1313/images/Snipaste_2019-07-18_00-33-11.png" alt="image"></p><p>(2):中文和英文等语言不同，单词之间没有明确分隔符号，所以首先要用分词系统将文档自动切分成单词序列。这样每个文档就转换为由单词序列构成的数据流，为了系统后续处理方便，需要对每个不同的单词赋予唯一的单词编号，同时记录下哪些文档包含这个单词，在如此处理结束后，我们可以得到最简单的倒排索引</p><p><img src="http://localhost:1313/images/Snipaste_2019-07-18_00-33-29.png" alt="image"></p><p>“单词ID”：记录了每个单词的单词编号；</p><p>“单词”：是对应的单词；</p><p>“倒排列表：即每个单词对应的倒排列表</p><p>(3):索引系统还可以记录除此之外的更多信息,下图还记载了单词频率信息（TF）即这个单词在某个文档中的出现次数，之所以要记录这个信息，是因为词频信息在搜索结果排序时，计算查询和文档相似度是很重要的一个计算因子，所以将其记录在倒排列表中，以方便后续排序时进行分值计算。</p><p><img src="http://localhost:1313/images/Snipaste_2019-07-18_00-33-40.png" alt="image"></p><p>(4):倒排列表中还可以记录单词在某个文档出现的位置信息</p><p><code>(1,&lt;11&gt;,1),(2,&lt;7&gt;,1),(3,&lt;3,9&gt;,2)</code></p><p>有了这个索引系统，搜索引擎可以很方便地响应用户的查询，比如用户输入查询词“Facebook”，搜索系统查找倒排索引，从中可以读出包含这个单词的文档，这些文档就是提供给用户的搜索结果，而利用单词频率信息、文档频率信息即可以对这些候选搜索结果进行排序，计算文档和查询的相似性，按照相似性得分由高到低排序输出，此即为搜索系统的部分内部流程。</p><h4 id="2-1-1-倒排索引原理">2.1.1 倒排索引原理</h4><p>1.The quick brown fox jumped over the lazy dog</p><p>2.Quick brown foxes leap over lazy dogs in summer</p><p><img src="http://localhost:1313/images/Snipaste_2019-07-18_00-33-53.png" alt="image"></p><p>计算相关度分数时，文档1的匹配度高，分数会比文档2高</p><p>问题：</p><ul><li><p>Quick 和 quick 以独立的词条出现，然而用户可能认为它们是相同的词。</p></li><li><p>fox 和 foxes 非常相似, 就像 dog 和 dogs ；他们有相同的词根。</p></li><li><p>jumped 和 leap, 尽管没有相同的词根，但他们的意思很相近。他们是同义词。</p></li><li><p>搜索含有 Quick fox的文档是搜索不到的</p></li></ul><p>使用标准化规则(normalization)： 建立倒排索引的时候，会对拆分出的各个单词进行相应的处理，以提升后面搜索的时候能够搜索到相关联的文档的概率</p><p><img src="http://localhost:1313/images/Snipaste_2019-07-18_00-34-02.png" alt="image"></p><h4 id="2-1-2-分词器介绍及内置分词器">2.1.2 分词器介绍及内置分词器</h4><blockquote><p>分词器：从一串文本中切分出一个一个的词条，并对每个词条进行标准化</p></blockquote><p>包括三部分：</p><ul><li><p>character filter：分词之前的预处理，过滤掉HTML标签，特殊符号转换等</p></li><li><p>tokenizer：分词</p></li><li><p>token filter：标准化</p></li></ul><p>内置分词器：</p><ul><li><p>standard 分词器：(默认的)他会将词汇单元转换成小写形式，并去除停用词和标点符号，支持中文采用的方法为单字切分</p></li><li><p>simple 分词器：首先会通过非字母字符来分割文本信息，然后将词汇单元统一为小写形式。该分析器会去掉数字类型的字符。</p></li><li><p>Whitespace 分词器：仅仅是去除空格，对字符没有lowcase化,不支持中文； 并且不对生成的词汇单元进行其他的标准化处理。</p></li><li><p>language 分词器：特定语言的分词器，不支持中文</p></li></ul><h3 id="2-2-使用elasticsearch-api-实现crud">2.2 使用ElasticSearch API 实现CRUD</h3><pre><code>#添加索引：
+PUT /lib/
+{
+  &quot;settings&quot;:{
+      &quot;index&quot;:{
+        &quot;number_of_shards&quot;: 5,
+        &quot;number_of_replicas&quot;: 1
+        }
+      }
+}
+
+#查看索引信息:
+GET /lib/_settings
+GET _all/_settings
+
+#添加文档:
+PUT /lib/user/1
+{
+    &quot;first_name&quot; :  &quot;Jane&quot;,
+    &quot;last_name&quot; :   &quot;Smith&quot;,
+    &quot;age&quot; :         32,
+    &quot;about&quot; :       &quot;I like to collect rock albums&quot;,
+    &quot;interests&quot;:  [ &quot;music&quot; ]
+}
+
+POST /lib/user/
+{
+    &quot;first_name&quot; :  &quot;Douglas&quot;,
+    &quot;last_name&quot; :   &quot;Fir&quot;,
+    &quot;age&quot; :         23,
+    &quot;about&quot;:        &quot;I like to build cabinets&quot;,
+    &quot;interests&quot;:  [ &quot;forestry&quot; ]
+}
+
+#查看文档:
+GET /lib/user/1
+GET /lib/user/
+GET /lib/user/1?_source=age,interests
+
+#更新文档:
+PUT /lib/user/1
+{
+    &quot;first_name&quot; :  &quot;Jane&quot;,
+    &quot;last_name&quot; :   &quot;Smith&quot;,
+    &quot;age&quot; :         36,
+    &quot;about&quot; :       &quot;I like to collect rock albums&quot;,
+    &quot;interests&quot;:  [ &quot;music&quot; ]
+}
+
+POST /lib/user/1/_update
+{
+  &quot;doc&quot;:{
+      &quot;age&quot;:33
+      }
+}
+
+#删除一个文档:
+DELETE /lib/user/1
+
+#删除一个索引L
+DELETE /lib
+</code></pre><h3 id="2-3-批量获取文档">2.3 批量获取文档</h3><p>1）使用es提供的Multi Get API：</p><p>使用Multi Get API可以通过索引名、类型名、文档id一次得到一个文档集合，文档可以来自同一个索引库，也可以来自不同索引库</p><p>2）使用curl命令：</p><pre><code>curl 'http://192.168.25.131:9200/_mget' -d '{
+&quot;docs&quot;：[
+   {
+    &quot;_index&quot;: &quot;lib&quot;,
+    &quot;_type&quot;: &quot;user&quot;,
+    &quot;_id&quot;: 1
+   },
+   {
+     &quot;_index&quot;: &quot;lib&quot;,
+     &quot;_type&quot;: &quot;user&quot;,
+     &quot;_id&quot;: 2
+   }
+  ]
+}'
+</code></pre><p>3）在客户端工具中：</p><pre><code>GET /_mget
+{
+    &quot;docs&quot;:[
+       {
+           &quot;_index&quot;: &quot;lib&quot;,
+           &quot;_type&quot;: &quot;user&quot;,
+           &quot;_id&quot;: 1
+       },
+       {
+           &quot;_index&quot;: &quot;lib&quot;,
+           &quot;_type&quot;: &quot;user&quot;,
+           &quot;_id&quot;: 2
+       },
+       {
+           &quot;_index&quot;: &quot;lib&quot;,
+           &quot;_type&quot;: &quot;user&quot;,
+           &quot;_id&quot;: 3
+       }
+     ]
+}
+</code></pre><p>4）可以指定具体的字段：</p><pre><code>GET /_mget
+{
+    &quot;docs&quot;:[
+       {
+           &quot;_index&quot;: &quot;lib&quot;,
+           &quot;_type&quot;: &quot;user&quot;,
+           &quot;_id&quot;: 1,
+           &quot;_source&quot;: &quot;interests&quot;
+       },
+       {
+           &quot;_index&quot;: &quot;lib&quot;,
+           &quot;_type&quot;: &quot;user&quot;,
+           &quot;_id&quot;: 2,
+           &quot;_source&quot;: [&quot;age&quot;,&quot;interests&quot;]
+       }
+     ]
+}
+</code></pre><p>5）获取同索引同类型下的不同文档：</p><pre><code>GET /lib/user/_mget
+{
+    &quot;docs&quot;:[
+       {
+           &quot;_id&quot;: 1
+       },
+       {
+           &quot;_type&quot;: &quot;user&quot;,
+           &quot;_id&quot;: 2,
+       }
+     ]
+}
+##
+GET /lib/user/_mget
+{
+   &quot;ids&quot;: [&quot;1&quot;,&quot;2&quot;]
+}
+</code></pre><h3 id="2-4-使用bulk-api-实现批量操作">2.4 使用Bulk API 实现批量操作</h3><h5 id="bulk的格式">bulk的格式：</h5><ul><li><p>{action:{metadata}}\n</p></li><li><p>{requstbody}\n</p></li></ul><h5 id="action-行为">action:(行为)</h5><ul><li><p>create：文档不存在时创建</p></li><li><p>update:更新文档</p></li><li><p>index:创建新文档或替换已有文档</p></li><li><p>delete:删除一个文档</p></li><li><p>metadata：_index,_type,_id</p></li></ul><h5 id="create-和index的区别">create 和index的区别</h5><p>如果数据存在，使用create操作失败，会提示文档已经存在，使用index则可以成功执行。</p><pre><code>#示例：
+{&quot;delete&quot;:{&quot;_index&quot;:&quot;lib&quot;,&quot;_type&quot;:&quot;user&quot;,&quot;_id&quot;:&quot;1&quot;}}
+
+#批量添加:
+
+POST /lib2/books/_bulk
+
+{&quot;index&quot;:{&quot;_id&quot;:1}}
+
+{&quot;title&quot;:&quot;Java&quot;,&quot;price&quot;:55}
+
+{&quot;index&quot;:{&quot;_id&quot;:2}}
+
+{&quot;title&quot;:&quot;Html5&quot;,&quot;price&quot;:45}
+
+{&quot;index&quot;:{&quot;_id&quot;:3}}
+
+{&quot;title&quot;:&quot;Php&quot;,&quot;price&quot;:35}
+
+{&quot;index&quot;:{&quot;_id&quot;:4}}
+
+{&quot;title&quot;:&quot;Python&quot;,&quot;price&quot;:50}
+
+#批量获取:
+GET /lib2/books/_mget
+{
+  &quot;ids&quot;: [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;]
+}
+
+#删除：没有请求体
+POST /lib2/books/_bulk
+
+{&quot;delete&quot;:{&quot;_index&quot;:&quot;lib2&quot;,&quot;_type&quot;:&quot;books&quot;,&quot;_id&quot;:4}}
+
+{&quot;create&quot;:{&quot;_index&quot;:&quot;tt&quot;,&quot;_type&quot;:&quot;ttt&quot;,&quot;_id&quot;:&quot;100&quot;}}
+
+{&quot;name&quot;:&quot;lisi&quot;}
+
+{&quot;index&quot;:{&quot;_index&quot;:&quot;tt&quot;,&quot;_type&quot;:&quot;ttt&quot;}}
+
+{&quot;name&quot;:&quot;zhaosi&quot;}
+
+{&quot;update&quot;:{&quot;_index&quot;:&quot;lib2&quot;,&quot;_type&quot;:&quot;books&quot;,&quot;_id&quot;:&quot;4&quot;}}
+
+{&quot;doc&quot;:{&quot;price&quot;:58}}
+</code></pre><h5 id="bulk一次最大处理多少数据量">bulk一次最大处理多少数据量：</h5><ul><li><p>bulk会把将要处理的数据载入内存中，所以数据量是有限制的，最佳的数据量不是一个确定的数值，它取决于你的硬件，你的文档大小以及复杂性，你的索引以及搜索的负载。</p></li><li><p>一般建议是1000-5000个文档，大小建议是5-15MB，默认不能超过100M，可以在es的配置文件（即$ES_HOME下的config下的elasticsearch.yml）中。 　　</p><h3 id="2-5-版本控制">2.5 版本控制</h3></li></ul><blockquote><p>ElasticSearch采用了乐观锁来保证数据的一致性，也就是说，当用户对document进行操作时，并不需要对该document作加锁和解锁的操作，只需要指定要操作的版本即可。当版本号一致时，ElasticSearch会允许该操作顺利执行，而当版本号存在冲突时，ElasticSearch会提示冲突并抛出异常（VersionConflictEngineException异常）。</p></blockquote><p>ElasticSearch的版本号的取值范围为1到2*^63-1。</p><ul><li>内部版本控制：使用的是_version</li><li>外部版本控制：elasticsearch在处理外部版本号时会与对内部版本号的处理有些不同。它不再是检查_version是否与请求中指定的数值<em>相同</em>,而是检查当前的_version是否比指定的数值小。如果请求成功，那么外部的版本号就会被存储到文档中的_version中。<br></li></ul><p><em>==为了保持_version与外部版本控制的数据一致 使用version_type=external==</em></p><h3 id="2-6-什么是mapping">2.6 什么是Mapping</h3><pre><code>PUT /myindex/article/1 
+{ 
+  &quot;post_date&quot;: &quot;2018-05-10&quot;, 
+  &quot;title&quot;: &quot;Java&quot;, 
+  &quot;content&quot;: &quot;java is the best language&quot;, 
+  &quot;author_id&quot;: 119
+}
+
+PUT /myindex/article/2
+{ 
+  &quot;post_date&quot;: &quot;2018-05-12&quot;, 
+  &quot;title&quot;: &quot;html&quot;, 
+  &quot;content&quot;: &quot;I like html&quot;, 
+  &quot;author_id&quot;: 120
+}
+
+PUT /myindex/article/3
+{ 
+  &quot;post_date&quot;: &quot;2018-05-16&quot;, 
+  &quot;title&quot;: &quot;es&quot;, 
+  &quot;content&quot;: &quot;Es is distributed document store&quot;, 
+  &quot;author_id&quot;: 110
+}
+
+GET /myindex/article/_search?q=2018-05
+
+GET /myindex/article/_search?q=2018-05-10
+
+GET /myindex/article/_search?q=html
+
+GET /myindex/article/_search?q=java
+
+#查看es自动创建的mapping
+
+GET /myindex/article/_mapping
+</code></pre><p>es自动创建了index，type，以及type对应的mapping(dynamic mapping)</p><blockquote><p>什么是映射：mapping定义了type中的每个字段的数据类型以及这些字段如何分词等相关属性</p></blockquote><pre><code>{
+  &quot;myindex&quot;: {
+    &quot;mappings&quot;: {
+      &quot;article&quot;: {
+        &quot;properties&quot;: {
+          &quot;author_id&quot;: {
+            &quot;type&quot;: &quot;long&quot;
+          },
+          &quot;content&quot;: {
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;fields&quot;: {
+              &quot;keyword&quot;: {
+                &quot;type&quot;: &quot;keyword&quot;,
+                &quot;ignore_above&quot;: 256
+              }
+            }
+          },
+          &quot;post_date&quot;: {
+            &quot;type&quot;: &quot;date&quot;
+          },
+          &quot;title&quot;: {
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;fields&quot;: {
+              &quot;keyword&quot;: {
+                &quot;type&quot;: &quot;keyword&quot;,
+                &quot;ignore_above&quot;: 256
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+</code></pre><p>创建索引的时候,可以预先定义字段的类型以及相关属性，这样就能够把日期字段处理成日期，把数字字段处理成数字，把字符串字段处理字符串值等</p><p>支持的数据类型：</p><p>(1)核心数据类型（Core datatypes）</p><pre><code>字符型：string，string类型包括
+text 和 keyword
+
+text类型被用来索引长文本，在建立索引前会将这些文本进行分词，转化为词的组合，建立索引。允许es来检索这些词语。text类型不能用来排序和聚合。
+
+Keyword类型不需要进行分词，可以被用来检索过滤、排序和聚合。keyword 类型字段只能用本身来进行检索
+
+数字型：long, integer, short, byte, double, float
+日期型：date
+布尔型：boolean
+二进制型：binary
+</code></pre><p>(2)复杂数据类型（Complex datatypes）</p><pre><code>数组类型（Array datatype）：数组类型不需要专门指定数组元素的type，例如：
+    字符型数组: [ &quot;one&quot;, &quot;two&quot; ]
+    整型数组：[ 1, 2 ]
+    数组型数组：[ 1, [ 2, 3 ]] 等价于[ 1, 2, 3 ]
+    对象数组：[ { &quot;name&quot;: &quot;Mary&quot;, &quot;age&quot;: 12 }, { &quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 10 }]
+对象类型（Object datatype）：_ object _ 用于单个JSON对象；
+嵌套类型（Nested datatype）：_ nested _ 用于JSON数组；
+</code></pre><p>(3)地理位置类型（Geo datatypes）</p><pre><code>地理坐标类型（Geo-point datatype）：_ geo_point _ 用于经纬度坐标；
+地理形状类型（Geo-Shape datatype）：_ geo_shape _ 用于类似于多边形的复杂形状；
+</code></pre><p>(4)特定类型（Specialised datatypes）</p><pre><code>IPv4 类型（IPv4 datatype）：_ ip _ 用于IPv4 地址；
+Completion 类型（Completion datatype）：_ completion _提供自动补全建议；
+Token count 类型（Token count datatype）：_ token_count _ 用于统计做了标记的字段的index数目，该值会一直增加，不会因为过滤条件而减少。
+mapper-murmur3
+类型：通过插件，可以通过 _ murmur3 _ 来计算 index 的 hash 值；
+附加类型（Attachment datatype）：采用 mapper-attachments
+插件，可支持_ attachments _ 索引，例如 Microsoft Office 格式，Open Document 格式，ePub, HTML 等。
+</code></pre><p>支持的属性： <img src="537B5404AE234F7B8B1CC8342B71E0BE" alt="image"></p><p>映射的分类：</p><p>(1)动态映射：</p><p>当ES在文档中碰到一个以前没见过的字段时，它会利用动态映射来决定该字段的类型，并自动地对该字段添加映射。</p><p>可以通过dynamic设置来控制这一行为，它能够接受以下的选项：</p><pre><code>true：默认值。动态添加字段
+false：忽略新字段
+strict：如果碰到陌生字段，抛出异常
+</code></pre><p>dynamic设置可以适用在根对象上或者object类型的任意字段上。</p><pre><code>## 给索引lib2创建映射类型
+POST /lib2
+{
+    &quot;settings&quot;:{
+    &quot;number_of_shards&quot; : 3,
+    &quot;number_of_replicas&quot; : 0
+    },
+     &quot;mappings&quot;:{
+      &quot;books&quot;:{
+        &quot;properties&quot;:{
+            &quot;title&quot;:{&quot;type&quot;:&quot;text&quot;},
+            &quot;name&quot;:{&quot;type&quot;:&quot;text&quot;,&quot;index&quot;:false},
+            &quot;publish_date&quot;:{&quot;type&quot;:&quot;date&quot;,&quot;index&quot;:false},
+            &quot;price&quot;:{&quot;type&quot;:&quot;double&quot;},
+            &quot;number&quot;:{&quot;type&quot;:&quot;integer&quot;}
+        }
+      }
+     }
+}
+
+## 给索引lib2创建映射类型
+POST /lib2
+{
+    &quot;settings&quot;:{
+    &quot;number_of_shards&quot; : 3,
+    &quot;number_of_replicas&quot; : 0
+    },
+     &quot;mappings&quot;:{
+      &quot;books&quot;:{
+        &quot;properties&quot;:{
+            &quot;title&quot;:{&quot;type&quot;:&quot;text&quot;},
+            &quot;name&quot;:{&quot;type&quot;:&quot;text&quot;,&quot;index&quot;:false},
+            &quot;publish_date&quot;:{&quot;type&quot;:&quot;date&quot;,&quot;index&quot;:false},
+            &quot;price&quot;:{&quot;type&quot;:&quot;double&quot;},
+            &quot;number&quot;:{
+                &quot;type&quot;:&quot;object&quot;,
+                &quot;dynamic&quot;:true
+            }
+        }
+      }
+     }
+}
+</code></pre><h3 id="2-7-基本查询-query查询">2.7 基本查询(Query查询)</h3><h4 id="2-7-1数据准备">2.7.1数据准备</h4><pre><code>PUT /lib3
+{
+    &quot;settings&quot;:{
+    &quot;number_of_shards&quot; : 3,
+    &quot;number_of_replicas&quot; : 0
+    },
+     &quot;mappings&quot;:{
+      &quot;user&quot;:{
+        &quot;properties&quot;:{
+            &quot;name&quot;: {&quot;type&quot;:&quot;text&quot;},
+            &quot;address&quot;: {&quot;type&quot;:&quot;text&quot;},
+            &quot;age&quot;: {&quot;type&quot;:&quot;integer&quot;},
+            &quot;interests&quot;: {&quot;type&quot;:&quot;text&quot;},
+            &quot;birthday&quot;: {&quot;type&quot;:&quot;date&quot;}
+        }
+      }
+     }
+}
+
+GET /lib3/user/_search?q=name:lisi
+
+GET /lib3/user/_search?q=name:zhaoliu&amp;sort=age:desc
+</code></pre><h4 id="2-7-2-term查询和terms查询">2.7.2 term查询和terms查询</h4><p>term query会去倒排索引中寻找确切的term，它并不知道分词器的存在。这种查询适合keyword 、numeric、date。</p><p>term:查询某个字段里含有某个关键词的文档</p><pre><code>GET /lib3/user/_search/
+{
+  &quot;query&quot;: {
+      &quot;term&quot;: {&quot;interests&quot;: &quot;changge&quot;}
+  }
+}
+</code></pre><p>terms:查询某个字段里含有多个关键词的文档</p><pre><code>GET /lib3/user/_search
+{
+    &quot;query&quot;:{
+        &quot;terms&quot;:{
+            &quot;interests&quot;: [&quot;hejiu&quot;,&quot;changge&quot;]
+        }
+    }
+}
+</code></pre><h4 id="2-7-3-控制查询返回的数量">2.7.3 控制查询返回的数量</h4><p>from：从哪一个文档开始 size：需要的个数</p><pre><code>GET /lib3/user/_search
+{
+    &quot;from&quot;:0,
+    &quot;size&quot;:2,
+    &quot;query&quot;:{
+        &quot;terms&quot;:{
+            &quot;interests&quot;: [&quot;hejiu&quot;,&quot;changge&quot;]
+        }
+    }
+}
+</code></pre><h4 id="2-7-4-返回版本号">2.7.4 返回版本号</h4><pre><code>GET /lib3/user/_search
+{
+    &quot;version&quot;:true,
+    &quot;query&quot;:{
+        &quot;terms&quot;:{
+            &quot;interests&quot;: [&quot;hejiu&quot;,&quot;changge&quot;]
+        }
+    }
+}
+</code></pre><h4 id="2-7-5-match查询">2.7.5 match查询</h4><p>match query知道分词器的存在，会对filed进行分词操作，然后再查询</p><pre><code>GET /lib3/user/_search
+{
+    &quot;query&quot;:{
+        &quot;match&quot;:{
+            &quot;name&quot;: &quot;zhaoliu&quot;
+        }
+    }
+}
+
+GET /lib3/user/_search
+{
+    &quot;query&quot;:{
+        &quot;match&quot;:{
+            &quot;age&quot;: 20
+        }
+    }
+}
+</code></pre><p>match_all:查询所有文档</p><pre><code>GET /lib3/user/_search
+{
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {}
+  }
+}
+</code></pre><p>multi_match:可以指定多个字段</p><pre><code>GET /lib3/user/_search
+{
+    &quot;query&quot;:{
+        &quot;multi_match&quot;: {
+            &quot;query&quot;: &quot;lvyou&quot;,
+            &quot;fields&quot;: [&quot;interests&quot;,&quot;name&quot;]
+         }
+    }
+}
+</code></pre><p>match_phrase:短语匹配查询</p><p>ElasticSearch引擎首先分析（analyze）查询字符串，从分析后的文本中构建短语查询，这意味着必须匹配短语中的所有分词，并且保证各个分词的相对位置不变：</p><pre><code>GET lib3/user/_search
+{
+  &quot;query&quot;:{  
+      &quot;match_phrase&quot;:{  
+         &quot;interests&quot;: &quot;duanlian，shuoxiangsheng&quot;
+      }
+   }
+}
+</code></pre><h4 id="2-7-6-指定返回的字段">2.7.6 指定返回的字段</h4><pre><code>GET /lib3/user/_search
+{
+    &quot;_source&quot;: [&quot;address&quot;,&quot;name&quot;],
+    &quot;query&quot;: {
+        &quot;match&quot;: {
+            &quot;interests&quot;: &quot;changge&quot;
+        }
+    }
+}
+
+</code></pre><h4 id="2-7-7控制加载的字段">2.7.7控制加载的字段</h4><pre><code>GET /lib3/user/_search
+{
+    &quot;query&quot;: {
+        &quot;match_all&quot;: {}
+    },
+    
+    &quot;_source&quot;: {
+          &quot;includes&quot;: [&quot;name&quot;,&quot;address&quot;],
+          &quot;excludes&quot;: [&quot;age&quot;,&quot;birthday&quot;]
+      }
+}
+</code></pre><p>使用通配符*</p><pre><code>GET /lib3/user/_search
+{
+    &quot;_source&quot;: {
+          &quot;includes&quot;: &quot;addr*&quot;,
+          &quot;excludes&quot;: [&quot;name&quot;,&quot;bir*&quot;]
+        
+    },
+    &quot;query&quot;: {
+        &quot;match_all&quot;: {}
+    }
+}
+</code></pre><h4 id="2-7-8-排序">2.7.8 排序</h4><p>使用sort实现排序： desc:降序，asc升序</p><pre><code>GET /lib3/user/_search
+{
+    &quot;query&quot;: {
+        &quot;match_all&quot;: {}
+    },
+    &quot;sort&quot;: [
+        {
+           &quot;age&quot;: {
+               &quot;order&quot;:&quot;asc&quot;
+           }
+        }
+    ]
+        
+}
+
+GET /lib3/user/_search
+{
+    &quot;query&quot;: {
+        &quot;match_all&quot;: {}
+    },
+    &quot;sort&quot;: [
+        {
+           &quot;age&quot;: {
+               &quot;order&quot;:&quot;desc&quot;
+           }
+        }
+    ]
+        
+}
+</code></pre><h4 id="2-7-9-前缀匹配查询">2.7.9 前缀匹配查询</h4><pre><code>GET /lib3/user/_search
+{
+  &quot;query&quot;: {
+    &quot;match_phrase_prefix&quot;: {
+        &quot;name&quot;: {
+            &quot;query&quot;: &quot;zhao&quot;
+        }
+    }
+  }
+}
+</code></pre><h4 id="2-7-10-范围查询">2.7.10 范围查询</h4><p>range:实现范围查询</p><p>参数：from,to,include_lower,include_upper,boost</p><p>include_lower:是否包含范围的左边界，默认是true</p><p>include_upper:是否包含范围的右边界，默认是true</p><pre><code>GET /lib3/user/_search
+{
+    &quot;query&quot;: {
+        &quot;range&quot;: {
+            &quot;birthday&quot;: {
+                &quot;from&quot;: &quot;1990-10-10&quot;,
+                &quot;to&quot;: &quot;2018-05-01&quot;
+            }
+        }
+    }
+}
+
+
+GET /lib3/user/_search
+{
+    &quot;query&quot;: {
+        &quot;range&quot;: {
+            &quot;age&quot;: {
+                &quot;from&quot;: 20,
+                &quot;to&quot;: 25,
+                &quot;include_lower&quot;: true,
+                &quot;include_upper&quot;: false
+            }
+        }
+    }
+}
+</code></pre><h4 id="2-7-11-wildcard查询">2.7.11 wildcard查询</h4><p>允许使用通配符* 和 ?来进行查询</p><p>*代表0个或多个字符</p><p>？代表任意一个字符</p><pre><code>GET /lib3/user/_search
+{
+    &quot;query&quot;: {
+        &quot;wildcard&quot;: {
+             &quot;name&quot;: &quot;zhao*&quot;
+        }
+    }
+}
+
+
+GET /lib3/user/_search
+{
+    &quot;query&quot;: {
+        &quot;wildcard&quot;: {
+             &quot;name&quot;: &quot;li?i&quot;
+        }
+    }
+}
+</code></pre><h4 id="2-7-12-fuzzy实现模糊查询">2.7.12 fuzzy实现模糊查询</h4><p>value：查询的关键字</p><p>boost：查询的权值，默认值是1.0</p><p>min_similarity:设置匹配的最小相似度，默认值为0.5，对于字符串，取值为0-1(包括0和1);对于数值，取值可能大于1;对于日期型取值为1d,1m等，1d就代表1天</p><p>prefix_length:指明区分词项的共同前缀长度，默认是0</p><p>max_expansions:查询中的词项可以扩展的数目，默认可以无限大</p><pre><code>GET /lib3/user/_search
+{
+    &quot;query&quot;: {
+        &quot;fuzzy&quot;: {
+             &quot;interests&quot;: &quot;chagge&quot;
+        }
+    }
+}
+
+GET /lib3/user/_search
+{
+    &quot;query&quot;: {
+        &quot;fuzzy&quot;: {
+             &quot;interests&quot;: {
+                 &quot;value&quot;: &quot;chagge&quot;
+             }
+        }
+    }
+}
+</code></pre><h4 id="2-7-13-高亮搜索结果">2.7.13 高亮搜索结果</h4><pre><code>GET /lib3/user/_search
+{
+    &quot;query&quot;:{
+        &quot;match&quot;:{
+            &quot;interests&quot;: &quot;changge&quot;
+        }
+    },
+    &quot;highlight&quot;: {
+        &quot;fields&quot;: {
+             &quot;interests&quot;: {}
+        }
+    }
+}
+</code></pre><h3 id="2-8-filter查询">2.8 Filter查询</h3><p>filter是不计算相关性的，同时可以cache。因此，filter速度要快于query。</p><pre><code>POST /lib4/items/_bulk
+{&quot;index&quot;: {&quot;_id&quot;: 1}}
+
+{&quot;price&quot;: 40,&quot;itemID&quot;: &quot;ID100123&quot;}
+
+{&quot;index&quot;: {&quot;_id&quot;: 2}}
+
+{&quot;price&quot;: 50,&quot;itemID&quot;: &quot;ID100124&quot;}
+
+{&quot;index&quot;: {&quot;_id&quot;: 3}}
+
+{&quot;price&quot;: 25,&quot;itemID&quot;: &quot;ID100124&quot;}
+
+{&quot;index&quot;: {&quot;_id&quot;: 4}}
+
+{&quot;price&quot;: 30,&quot;itemID&quot;: &quot;ID100125&quot;}
+
+{&quot;index&quot;: {&quot;_id&quot;: 5}}
+
+{&quot;price&quot;: null,&quot;itemID&quot;: &quot;ID100127&quot;}
+</code></pre><h4 id="2-8-1-简单的过滤查询">2.8.1 简单的过滤查询</h4><pre><code>GET /lib4/items/_search
+{ 
+       &quot;post_filter&quot;: {
+             &quot;term&quot;: {
+                 &quot;price&quot;: 40
+             }
+       }
+}
+
+
+GET /lib4/items/_search
+{
+      &quot;post_filter&quot;: {
+          &quot;terms&quot;: {
+                 &quot;price&quot;: [25,40]
+              }
+        }
+}
+
+GET /lib4/items/_search
+{
+    &quot;post_filter&quot;: {
+        &quot;term&quot;: {
+            &quot;itemID&quot;: &quot;ID100123&quot;
+          }
+      }
+}
+</code></pre><p>查看分词器分析的结果：</p><pre><code>GET /lib4/_mapping
+</code></pre><p>不希望商品id字段被分词，则重新创建映射</p><pre><code>DELETE lib4
+</code></pre><pre><code>PUT /lib4
+{
+    &quot;mappings&quot;: {
+        &quot;items&quot;: {
+            &quot;properties&quot;: {
+                &quot;itemID&quot;: {
+                    &quot;type&quot;: &quot;text&quot;,
+                    &quot;index&quot;: false
+                }
+            }
+        }
+    }
+}
+</code></pre><h4 id="2-8-2-bool过滤查询">2.8.2 bool过滤查询</h4><p>可以实现组合过滤查询</p><p>格式：</p><pre><code>{
+    &quot;bool&quot;: {
+        &quot;must&quot;: [],
+        &quot;should&quot;: [],
+        &quot;must_not&quot;: []
+    }
+}
+</code></pre><p>must:必须满足的条件&mdash;and</p><p>should：可以满足也可以不满足的条件&ndash;or</p><p>must_not:不需要满足的条件&ndash;not</p><pre><code>GET /lib4/items/_search
+{
+    &quot;post_filter&quot;: {
+          &quot;bool&quot;: {
+               &quot;should&quot;: [
+                    {&quot;term&quot;: {&quot;price&quot;:25}},
+                    {&quot;term&quot;: {&quot;itemID&quot;: &quot;id100123&quot;}}
+                   
+                  ],
+                &quot;must_not&quot;: {
+                    &quot;term&quot;:{&quot;price&quot;: 30}
+                   }
+                       
+                }
+             }
+}
+</code></pre><p>嵌套使用bool：</p><pre><code>GET /lib4/items/_search
+{
+    &quot;post_filter&quot;: {
+          &quot;bool&quot;: {
+                &quot;should&quot;: [
+                    {&quot;term&quot;: {&quot;itemID&quot;: &quot;id100123&quot;}},
+                    {
+                      &quot;bool&quot;: {
+                          &quot;must&quot;: [
+                              {&quot;term&quot;: {&quot;itemID&quot;: &quot;id100124&quot;}},
+                              {&quot;term&quot;: {&quot;price&quot;: 40}}
+                            ]
+                          }
+                    }
+                  ]
+                }
+            }
+}
+</code></pre><h4 id="2-8-3-范围过滤">2.8.3 范围过滤</h4><p>gt: &gt;</p><p>lt: &lt;</p><p>gte: &gt;=</p><p>lte: &lt;=</p><pre><code>GET /lib4/items/_search
+{
+     &quot;post_filter&quot;: {
+          &quot;range&quot;: {
+              &quot;price&quot;: {
+                   &quot;gt&quot;: 25,
+                   &quot;lt&quot;: 50
+                }
+            }
+      }
+}
+</code></pre><h4 id="2-8-4-过滤非空">2.8.4 过滤非空</h4><pre><code>GET /lib4/items/_search
+{
+  &quot;query&quot;: {
+    &quot;bool&quot;: {
+      &quot;filter&quot;: {
+          &quot;exists&quot;:{
+             &quot;field&quot;:&quot;price&quot;
+         }
+      }
+    }
+  }
+}
+
+GET /lib4/items/_search
+{
+    &quot;query&quot; : {
+        &quot;constant_score&quot; : {
+            &quot;filter&quot;: {
+                &quot;exists&quot; : { &quot;field&quot; : &quot;price&quot; }
+            }
+        }
+    }
+}
+</code></pre><h4 id="2-8-5-过滤器缓存">2.8.5 过滤器缓存</h4><blockquote><p>ElasticSearch提供了一种特殊的缓存，即过滤器缓存（filter cache），用来存储过滤器的结果，被缓存的过滤器并不需要消耗过多的内存（因为它们只存储了哪些文档能与过滤器相匹配的相关信息），而且可供后续所有与之相关的查询重复使用，从而极大地提高了查询性能。</p><p>注意：ElasticSearch并不是默认缓存所有过滤器， 以下过滤器默认不缓存：</p></blockquote><pre><code>numeric_range
+script
+geo_bbox
+geo_distance
+geo_distance_range
+geo_polygon
+geo_shape
+and
+or
+not
+</code></pre><p>exists,missing,range,term,terms默认是开启缓存的</p><p>开启方式：在filter查询语句后边加上 &ldquo;_catch&rdquo;:true</p><h3 id="2-9-聚合查询">2.9 聚合查询</h3><p>(1)sum</p><pre><code>GET /lib4/items/_search
+{
+  &quot;size&quot;:0,
+  &quot;aggs&quot;: {
+     &quot;price_of_sum&quot;: {
+         &quot;sum&quot;: {
+           &quot;field&quot;: &quot;price&quot;
+         }
+     }
+  }
+}
+</code></pre><p>(2)min</p><pre><code>GET /lib4/items/_search
+{
+  &quot;size&quot;: 0, 
+  &quot;aggs&quot;: {
+     &quot;price_of_min&quot;: {
+         &quot;min&quot;: {
+           &quot;field&quot;: &quot;price&quot;
+         }
+     }
+  }
+}
+</code></pre><p>(3)max</p><pre><code>GET /lib4/items/_search
+{
+  &quot;size&quot;: 0, 
+  &quot;aggs&quot;: {
+     &quot;price_of_max&quot;: {
+         &quot;max&quot;: {
+           &quot;field&quot;: &quot;price&quot;
+         }
+     }
+  }
+}
+</code></pre><p>(4)avg</p><pre><code>GET /lib4/items/_search
+{
+  &quot;size&quot;:0,
+  &quot;aggs&quot;: {
+     &quot;price_of_avg&quot;: {
+         &quot;avg&quot;: {
+           &quot;field&quot;: &quot;price&quot;
+         }
+     }
+  }
+}
+</code></pre><p>(5)cardinality:求基数</p><pre><code>GET /lib4/items/_search
+{
+  &quot;size&quot;:0,
+  &quot;aggs&quot;: {
+     &quot;price_of_cardi&quot;: {
+         &quot;cardinality&quot;: {
+           &quot;field&quot;: &quot;price&quot;
+         }
+     }
+  }
+}
+</code></pre><p>(6)terms:分组</p><pre><code>GET /lib4/items/_search
+{
+  &quot;size&quot;:0,
+  &quot;aggs&quot;: {
+     &quot;price_group_by&quot;: {
+         &quot;terms&quot;: {
+           &quot;field&quot;: &quot;price&quot;
+         }
+     }
+  }
+}
+</code></pre><p>对那些有唱歌兴趣的用户按年龄分组</p><pre><code>GET /lib3/user/_search
+{
+  &quot;query&quot;: {
+      &quot;match&quot;: {
+        &quot;interests&quot;: &quot;changge&quot;
+      }
+   },
+   &quot;size&quot;: 0, 
+   &quot;aggs&quot;:{
+       &quot;age_group_by&quot;:{
+           &quot;terms&quot;: {
+             &quot;field&quot;: &quot;age&quot;,
+             &quot;order&quot;: {
+               &quot;avg_of_age&quot;: &quot;desc&quot;
+             }
+           },
+           &quot;aggs&quot;: {
+             &quot;avg_of_age&quot;: {
+               &quot;avg&quot;: {
+                 &quot;field&quot;: &quot;age&quot;
+               }
+             }
+           }
+       }
+   }
+}
+</code></pre><h3 id="2-10-复合查询">2.10 复合查询</h3><p>将多个基本查询组合成单一查询的查询</p><h4 id="2-10-1-使用bool查询">2.10.1 使用bool查询</h4><p>接收以下参数：</p><p>must： 文档 必须匹配这些条件才能被包含进来。</p><p>must_not： 文档 必须不匹配这些条件才能被包含进来。</p><p>should： 如果满足这些语句中的任意语句，将增加 _score，否则，无任何影响。它们主要用于修正每个文档的相关性得分。</p><p>filter： 必须 匹配，但它以不评分、过滤模式来进行。这些语句对评分没有贡献，只是根据过滤标准来排除或包含文档。</p><p>相关性得分是如何组合的。每一个子查询都独自地计算文档的相关性得分。一旦他们的得分被计算出来， bool 查询就将这些得分进行合并并且返回一个代表整个布尔操作的得分。</p><p>下面的查询用于查找 title 字段匹配 how to make millions 并且不被标识为 spam 的文档。那些被标识为 starred 或在2014之后的文档，将比另外那些文档拥有更高的排名。如果 <em>两者</em> 都满足，那么它排名将更高：</p><pre><code>{
+    &quot;bool&quot;: {
+        &quot;must&quot;: { &quot;match&quot;: { &quot;title&quot;: &quot;how to make millions&quot; }},
+        &quot;must_not&quot;: { &quot;match&quot;: { &quot;tag&quot;:   &quot;spam&quot; }},
+        &quot;should&quot;: [
+            { &quot;match&quot;: { &quot;tag&quot;: &quot;starred&quot; }},
+            { &quot;range&quot;: { &quot;date&quot;: { &quot;gte&quot;: &quot;2014-01-01&quot; }}}
+        ]
+    }
+}
+</code></pre><p>如果没有 must 语句，那么至少需要能够匹配其中的一条 should 语句。但，如果存在至少一条 must 语句，则对 should 语句的匹配没有要求。 如果我们不想因为文档的时间而影响得分，可以用 filter 语句来重写前面的例子：</p><pre><code>{
+    &quot;bool&quot;: {
+        &quot;must&quot;: { &quot;match&quot;: { &quot;title&quot;: &quot;how to make millions&quot; }},
+        &quot;must_not&quot;: { &quot;match&quot;: { &quot;tag&quot;:   &quot;spam&quot; }},
+        &quot;should&quot;: [
+            { &quot;match&quot;: { &quot;tag&quot;: &quot;starred&quot; }}
+        ],
+        &quot;filter&quot;: {
+          &quot;range&quot;: { &quot;date&quot;: { &quot;gte&quot;: &quot;2014-01-01&quot; }} 
+        }
+    }
+}
+</code></pre><p>通过将 range 查询移到 filter 语句中，我们将它转成不评分的查询，将不再影响文档的相关性排名。由于它现在是一个不评分的查询，可以使用各种对 filter 查询有效的优化手段来提升性能。</p><p>bool 查询本身也可以被用做不评分的查询。简单地将它放置到 filter 语句中并在内部构建布尔逻辑：</p><pre><code>{
+    &quot;bool&quot;: {
+        &quot;must&quot;: { &quot;match&quot;: { &quot;title&quot;: &quot;how to make millions&quot; }},
+        &quot;must_not&quot;: { &quot;match&quot;: { &quot;tag&quot;:   &quot;spam&quot; }},
+        &quot;should&quot;: [
+            { &quot;match&quot;: { &quot;tag&quot;: &quot;starred&quot; }}
+        ],
+        &quot;filter&quot;: {
+          &quot;bool&quot;: { 
+              &quot;must&quot;: [
+                  { &quot;range&quot;: { &quot;date&quot;: { &quot;gte&quot;: &quot;2014-01-01&quot; }}},
+                  { &quot;range&quot;: { &quot;price&quot;: { &quot;lte&quot;: 29.99 }}}
+              ],
+              &quot;must_not&quot;: [
+                  { &quot;term&quot;: { &quot;category&quot;: &quot;ebooks&quot; }}
+              ]
+          }
+        }
+    }
+}
+</code></pre><h4 id="2-10-2-constant-score查询">2.10.2 constant_score查询</h4><p>它将一个不变的常量评分应用于所有匹配的文档。它被经常用于你只需要执行一个 filter 而没有其它查询（例如，评分查询）的情况下。</p><pre><code>{
+    &quot;constant_score&quot;:   {
+        &quot;filter&quot;: {
+            &quot;term&quot;: { &quot;category&quot;: &quot;ebooks&quot; } 
+        }
+    }
+}
+</code></pre><p>term 查询被放置在 constant_score 中，转成不评分的filter。这种方式可以用来取代只有 filter 语句的 bool 查询。</p><h3 id="2-11-嵌套字段">2.11 嵌套字段</h3><blockquote><p>由于在 Elasticsearch 中单个文档的增删改都是原子性操作,那么将相关实体数据都存储在同一文档中也就理所当然。 比如说,我们可以将订单及其明细数据存储在一个文档中。又比如,我们可以将一篇博客文章的评论以一个 comments 数组的形式和博客文章放在一起：</p></blockquote><pre><code>PUT /my_index/blogpost/1
+{
+  &quot;title&quot;: &quot;Nest eggs&quot;,
+  &quot;body&quot;:  &quot;Making your money work...&quot;,
+  &quot;tags&quot;:  [ &quot;cash&quot;, &quot;shares&quot; ],
+  &quot;comments&quot;: [ 
+    {
+      &quot;name&quot;:    &quot;John Smith&quot;,
+      &quot;comment&quot;: &quot;Great article&quot;,
+      &quot;age&quot;:     28,
+      &quot;stars&quot;:   4,
+      &quot;date&quot;:    &quot;2014-09-01&quot;
+    },
+    {
+      &quot;name&quot;:    &quot;Alice White&quot;,
+      &quot;comment&quot;: &quot;More like this please&quot;,
+      &quot;age&quot;:     31,
+      &quot;stars&quot;:   5,
+      &quot;date&quot;:    &quot;2014-10-22&quot;
+    }
+  ]
+}
+</code></pre><p>如果我们依赖字段自动映射,那么 comments 字段会自动映射为 object 类型。</p><p>由于所有的信息都在一个文档中,当我们查询时就没有必要去联合文章和评论文档,查询效率就很高。</p><p>但是当我们使用如下查询时,上面的文档也会被当做是符合条件的结果：</p><pre><code>GET /_search
+{
+  &quot;query&quot;: {
+    &quot;bool&quot;: {
+      &quot;must&quot;: [
+        { &quot;match&quot;: { &quot;name&quot;: &quot;Alice&quot; }},
+        { &quot;match&quot;: { &quot;age&quot;:  28      }} 
+      ]
+    }
+  }
+}
+</code></pre><p>==Alice实际是31岁,不是28!==</p><p>正如我们在 对象数组 中讨论的一样,出现上面这种问题的原因是 JSON 格式的文档被处理成如下的扁平式键值对的结构。</p><pre><code>{
+  &quot;title&quot;:            [ eggs, nest ],
+  &quot;body&quot;:             [ making, money, work, your ],
+  &quot;tags&quot;:             [ cash, shares ],
+  &quot;comments.name&quot;:    [ alice, john, smith, white ],
+  &quot;comments.comment&quot;: [ article, great, like, more, please, this ],
+  &quot;comments.age&quot;:     [ 28, 31 ],
+  &quot;comments.stars&quot;:   [ 4, 5 ],
+  &quot;comments.date&quot;:    [ 2014-09-01, 2014-10-22 ]
+}
+</code></pre><p>Alice 和 31 、 John 和 2014-09-01 之间的相关性信息不再存在。虽然 object 类型 在存储 单一对象 时非常有用,但对于对象数组的搜索而言,毫无用处。</p><p>嵌套对象 就是来解决这个问题的。将 comments 字段类型设置为 nested 而不是 object 后,每一个嵌套对象都会被索引为一个 隐藏的独立文档 ,举例如下:</p><pre><code>{ 
+  &quot;comments.name&quot;:    [ john, smith ],
+  &quot;comments.comment&quot;: [ article, great ],
+  &quot;comments.age&quot;:     [ 28 ],
+  &quot;comments.stars&quot;:   [ 4 ],
+  &quot;comments.date&quot;:    [ 2014-09-01 ]
+}
+{ 
+  &quot;comments.name&quot;:    [ alice, white ],
+  &quot;comments.comment&quot;: [ like, more, please, this ],
+  &quot;comments.age&quot;:     [ 31 ],
+  &quot;comments.stars&quot;:   [ 5 ],
+  &quot;comments.date&quot;:    [ 2014-10-22 ]
+}
+{ 
+  &quot;title&quot;:            [ eggs, nest ],
+  &quot;body&quot;:             [ making, money, work, your ],
+  &quot;tags&quot;:             [ cash, shares ]
+}
+</code></pre><p>第一个 嵌套文档</p><p>第二个 嵌套文档</p><p>根文档 或者也可称为父文档</p><p>在独立索引每一个嵌套对象后,对象中每个字段的相关性得以保留。我们查询时,也仅仅返回那些真正符合条件的文档。</p><p>不仅如此,由于嵌套文档直接存储在文档内部,查询时嵌套文档和根文档联合成本很低,速度和单独存储几乎一样。</p><p>嵌套文档是隐藏存储的,我们不能直接获取。如果要增删改一个嵌套对象,我们必须把整个文档重新索引才可以。值得注意的是,查询的时候返回的是整个文档,而不是嵌套文档本身。</p><h4 id="2-11-1嵌套对象映射">2.11.1嵌套对象映射</h4><p>设置一个字段为 nested 很简单 —  你只需要将字段类型 object 替换为 nested 即可：</p><pre><code>PUT /my_index
+{
+  &quot;mappings&quot;: {
+    &quot;blogpost&quot;: {
+      &quot;properties&quot;: {
+        &quot;comments&quot;: {
+          &quot;type&quot;: &quot;nested&quot;, 
+          &quot;properties&quot;: {
+            &quot;name&quot;:    { &quot;type&quot;: &quot;text&quot;  },
+            &quot;comment&quot;: { &quot;type&quot;: &quot;text&quot;  },
+            &quot;age&quot;:     { &quot;type&quot;: &quot;integer&quot;   },
+            &quot;stars&quot;:   { &quot;type&quot;: &quot;integer&quot;   },
+            &quot;date&quot;:    { &quot;type&quot;: &quot;date&quot;    }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><p>nested 字段类型的设置参数与 object 相同。</p><h4 id="2-11-2嵌套对象查询">2.11.2嵌套对象查询</h4><p>由于嵌套对象 被索引在独立隐藏的文档中，我们无法直接查询它们。 相应地，我们必须使用 nested 查询 去获取它们：</p><pre><code>GET /my_index/blogpost/_search
+{
+  &quot;query&quot;: {
+    &quot;bool&quot;: {
+      &quot;must&quot;: [
+        {
+          &quot;match&quot;: {
+            &quot;title&quot;: &quot;eggs&quot; 
+          }
+        },
+        {
+          &quot;nested&quot;: {
+            &quot;path&quot;: &quot;comments&quot;, 
+            &quot;query&quot;: {
+              &quot;bool&quot;: {
+                &quot;must&quot;: [ 
+                  {
+                    &quot;match&quot;: {
+                      &quot;comments.name&quot;: &quot;john&quot;
+                    }
+                  },
+                  {
+                    &quot;match&quot;: {
+                      &quot;comments.age&quot;: 28
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+}}}
+</code></pre><p>title 子句是查询根文档的。</p><p>nested 子句作用于嵌套字段 comments 。在此查询中，既不能查询根文档字段，也不能查询其他嵌套文档。</p><p>comments.name 和 comments.age 子句操作在同一个嵌套文档中。</p><blockquote><p>nested 字段可以包含其他的 nested 字段。同样地，nested 查询也可以包含其他的 nested 查询。而嵌套的层次会按照你所期待的被应用。</p></blockquote><p>nested 查询肯定可以匹配到多个嵌套的文档。每一个匹配的嵌套文档都有自己的相关度得分，但是这众多的分数最终需要汇聚为可供根文档使用的一个分数。</p><p>默认情况下，根文档的分数是这些嵌套文档分数的平均值。可以通过设置 score_mode 参数来控制这个得分策略，相关策略有 avg (平均值), max (最大值), sum (加和) 和 none (直接返回 1.0 常数值分数)。</p><pre><code>GET /my_index/blogpost/_search
+{
+  &quot;query&quot;: {
+    &quot;bool&quot;: {
+      &quot;must&quot;: [
+        {
+          &quot;match&quot;: {
+            &quot;title&quot;: &quot;eggs&quot;
+          }
+        },
+        {
+          &quot;nested&quot;: {
+            &quot;path&quot;: &quot;comments&quot;,
+            &quot;score_mode&quot;: &quot;max&quot;, 
+            &quot;query&quot;: {
+              &quot;bool&quot;: {
+                &quot;must&quot;: [
+                  {
+                    &quot;match&quot;: {
+                      &quot;comments.name&quot;: &quot;john&quot;
+                    }
+                  },
+                  {
+                    &quot;match&quot;: {
+                      &quot;comments.age&quot;: 28
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+</code></pre><p>返回最优匹配嵌套文档的 _score 给根文档使用。</p><blockquote><p>如果 nested 查询放在一个布尔查询的 filter 子句中，其表现就像一个 nested 查询，只是 score_mode 参数不再生效。因为它被用于不打分的查询中 — 只是符合或不符合条件，不必打分 — 那么 score_mode 就没有任何意义，因为根本就没有要打分的地方。</p></blockquote><h4 id="2-11-3-使用嵌套字段排序">2.11.3 使用嵌套字段排序</h4><p>尽管嵌套字段的值存储于独立的嵌套文档中，但依然有方法按照嵌套字段的值排序。 让我们添加另一个记录，以使得结果更有意思：</p><pre><code>PUT /my_index/blogpost/2
+{
+  &quot;title&quot;: &quot;Investment secrets&quot;,
+  &quot;body&quot;:  &quot;What they don't tell you ...&quot;,
+  &quot;tags&quot;:  [ &quot;shares&quot;, &quot;equities&quot; ],
+  &quot;comments&quot;: [
+    {
+      &quot;name&quot;:    &quot;Mary Brown&quot;,
+      &quot;comment&quot;: &quot;Lies, lies, lies&quot;,
+      &quot;age&quot;:     42,
+      &quot;stars&quot;:   1,
+      &quot;date&quot;:    &quot;2014-10-18&quot;
+    },
+    {
+      &quot;name&quot;:    &quot;John Smith&quot;,
+      &quot;comment&quot;: &quot;You're making it up!&quot;,
+      &quot;age&quot;:     28,
+      &quot;stars&quot;:   2,
+      &quot;date&quot;:    &quot;2014-10-16&quot;
+    }
+  ]
+}
+</code></pre><p>假如我们想要查询在10月份收到评论的博客文章，并且按照 stars 数的最小值来由小到大排序，那么查询语句如下：</p><pre><code>GET /_search
+{
+  &quot;query&quot;: {
+    &quot;nested&quot;: { 
+      &quot;path&quot;: &quot;comments&quot;,
+      &quot;filter&quot;: {
+        &quot;range&quot;: {
+          &quot;comments.date&quot;: {
+            &quot;gte&quot;: &quot;2014-10-01&quot;,
+            &quot;lt&quot;:  &quot;2014-11-01&quot;
+          }
+        }
+      }
+    }
+  },
+  &quot;sort&quot;: {
+    &quot;comments.stars&quot;: { 
+      &quot;order&quot;: &quot;asc&quot;,   
+      &quot;mode&quot;:  &quot;min&quot;,   
+      &quot;nested_path&quot;: &quot;comments&quot;, 
+      &quot;nested_filter&quot;: {
+        &quot;range&quot;: {
+          &quot;comments.date&quot;: {
+            &quot;gte&quot;: &quot;2014-10-01&quot;,
+            &quot;lt&quot;:  &quot;2014-11-01&quot;
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><p>此处的 nested 查询将结果限定为在10月份收到过评论的博客文章。</p><p>结果按照匹配的评论中 comment.stars 字段的最小值 (min) 来由小到大 (asc) 排序。</p><p>排序子句中的 nested_path 和 nested_filter 和 query 子句中的 nested 查询相同，原因在下面有解释。</p><p>我们为什么要用 nested_path 和 nested_filter 重复查询条件呢？原因在于，排序发生在查询执行之后。 查询条件限定了在10月份收到评论的博客文档，但返回的是博客文档。如果我们不在排序子句中加入 nested_filter ， 那么我们对博客文档的排序将基于博客文档的所有评论，而不是仅仅在10月份接收到的评论。</p><h4 id="2-11-4-嵌套字段聚合">2.11.4 嵌套字段聚合</h4><p>在查询的时候，我们使用 nested 查询 就可以获取嵌套对象的信息。同理， nested 聚合允许我们对嵌套对象里的字段进行聚合操作。</p><pre><code>GET /my_index/blogpost/_search
+{
+  &quot;size&quot; : 0,
+  &quot;aggs&quot;: {
+    &quot;comments&quot;: { 
+      &quot;nested&quot;: {
+        &quot;path&quot;: &quot;comments&quot;
+      },
+      &quot;aggs&quot;: {
+        &quot;by_month&quot;: {
+          &quot;date_histogram&quot;: { 
+            &quot;field&quot;:    &quot;comments.date&quot;,
+            &quot;interval&quot;: &quot;month&quot;,
+            &quot;format&quot;:   &quot;yyyy-MM&quot;
+          },
+          &quot;aggs&quot;: {
+            &quot;avg_stars&quot;: {
+              &quot;avg&quot;: { 
+                &quot;field&quot;: &quot;comments.stars&quot;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><p>nested 聚合 “进入” 嵌套的 comments 对象。</p><p>comment对象根据 comments.date 字段的月份值被分到不同的桶。</p><p>计算每个桶内star的平均数量。</p><p>从下面的结果可以看出聚合是在嵌套文档层面进行的：</p><pre><code>...
+&quot;aggregations&quot;: {
+  &quot;comments&quot;: {
+     &quot;doc_count&quot;: 4, 
+     &quot;by_month&quot;: {
+        &quot;buckets&quot;: [
+           {
+              &quot;key_as_string&quot;: &quot;2014-09&quot;,
+              &quot;key&quot;: 1409529600000,
+              &quot;doc_count&quot;: 1, 
+              &quot;avg_stars&quot;: {
+                 &quot;value&quot;: 4
+              }
+           },
+           {
+              &quot;key_as_string&quot;: &quot;2014-10&quot;,
+              &quot;key&quot;: 1412121600000,
+              &quot;doc_count&quot;: 3, 
+              &quot;avg_stars&quot;: {
+                 &quot;value&quot;: 2.6666666666666665
+              }
+           }
+        ]
+     }
+  }
+}
+...
+</code></pre><p>总共有4个 comments 对象 ：1个对象在9月的桶里，3个对象在10月的桶里。</p><h4 id="2-11-5逆向嵌套聚合">2.11.5逆向嵌套聚合</h4><p>nested 聚合 只能对嵌套文档的字段进行操作。 根文档或者其他嵌套文档的字段对它是不可见的。 然而，通过 reverse_nested 聚合，我们可以 走出 嵌套层级，回到父级文档进行操作。</p><p>例如，我们要基于评论者的年龄找出评论者感兴趣 tags 的分布。 comment.age 是一个嵌套字段，但 tags 在根文档中：</p><pre><code>GET /my_index/blogpost/_search
+{
+  &quot;size&quot; : 0,
+  &quot;aggs&quot;: {
+    &quot;comments&quot;: {
+      &quot;nested&quot;: { 
+        &quot;path&quot;: &quot;comments&quot;
+      },
+      &quot;aggs&quot;: {
+        &quot;age_group&quot;: {
+          &quot;histogram&quot;: { 
+            &quot;field&quot;:    &quot;comments.age&quot;,
+            &quot;interval&quot;: 10
+          },
+          &quot;aggs&quot;: {
+            &quot;blogposts&quot;: {
+              &quot;reverse_nested&quot;: {}, 
+              &quot;aggs&quot;: {
+                &quot;tags&quot;: {
+                  &quot;terms&quot;: { 
+                    &quot;field&quot;: &quot;tags&quot;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><p>nested 聚合进入 comments 对象。</p><p>histogram 聚合基于 comments.age 做分组，每10年一个分组。</p><p>reverse_nested 聚合退回根文档。</p><p>terms 聚合计算每个分组年龄段的评论者最常用的标签词。</p><p>简略结果如下所示：</p><pre><code>..
+&quot;aggregations&quot;: {
+  &quot;comments&quot;: {
+     &quot;doc_count&quot;: 4, 
+     &quot;age_group&quot;: {
+        &quot;buckets&quot;: [
+           {
+              &quot;key&quot;: 20, 
+              &quot;doc_count&quot;: 2, 
+              &quot;blogposts&quot;: {
+                 &quot;doc_count&quot;: 2, 
+                 &quot;tags&quot;: {
+                    &quot;doc_count_error_upper_bound&quot;: 0,
+                    &quot;buckets&quot;: [ 
+                       { &quot;key&quot;: &quot;shares&quot;,   &quot;doc_count&quot;: 2 },
+                       { &quot;key&quot;: &quot;cash&quot;,     &quot;doc_count&quot;: 1 },
+                       { &quot;key&quot;: &quot;equities&quot;, &quot;doc_count&quot;: 1 }
+                    ]
+                 }
+              }
+           },
+...
+</code></pre><p>一共有4条评论。</p><p>在20岁到30岁之间总共有两条评论。</p><p>这些评论包含在两篇博客文章中。</p><p>在这些博客文章中最热门的标签是 <code>shares</code>、 <code>cash</code>、<code>equities</code>。</p><h2 id="3-elasticsearch原理">3 ElasticSearch原理</h2><h3 id="3-1-解析es的分布式架构">3.1 解析es的分布式架构</h3><h4 id="3-1-1-分布式架构的透明隐藏特性">3.1.1 分布式架构的透明隐藏特性</h4><p>ElasticSearch是一个分布式系统，隐藏了复杂的处理机制</p><p>分片机制：我们不用关心数据是按照什么机制分片的、最后放入到哪个分片中</p><p>分片的副本：</p><p>集群发现机制(cluster discovery)：比如当前我们启动了一个es进程，当启动了第二个es进程时，这个进程作为一个node自动就发现了集群，并且加入了进去</p><p>shard负载均衡：比如现在有10shard，集群中有3个节点，es会进行均衡的进行分配，以保持每个节点均衡的负载请求</p><p>请求路由</p><h4 id="3-1-2-扩容机制">3.1.2 扩容机制</h4><p>垂直扩容：购置新的机器，替换已有的机器</p><p>水平扩容：直接增加机器</p><h4 id="3-1-3-rebalance">3.1.3 rebalance</h4><p>增加或减少节点时会自动均衡</p><h4 id="3-1-4-master节点">3.1.4 master节点</h4><p>主节点的主要职责是和集群操作相关的内容，如创建或删除索引，跟踪哪些节点是群集的一部分，并决定哪些分片分配给相关的节点。稳定的主节点对集群的健康是非常重要的。</p><h4 id="3-1-5-节点对等">3.1.5 节点对等</h4><p>每个节点都能接收请求 每个节点接收到请求后都能把该请求路由到有相关数据的其它节点上 接收原始请求的节点负责采集数据并返回给客户端</p><h3 id="3-2-分片和副本机制">3.2 分片和副本机制</h3><p>1.index包含多个shard</p><p>2.每个shard都是一个最小工作单元，承载部分数据；每个shard都是一个lucene实例，有完整的建立索引和处理请求的能力</p><p>3.增减节点时，shard会自动在nodes中负载均衡</p><p>4.primary shard和replica shard，每个document肯定只存在于某一个primary shard以及其对应的replica shard中，不可能存在于多个primary shard</p><p>5.replica shard是primary shard的副本，负责容错，以及承担读请求负载</p><p>6.primary shard的数量在创建索引的时候就固定了，replica shard的数量可以随时修改</p><p>7.primary shard的默认数量是5，replica默认是1，默认有10个shard，5个primary shard，5个replica shard</p><p>8.primary shard不能和自己的replica shard放在同一个节点上（否则节点宕机，primary shard和副本都丢失，起不到容错的作用），但是可以和其他primary shard的replica shard放在同一个节点上</p><h3 id="3-3-单节点环境下创建索引分析">3.3 单节点环境下创建索引分析</h3><pre><code>PUT /myindex
+{
+   &quot;settings&quot; : {
+      &quot;number_of_shards&quot; : 3,
+      &quot;number_of_replicas&quot; : 1
+   }
+}
+</code></pre><p>这个时候，只会将3个primary shard分配到仅有的一个node上去，另外3个replica shard是无法分配的（一个shard的副本replica，他们两个是不能在同一个节点的）。集群可以正常工作，但是一旦出现节点宕机，数据全部丢失，而且集群不可用，无法接收任何请求。</p><h3 id="3-4-两个节点环境下创建索引分析">3.4 两个节点环境下创建索引分析</h3><p>将3个primary shard分配到一个node上去，另外3个replica shard分配到另一个节点上</p><p>primary shard 和replica shard 保持同步</p><p>primary shard 和replica shard 都可以处理客户端的读请求</p><h3 id="3-5-水平扩容的过程">3.5 水平扩容的过程</h3><p>1.扩容后primary shard和replica shard会自动的负载均衡</p><p>2.扩容后每个节点上的shard会减少，那么分配给每个shard的CPU，内存，IO资源会更多，性能提高</p><p>3.扩容的极限，如果有6个shard，扩容的极限就是6个节点，每个节点上一个shard，如果想超出扩容的极限，比如说扩容到9个节点，那么可以增加replica shard的个数</p><p>4.6个shard，3个节点，最多能承受几个节点所在的服务器宕机？(容错性) 任何一台服务器宕机都会丢失部分数据</p><p>为了提高容错性，增加shard的个数： 9个shard，(3个primary shard，6个replicashard)，这样就能容忍最多两台服务器宕机了</p><p>总结：扩容是为了提高系统的吞吐量，同时也要考虑容错性，也就是让尽可能多的服务器宕机还能保证数据不丢失</p><h3 id="3-6-elasticsearch的容错机制">3.6 ElasticSearch的容错机制</h3><p>以9个shard，3个节点为例：</p><p>如果master node 宕机，此时不是所有的primary shard都是Active status，所以此时的集群状态是red。</p><ul><li>容错处理的第一步:是选举一台服务器作为master</li><li><p>容错处理的第二步:新选举出的master会把挂掉的primary shard的某个replica shard 提升为primary shard,此时集群的状态为yellow，因为少了一个replica shard，并不是所有的replica shard都是active status</p></li><li><p>容错处理的第三步：重启故障机，新master会把所有的副本都复制一份到该节点上，（同步一下宕机后发生的修改），此时集群的状态为green，因为所有的primary shard和replica shard都是Active status</p></li></ul><h3 id="3-7-文档的核心元数据">3.7 文档的核心元数据</h3><p>1._index:</p><p>说明了一个文档存储在哪个索引中</p><p>同一个索引下存放的是相似的文档(文档的field多数是相同的)</p><p>索引名必须是小写的，不能以下划线开头，不能包括逗号</p><p>2._type:</p><p>表示文档属于索引中的哪个类型</p><p>一个索引下只能有一个type</p><p>类型名可以是大写也可以是小写的，不能以下划线开头，不能包括逗号</p><p>3._id:</p><p>文档的唯一标识，和索引，类型组合在一起唯一标识了一个文档</p><p>可以手动指定值，也可以由es来生成这个值</p><h3 id="3-8-文档id生成方式">3.8 文档id生成方式</h3><p>1.手动指定</p><p>put /index/type/66</p><p>通常是把其它系统的已有数据导入到es时</p><p>2.由es生成id值</p><p>post /index/type</p><p>es生成的id长度为20个字符，使用的是base64编码，URL安全，使用的是GUID算法，分布式下并发生成id值时不会冲突</p><h3 id="3-9-source元数据分析">3.9 _source元数据分析</h3><p>其实就是我们在添加文档时request body中的内容</p><p>指定返回的结果中含有哪些字段：</p><p>get /index/type/1?_source=name</p><h3 id="3-10-改变文档内容原理解析">3.10 改变文档内容原理解析</h3><p>替换方式：</p><pre><code>PUT /lib/user/4
+{ 
+    &quot;first_name&quot; : &quot;Jane&quot;,
+    &quot;last_name&quot; :   &quot;Lucy&quot;,
+    &quot;age&quot; :         24,
+    &quot;about&quot; :       &quot;I like to collect rock albums&quot;,
+    &quot;interests&quot;:  [ &quot;music&quot; ]
+}
+</code></pre><p>修改方式(partial update)：</p><pre><code>POST /lib/user/2/_update
+{
+    &quot;doc&quot;:{
+       &quot;age&quot;:26
+     }
+}
+</code></pre><p>删除文档：标记为deleted，随着数据量的增加，es会选择合适的时间删除掉</p><h3 id="3-11-基于groovy脚本执行partial-update">3.11 基于groovy脚本执行partial update</h3><p>es有内置的脚本支持，可以基于groovy脚本实现复杂的操作</p><pre><code>1.修改年龄
+
+POST /lib/user/4/_update
+{
+  &quot;script&quot;: &quot;ctx._source.age+=1&quot;
+}
+
+2.修改名字
+
+POST /lib/user/4/_update
+{
+  &quot;script&quot;: &quot;ctx._source.last_name+='hehe'&quot;
+}
+
+
+3.添加爱好
+
+POST /lib/user/4/_update
+{
+  &quot;script&quot;: {
+    &quot;source&quot;: &quot;ctx._source.interests.add(params.tag)&quot;,
+    &quot;params&quot;: {
+      &quot;tag&quot;:&quot;picture&quot;
+    }
+  }
+}
+4.删除爱好
+
+POST /lib/user/4/_update
+{
+  &quot;script&quot;: {
+    &quot;source&quot;: &quot;ctx._source.interests.remove(ctx._source.interests.indexOf(params.tag))&quot;,
+    &quot;params&quot;: {
+      &quot;tag&quot;:&quot;picture&quot;
+    }
+  }
+}
+
+5.删除文档
+
+POST /lib/user/4/_update
+{
+  &quot;script&quot;: {
+    &quot;source&quot;: &quot;ctx.op=ctx._source.age==params.count?'delete':'none'&quot;,
+    &quot;params&quot;: {
+        &quot;count&quot;:29
+    }
+  }
+}
+
+6.upsert
+
+POST /lib/user/4/_update
+{
+  &quot;script&quot;: &quot;ctx._source.age += 1&quot;,
+  
+  &quot;upsert&quot;: {
+     &quot;first_name&quot; : &quot;Jane&quot;,
+     &quot;last_name&quot; :   &quot;Lucy&quot;,
+     &quot;age&quot; :  20,
+     &quot;about&quot; :       &quot;I like to collect rock albums&quot;,
+     &quot;interests&quot;:  [ &quot;music&quot; ]
+  }
+}
+</code></pre><h3 id="3-12-partial-update-处理并发冲突">3.12 partial update 处理并发冲突</h3><p>使用的是乐观锁:_version</p><p>retry_on_conflict:</p><pre><code>POST /lib/user/4/_update?retry_on_conflict=3
+</code></pre><p>重新获取文档数据和版本信息进行更新，不断的操作，最多操作的次数就是retry_on_conflict的值</p><h3 id="3-13-文档数据路由原理解析">3.13 文档数据路由原理解析</h3><p>1.文档路由到分片上：</p><p>一个索引由多个分片构成，当添加(删除，修改)一个文档时，es就需要决定这个文档存储在哪个分片上，这个过程就称为数据路由(routing)</p><p>2.路由算法：</p><pre><code> shard=hash(routing) % number_of_pirmary_shards
+</code></pre><p>示例：一个索引，3个primary shard</p><p>(1)每次增删改查时，都有一个routing值，默认是文档的_id的值</p><p>(2)对这个routing值使用哈希函数进行计算</p><p>(3)计算出的值再和主分片个数取余数</p><p>余数肯定在0&mdash;（number_of_pirmary_shards-1）之间，文档就在对应的shard上</p><p>routing值默认是文档的_id的值，也可以手动指定一个值，手动指定对于负载均衡以及提高批量读取的性能都有帮助</p><p>3.primary shard个数一旦确定就不能修改了</p><h3 id="3-14-文档增删改内部原理">3.14 文档增删改内部原理</h3><p>1:发送增删改请求时，可以选择任意一个节点，该节点就成了协调节点(coordinating node)</p><p>2.协调节点使用路由算法进行路由，然后将请求转到primary shard所在节点，该节点处理请求，并把数据同步到它的replica shard</p><p>3.协调节点对客户端做出响应</p><h3 id="3-15-写一致性原理和quorum机制">3.15 写一致性原理和quorum机制</h3><p>1.任何一个增删改操作都可以跟上一个参数 consistency</p><p>可以给该参数指定的值：</p><p>one: (primary shard)只要有一个primary shard是活跃的就可以执行</p><p>all: (all shard)所有的primary shard和replica shard都是活跃的才能执行</p><p>quorum: (default) 默认值，大部分shard是活跃的才能执行 （例如共有6个shard，至少有3个shard是活跃的才能执行写操作）</p><p>2.quorum机制：多数shard都是可用的，</p><p>int((primary+number_of_replica)/2)+1</p><p>例如：3个primary shard，1个replica</p><p>int((3+1)/2)+1=3</p><p>至少3个shard是活跃的</p><p>注意：可能出现shard不能分配齐全的情况</p><p>比如：1个primary shard,1个replica int((1+1)/2)+1=2 但是如果只有一个节点，因为primary shard和replica shard不能在同一个节点上，所以仍然不能执行写操作</p><p>再举例：1个primary shard,3个replica,2个节点</p><p>int((1+3)/2)+1=3</p><p>最后:当活跃的shard的个数没有达到要求时， es默认会等待一分钟，如果在等待的期间活跃的shard的个数没有增加，则显示timeout</p><p>put /index/type/id?timeout=60s</p><h3 id="3-16-文档查询内部原理">3.16 文档查询内部原理</h3><p>第一步：查询请求发给任意一个节点，该节点就成了coordinating node，该节点使用路由算法算出文档所在的primary shard</p><p>第二步：协调节点把请求转发给primary shard也可以转发给replica shard(使用轮询调度算法(Round-Robin Scheduling，把请求平均分配至primary shard 和replica shard)</p><p>第三步：处理请求的节点把结果返回给协调节点，协调节点再返回给应用程序</p><p>特殊情况：请求的文档还在建立索引的过程中，primary shard上存在，但replica shar上不存在，但是请求被转发到了replica shard上，这时就会提示找不到文档</p><h3 id="3-17-bulk批量操作的json格式解析">3.17 bulk批量操作的json格式解析</h3><pre><code>bulk的格式：
+
+{action:{metadata}}\n
+{requstbody}\n
+##为什么不使用如下格式：
+[{
+&quot;action&quot;: {
+},
+&quot;data&quot;: {
+}
+}]
+</code></pre><p>这种方式可读性好，但是内部处理就麻烦了：</p><p>1.将json数组解析为JSONArray对象，在内存中就需要有一份json文本的拷贝，另外还有一个JSONArray对象。</p><p>2.解析json数组里的每个json，对每个请求中的document进行路由</p><p>3.为路由到同一个shard上的多个请求，创建一个请求数组</p><p>4.将这个请求数组序列化</p><p>5.将序列化后的请求数组发送到对应的节点上去</p><p>耗费更多内存，增加java虚拟机开销：</p><p>1.不用将其转换为json对象，直接按照换行符切割json，内存中不需要json文本的拷贝</p><p>2.对每两个一组的json，读取meta，进行document路由</p><p>3.直接将对应的json发送到node上去</p><h3 id="3-18-查询结果分析">3.18 查询结果分析</h3><pre><code>{
+  &quot;took&quot;: 419,
+  &quot;timed_out&quot;: false,
+  &quot;_shards&quot;: {
+    &quot;total&quot;: 3,
+    &quot;successful&quot;: 3,
+    &quot;skipped&quot;: 0,
+    &quot;failed&quot;: 0
+  },
+  &quot;hits&quot;: {
+    &quot;total&quot;: 3,
+    &quot;max_score&quot;: 0.6931472,
+    &quot;hits&quot;: [
+      {
+        &quot;_index&quot;: &quot;lib3&quot;,
+        &quot;_type&quot;: &quot;user&quot;,
+        &quot;_id&quot;: &quot;3&quot;,
+        &quot;_score&quot;: 0.6931472,
+        &quot;_source&quot;: {
+          &quot;address&quot;: &quot;bei jing hai dian qu qing he zhen&quot;,
+          &quot;name&quot;: &quot;lisi&quot;
+        }
+      },
+      {
+        &quot;_index&quot;: &quot;lib3&quot;,
+        &quot;_type&quot;: &quot;user&quot;,
+        &quot;_id&quot;: &quot;2&quot;,
+        &quot;_score&quot;: 0.47000363,
+        &quot;_source&quot;: {
+          &quot;address&quot;: &quot;bei jing hai dian qu qing he zhen&quot;,
+          &quot;name&quot;: &quot;zhaoming&quot;
+        }
+      }
+      
+## took：查询耗费的时间，单位是毫秒
+
+## _shards：共请求了多少个shard
+
+## total：查询出的文档总个数
+
+## max_score： 本次查询中，相关度分数的最大值，文档和此次查询的匹配度越高，_score的值越大，排位越靠前
+
+## hits：默认查询前10个文档
+
+## timed_out：
+
+GET /lib3/user/_search?timeout=10ms
+{
+    &quot;_source&quot;: [&quot;address&quot;,&quot;name&quot;],
+    &quot;query&quot;: {
+        &quot;match&quot;: {
+            &quot;interests&quot;: &quot;changge&quot;
+        }
+    }
+}
+
+</code></pre><h3 id="3-19-多index-多type查询模式">3.19 多index，多type查询模式</h3><pre><code>GET _search
+
+GET /lib/_search
+
+GET /lib,lib3/_search
+
+GET /*3,*4/_search
+
+GET /lib/user/_search
+
+GET /lib,lib4/user,items/_search
+
+GET /_all/_search
+
+GET /_all/user,items/_search
+</code></pre><h3 id="3-20-分页查询中的deep-paging问题">3.20 分页查询中的deep paging问题</h3><pre><code>GET /lib3/user/_search
+{
+    &quot;from&quot;:0,
+    &quot;size&quot;:2,
+    &quot;query&quot;:{
+        &quot;terms&quot;:{
+            &quot;interests&quot;: [&quot;hejiu&quot;,&quot;changge&quot;]
+        }
+    }
+}
+
+GET /_search?from=0&amp;size=3
+</code></pre><p>deep paging:查询的很深，比如一个索引有三个primary shard，分别存储了6000条数据，我们要得到第100页的数据(每页10条)，类似这种情况就叫deep paging</p><p>如何得到第100页的10条数据？</p><p>在每个shard中搜索990到999这10条数据，然后用这30条数据排序，排序之后取10条数据就是要搜索的数据，这种做法是错的，因为3个shard中的数据的_score分数不一样，可能这某一个shard中第一条数据的_score分数比另一个shard中第1000条都要高，所以在每个shard中搜索990到999这10条数据然后排序的做法是不正确的。</p><p>正确的做法是每个shard把0到999条数据全部搜索出来（按排序顺序），然后全部返回给coordinate node，由coordinate node按_score分数排序后，取出第100页的10条数据，然后返回给客户端。</p><p>deep paging性能问题</p><p>1.耗费网络带宽，因为搜索过深的话，各shard要把数据传送给coordinate node，这个过程是有大量数据传递的，消耗网络，</p><p>2.消耗内存，各shard要把数据传送给coordinate node，这个传递回来的数据，是被coordinate node保存在内存中的，这样会大量消耗内存。</p><p>3.消耗cpu coordinate node要把传回来的数据进行排序，这个排序过程很消耗cpu.</p><p>鉴于deep paging的性能问题，所以应尽量减少使用。</p><h3 id="3-21-query-string查询及copy-to解析">3.21 query string查询及copy_to解析</h3><pre><code>GET /lib3/user/_search?q=interests:changge
+
+GET /lib3/user/_search?q=+interests:changge
+
+GET /lib3/user/_search?q=-interests:changge
+</code></pre><p>copy_to字段是把其它字段中的值，以空格为分隔符组成一个大字符串，然后被分析和索引，但是不存储，也就是说它能被查询，但不能被取回显示。</p><p>注意:copy_to指向的字段字段类型要为：text</p><p>当没有指定field时，就会从copy_to字段中查询 GET /lib3/user/_search?q=changge</p><h3 id="3-22-字符串排序问题">3.22 字符串排序问题</h3><p>对一个字符串类型的字段进行排序通常不准确，因为已经被分词成多个词条了</p><p>解决方式：对字段索引两次，一次索引分词（用于搜索），一次索引不分词(用于排序)</p><pre><code>GET /lib3/_search
+
+GET /lib3/user/_search
+{
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {}
+  },
+  &quot;sort&quot;: [
+    {
+      &quot;interests&quot;: {
+        &quot;order&quot;: &quot;desc&quot;
+      }
+    }
+  ]
+}
+
+GET /lib3/user/_search
+{
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {}
+  },
+  &quot;sort&quot;: [
+    {
+      &quot;interests.raw&quot;: {
+        &quot;order&quot;: &quot;asc&quot;
+      }
+    }
+  ]
+}
+
+DELETE lib3
+
+PUT /lib3
+{
+    &quot;settings&quot;:{
+        &quot;number_of_shards&quot; : 3,
+        &quot;number_of_replicas&quot; : 0
+      },
+     &quot;mappings&quot;:{
+      &quot;user&quot;:{
+        &quot;properties&quot;:{
+            &quot;name&quot;: {&quot;type&quot;:&quot;text&quot;},
+            &quot;address&quot;: {&quot;type&quot;:&quot;text&quot;},
+            &quot;age&quot;: {&quot;type&quot;:&quot;integer&quot;},
+            &quot;birthday&quot;: {&quot;type&quot;:&quot;date&quot;},
+            &quot;interests&quot;: {
+                &quot;type&quot;:&quot;text&quot;,
+                &quot;fields&quot;: {
+                  &quot;raw&quot;:{
+                     &quot;type&quot;: &quot;keyword&quot;
+                   }
+                },
+                &quot;fielddata&quot;: true
+             }
+          }
+        }
+     }
+}
+</code></pre><h3 id="3-23-如何计算相关度分数">3.23 如何计算相关度分数</h3><p>使用的是TF/IDF算法(Term Frequency&amp;Inverse Document Frequency)</p><p>1.Term Frequency:我们查询的文本中的词条在document本中出现了多少次，出现次数越多，相关度越高</p><p>搜索内容： hello world</p><p>Hello，I love china.</p><p>Hello world,how are you!</p><p>2.Inverse Document Frequency：我们查询的文本中的词条在索引的所有文档中出现了多少次，出现的次数越多，相关度越低</p><p>搜索内容：hello world</p><p>hello，what are you doing?</p><p>I like the world.</p><p>hello 在索引的所有文档中出现了500次，world出现了100次</p><p>3.Field-length(字段长度归约) norm:field越长，相关度越低</p><p>搜索内容：hello world</p><p>{&ldquo;title&rdquo;:&ldquo;hello,what&rsquo;s your name?&rdquo;,&ldquo;content&rdquo;:{&ldquo;owieurowieuolsdjflk&rdquo;}}</p><p>{&ldquo;title&rdquo;:&ldquo;hi,good morning&rdquo;,&ldquo;content&rdquo;:{&ldquo;lkjkljkj&hellip;&hellip;.world&rdquo;}}</p><pre><code>##查看分数是如何计算的：
+
+GET /lib3/user/_search?explain=true
+{
+    &quot;query&quot;:{
+        &quot;match&quot;:{
+            &quot;interests&quot;: &quot;duanlian,changge&quot;
+        }
+    }
+}
+##
+查看一个文档能否匹配上某个查询：
+
+GET /lib3/user/2/_explain
+{
+    &quot;query&quot;:{
+        &quot;match&quot;:{
+            &quot;interests&quot;: &quot;duanlian,changge&quot;
+        }
+    }
+}
+
+</code></pre><h3 id="3-24-doc-values-解析">3.24 Doc Values 解析</h3><p>DocValues其实是Lucene在构建倒排索引时，会额外建立一个有序的正排索引(基于document =&gt; field value的映射列表)</p><pre><code>{&quot;birthday&quot;:&quot;1985-11-11&quot;,age:23}
+
+{&quot;birthday&quot;:&quot;1989-11-11&quot;,age:29}
+###
+document     age       birthday
+
+doc1         23         1985-11-11
+
+doc2         29         1989-11-11
+</code></pre><p>存储在磁盘上，节省内存</p><p>对排序，分组和一些聚合操作能够大大提升性能</p><p><em>==注意：默认对不分词的字段是开启的，对分词字段无效（需要把fielddata设置为true）==</em></p><pre><code>PUT /lib3
+{
+    &quot;settings&quot;:{
+    &quot;number_of_shards&quot; : 3,
+    &quot;number_of_replicas&quot; : 0
+    },
+     &quot;mappings&quot;:{
+      &quot;user&quot;:{
+        &quot;properties&quot;:{
+            &quot;name&quot;: {&quot;type&quot;:&quot;text&quot;},
+            &quot;address&quot;: {&quot;type&quot;:&quot;text&quot;},
+            &quot;age&quot;: {
+              &quot;type&quot;:&quot;integer&quot;,
+              &quot;doc_values&quot;:false
+            },
+            &quot;interests&quot;: {&quot;type&quot;:&quot;text&quot;},
+            &quot;birthday&quot;: {&quot;type&quot;:&quot;date&quot;}
+        }
+      }
+     }
+}
+</code></pre><h3 id="3-25-基于scroll技术滚动搜索大量数据">3.25 基于scroll技术滚动搜索大量数据</h3><p>如果一次性要查出来比如10万条数据，那么性能会很差，此时一般会采取用scoll滚动查询，一批一批的查，直到所有数据都查询完为止。</p><p>1.scoll搜索会在第一次搜索的时候，保存一个当时的视图快照，之后只会基于该旧的视图快照提供数据搜索，如果这个期间数据变更，是不会让用户看到的</p><p>2.采用基于_doc(不使用_score)进行排序的方式，性能较高</p><p>3.每次发送scroll请求，我们还需要指定一个scoll参数，指定一个时间窗口，每次搜索请求只要在这个时间窗口内能完成就可以了</p><pre><code>GET /lib3/user/_search?scroll=1m
+{
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {}
+  },
+  &quot;sort&quot;:[&quot;_doc&quot;],
+  &quot;size&quot;:3
+}
+
+GET /_search/scroll
+{
+   &quot;scroll&quot;: &quot;1m&quot;,
+   &quot;scroll_id&quot;: &quot;DnF1ZXJ5VGhlbkZldGNoAwAAAAAAAAAdFkEwRENOVTdnUUJPWVZUd1p2WE5hV2cAAAAAAAAAHhZBMERDTlU3Z1FCT1lWVHdadlhOYVdnAAAAAAAAAB8WQTBEQ05VN2dRQk9ZVlR3WnZYTmFXZw==&quot;
+}
+</code></pre><h3 id="3-26-dynamic-mapping策略">3.26 dynamic mapping策略</h3><p><strong>dynamic</strong>:</p><p>1.true:遇到陌生字段就 dynamic mapping</p><p>2.false:遇到陌生字段就忽略</p><p>3.strict:约到陌生字段就报错</p><pre><code>PUT /lib8
+{
+    &quot;settings&quot;:{
+    &quot;number_of_shards&quot; : 3,
+    &quot;number_of_replicas&quot; : 0
+    },
+     &quot;mappings&quot;:{
+      &quot;user&quot;:{
+        &quot;dynamic&quot;:strict,
+        &quot;properties&quot;:{
+            &quot;name&quot;: {&quot;type&quot;:&quot;text&quot;},
+            &quot;address&quot;:{
+                &quot;type&quot;:&quot;object&quot;,
+                &quot;dynamic&quot;:true
+            },
+        }
+      }
+     }
+}
+
+#会报错
+
+PUT  /lib8/user/1
+{
+  &quot;name&quot;:&quot;lisi&quot;,
+  &quot;age&quot;:20,
+  &quot;address&quot;:{
+    &quot;province&quot;:&quot;beijing&quot;,
+    &quot;city&quot;:&quot;beijing&quot;
+  }
+}
+</code></pre><p><strong>date_detection</strong>:默认会按照一定格式识别date，比如yyyy-MM-dd</p><p>可以手动关闭某个type的date_detection</p><pre><code>PUT /lib8
+{
+    &quot;settings&quot;:{
+    &quot;number_of_shards&quot; : 3,
+    &quot;number_of_replicas&quot; : 0
+    },
+     &quot;mappings&quot;:{
+      &quot;user&quot;:{
+        &quot;date_detection&quot;: false,
+        }
+    }
+}
+</code></pre><p><strong>定制 dynamic mapping template(type)</strong></p><pre><code>PUT /my_index
+{ 
+  &quot;mappings&quot;: { 
+    &quot;my_type&quot;: { 
+      &quot;dynamic_templates&quot;: [ 
+        { 
+          &quot;en&quot;: { 
+            &quot;match&quot;: &quot;*_en&quot;, 
+            &quot;match_mapping_type&quot;: &quot;string&quot;, 
+            &quot;mapping&quot;: { 
+              &quot;type&quot;: &quot;text&quot;, 
+              &quot;analyzer&quot;: &quot;english&quot; 
+            } 
+          } 
+        } 
+      ] 
+     } 
+  } 
+}
+
+#使用了模板
+
+PUT /my_index/my_type/3
+{
+  &quot;title_en&quot;: &quot;this is my dog&quot;
+  
+}
+#没有使用模板
+
+PUT /my_index/my_type/5
+{
+  &quot;title&quot;: &quot;this is my cat&quot;
+}
+
+GET my_index/my_type/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;title&quot;: &quot;is&quot;
+    }
+  }
+}
+</code></pre><h3 id="3-27-重建索引">3.27 重建索引</h3><p>一个field的设置是不能修改的，如果要修改一个field，那么应该重新按照新的mapping，建立一个index，然后将数据批量查询出来，重新用bulk api写入到index中。</p><p>批量查询的时候，建议采用scroll api，并且采用多线程并发的方式来reindex数据，每次scroll就查询指定日期的一段数据，交给一个线程即可。</p><pre><code>PUT /index1/type1/4
+{
+   &quot;content&quot;:&quot;1990-12-12&quot;
+}
+
+GET /index1/type1/_search
+
+GET /index1/type1/_mapping
+
+
+
+#报错
+PUT /index1/type1/4
+{
+   &quot;content&quot;:&quot;I am very happy.&quot;
+}
+
+
+#修改content的类型为string类型,报错，不允许修改
+
+PUT /index1/_mapping/type1
+{
+  &quot;properties&quot;: {
+    &quot;content&quot;:{
+      &quot;type&quot;: &quot;text&quot;
+    }
+  }
+}
+
+#创建一个新的索引，把index1索引中的数据查询出来导入到新的索引中
+#但是应用程序使用的是之前的索引，为了不用重启应用程序，给index1这个索引起个#别名
+
+PUT /index1/_alias/index2
+
+#创建新的索引，把content的类型改为字符串
+
+PUT /newindex
+{
+  &quot;mappings&quot;: {
+    &quot;type1&quot;:{
+      &quot;properties&quot;: {
+        &quot;content&quot;:{
+          &quot;type&quot;: &quot;text&quot;
+        }
+      }
+    }
+  }
+}
+
+#使用scroll批量查询
+
+GET /index1/type1/_search?scroll=1m
+{
+  &quot;query&quot;: {
+    &quot;match_all&quot;: {}
+  },
+  &quot;sort&quot;: [&quot;_doc&quot;],
+  &quot;size&quot;: 2
+}
+
+#使用bulk批量写入新的索引
+POST /_bulk
+{&quot;index&quot;:{&quot;_index&quot;:&quot;newindex&quot;,&quot;_type&quot;:&quot;type1&quot;,&quot;_id&quot;:1}}
+{&quot;content&quot;:&quot;1982-12-12&quot;}
+
+#将别名index2和新的索引关联，应用程序不用重启
+
+POST /_aliases
+{
+  &quot;actions&quot;: [
+    {&quot;remove&quot;: {&quot;index&quot;:&quot;index1&quot;,&quot;alias&quot;:&quot;index2&quot;}},
+    {&quot;add&quot;: {&quot;index&quot;: &quot;newindex&quot;,&quot;alias&quot;: &quot;index2&quot;}}
+]
+}
+
+GET index2/type1/_search
+
+</code></pre><h3 id="3-28-索引不可变的原因">3.28 索引不可变的原因</h3><p>倒排索引包括：</p><p>文档的列表，文档的数量，词条在每个文档中出现的次数，出现的位置，每个文档的长度，所有文档的平均长度</p><p>索引不变的原因：</p><ul><li><p>不需要锁，提升了并发性能</p></li><li><p>可以一直保存在缓存中（filter）</p></li><li><p>节省cpu和io开销</p></li></ul><h2 id="4-在java应用中访问elasticsearch">4 在Java应用中访问ElasticSearch</h2><h3 id="4-1-在java应用中实现查询文档">4.1 在Java应用中实现查询文档</h3><pre><code>##pom中加入ElasticSearch6.2.4的依赖：
+
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;
+      &lt;artifactId&gt;transport&lt;/artifactId&gt;
+      &lt;version&gt;6.2.4&lt;/version&gt;
+    &lt;/dependency&gt;    
+    
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;4.12&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+  
+  &lt;/dependencies&gt; 
+  
+  &lt;build&gt;
+      &lt;plugins&gt;
+			&lt;!-- java编译插件 --&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+				&lt;version&gt;3.2&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;source&gt;1.8&lt;/source&gt;
+					&lt;target&gt;1.8&lt;/target&gt;
+					&lt;encoding&gt;UTF-8&lt;/encoding&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+  &lt;/build&gt;  
+</code></pre><h3 id="4-2-在java应用中实现添加文档">4.2 在Java应用中实现添加文档</h3><pre><code>              &quot;{&quot; +
+                &quot;\&quot;id\&quot;:\&quot;1\&quot;,&quot; +
+                &quot;\&quot;title\&quot;:\&quot;Java设计模式之装饰模式\&quot;,&quot; +
+                &quot;\&quot;content\&quot;:\&quot;在不必改变原类文件和使用继承的情况下，动态地扩展一个对象的功能。\&quot;,&quot; +
+                &quot;\&quot;postdate\&quot;:\&quot;2018-05-20 14:38:00\&quot;,&quot; +
+                &quot;\&quot;url\&quot;:\&quot;csdn.net/79239072\&quot;&quot; +
+                &quot;}&quot;
+ 
+ 
+
+ XContentBuilder doc1 = XContentFactory.jsonBuilder()
+                    .startObject()
+                    .field(&quot;id&quot;,&quot;3&quot;)
+                    .field(&quot;title&quot;,&quot;Java设计模式之单例模式&quot;)
+                    .field(&quot;content&quot;,&quot;枚举单例模式可以防反射攻击。&quot;)
+                    .field(&quot;postdate&quot;,&quot;2018-02-03&quot;)
+                    .field(&quot;url&quot;,&quot;csdn.net/79247746&quot;)
+                    .endObject();
+        
+        IndexResponse response = client.prepareIndex(&quot;index1&quot;, &quot;blog&quot;, null)
+                .setSource(doc1)
+                .get();
+        
+		System.out.println(response.status());
+```		
+### 4.3 在Java应用中实现删除文档
+</code></pre><p>DeleteResponse response=client.prepareDelete(&ldquo;index1&rdquo;,&ldquo;blog&rdquo;,&ldquo;SzYJjWMBjSAutsuLRP_P&rdquo;).get();</p><p>//删除成功返回OK，否则返回NOT_FOUND</p><p>System.out.println(response.status());</p><pre><code>### 4.4 在Java应用中实现更新文档
+</code></pre><p>UpdateRequest request=new UpdateRequest(); request.index(&ldquo;index1&rdquo;) .type(&ldquo;blog&rdquo;) .id(&ldquo;2&rdquo;) .doc( XContentFactory.jsonBuilder().startObject() .field(&ldquo;title&rdquo;,&ldquo;单例模式解读&rdquo;) .endObject() ); UpdateResponse response=client.update(request).get();</p><p>//更新成功返回OK，否则返回NOT_FOUND</p><p>System.out.println(response.status());</p><p>upsert方式：</p><p>IndexRequest request1 =new IndexRequest(&ldquo;index1&rdquo;,&ldquo;blog&rdquo;,&ldquo;3&rdquo;) .source( XContentFactory.jsonBuilder().startObject() .field(&ldquo;id&rdquo;,&ldquo;3&rdquo;) .field(&ldquo;title&rdquo;,&ldquo;装饰模式&rdquo;) .field(&ldquo;content&rdquo;,&ldquo;动态地扩展一个对象的功能&rdquo;) .field(&ldquo;postdate&rdquo;,&ldquo;2018-05-23&rdquo;) .field(&ldquo;url&rdquo;,&ldquo;csdn.net/79239072&rdquo;) .endObject() ); UpdateRequest request2=new UpdateRequest(&ldquo;index1&rdquo;,&ldquo;blog&rdquo;,&ldquo;3&rdquo;) .doc( XContentFactory.jsonBuilder().startObject() .field(&ldquo;title&rdquo;,&ldquo;装饰模式解读&rdquo;) .endObject() ).upsert(request1);</p><p>UpdateResponse response=client.update(request2).get();</p><p>//upsert操作成功返回OK，否则返回NOT_FOUND</p><p>System.out.println(response.status());</p><pre><code>### 4.5 在Java应用中实现批量操作
+</code></pre><p>MultiGetResponse mgResponse = client.prepareMultiGet() .add(&ldquo;index1&rdquo;,&ldquo;blog&rdquo;,&ldquo;3&rdquo;,&ldquo;2&rdquo;) .add(&ldquo;lib3&rdquo;,&ldquo;user&rdquo;,&ldquo;1&rdquo;,&ldquo;2&rdquo;,&ldquo;3&rdquo;) .get();</p><p>for(MultiGetItemResponse response:mgResponse){ GetResponse rp=response.getResponse(); if(rp!=null &amp;&amp; rp.isExists()){ System.out.println(rp.getSourceAsString()); } }</p><p>bulk：</p><p>BulkRequestBuilder bulkRequest = client.prepareBulk();</p><p>bulkRequest.add(client.prepareIndex(&ldquo;lib2&rdquo;, &ldquo;books&rdquo;, &ldquo;4&rdquo;) .setSource(XContentFactory.jsonBuilder() .startObject() .field(&ldquo;title&rdquo;, &ldquo;python&rdquo;) .field(&ldquo;price&rdquo;, 68) .endObject() ) ); bulkRequest.add(client.prepareIndex(&ldquo;lib2&rdquo;, &ldquo;books&rdquo;, &ldquo;5&rdquo;) .setSource(XContentFactory.jsonBuilder() .startObject() .field(&ldquo;title&rdquo;, &ldquo;VR&rdquo;) .field(&ldquo;price&rdquo;, 38) .endObject() ) ); //批量执行 BulkResponse bulkResponse = bulkRequest.get();</p><p>System.out.println(bulkResponse.status()); if (bulkResponse.hasFailures()) {</p><pre><code>        System.out.println(&quot;存在失败操作&quot;);
+    }
+</code></pre><p>```</p><h2>本文链接：</h2><a href="https://xuziyan.ga/archive/1563415780/" target="_blank">https://xuziyan.ga/archive/1563415780/</a></div></article><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine/dist/Valine.min.js"></script><div class="blog-post-comments"></div><script>new Valine({
+        el: '.blog-post-comments', 
+        app_id: 'RklimuckFp5qKalglwQv9VIv-gzGzoHsz', 
+        app_key: 'oFa0Y4kpYJz3svGKqDeCF46D', 
+        placeholder: '说点什么呗?', 
+        avatar:'robohash',
+        notify:true,
+        verify:true
+    });</script></section></div><footer id="footer"><div class="footer-left">Copyright © 2019 XuziYan <a href="http://www.miitbeian.gov.cn" rel="external nofollow noopener noreferrer" target="_blank">xxx</a></div><div class="footer-right"><nav><ul><li><a href="/">Home</a></li><li><a href="/archive/">Archives</a></li><li><a href="/about/">About</a></li></ul></nav></div></footer><script src="https://xuziyan.ga/lib/justified-gallery/jquery.justifiedGallery.min.js"></script><script src="https://xuziyan.ga/lib/typed.js"></script><script src="https://xuziyan.ga/js/main.js"></script><script async src=""></script><script>(function(){
+  if(location.host!=='xuziyan.ga')return;
+  var ga = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  ga.src = 'https://www.googletagmanager.com/gtag/js?id=UA-129382678-1';       
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(ga, s);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129382678-1');
+})()</script><script>(function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+          navigator.serviceWorker
+              .register('/sw.js')
+              .then(registration => {
+                  console.log('SW registered: ', registration);
+              })
+              .catch(registrationError => {
+                  console.log('SW registration failed: ', registrationError);
+              });
+      });
+  }</script></body></html>
