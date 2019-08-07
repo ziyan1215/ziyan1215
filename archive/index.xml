@@ -6,10 +6,95 @@
     <description>Recent content in Archives on XuziYan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 18 Jul 2019 10:09:40 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jul 2019 16:12:37 +0000</lastBuildDate>
     
 	<atom:link href="https://xuziyan.ga/archive/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java应用中访问ElasticSearch</title>
+      <link>https://xuziyan.ga/archive/1564215157/</link>
+      <pubDate>Sat, 27 Jul 2019 16:12:37 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1564215157/</guid>
+      <description>4 在Java应用中访问ElasticSearch 4.1 在Java应用中实现查询文档 ##pom中加入ElasticSearch6.2.4的依赖： &amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.elasticsearch.client&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;transport&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;6.2.4&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.12&amp;lt;/version&amp;gt; &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt; &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;!-- java编译插件 --&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-compiler-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.2&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;source&amp;gt;1.8&amp;lt;/source&amp;gt; &amp;lt;target&amp;gt;1.8&amp;lt;/target&amp;gt; &amp;lt;encoding&amp;gt;UTF-8&amp;lt;/encoding&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt;  4.2 在Java应用中实现添加文档  &amp;quot;{&amp;quot; + &amp;quot;\&amp;quot;id\&amp;quot;:\&amp;quot;1\&amp;quot;,&amp;quot; + &amp;quot;\&amp;quot;title\&amp;quot;:\&amp;quot;Java设计模式之装饰模式\&amp;quot;,&amp;quot; + &amp;quot;\&amp;quot;content\&amp;quot;:\&amp;quot;在不必改变原类文件和使用继承的情况下，动态地扩展一个对象的功能。\&amp;quot;,&amp;quot; + &amp;quot;\&amp;quot;postdate\&amp;quot;:\&amp;quot;2018-05-20 14:38:00\&amp;quot;,&amp;quot; + &amp;quot;\&amp;quot;url\&amp;quot;:\&amp;quot;csdn.net/79239072\&amp;quot;&amp;quot; + &amp;quot;}&amp;quot; XContentBuilder doc1 = XContentFactory.jsonBuilder() .startObject() .field(&amp;quot;id&amp;quot;,&amp;quot;3&amp;quot;) .field(&amp;quot;title&amp;quot;,&amp;quot;Java设计模式之单例模式&amp;quot;) .field(&amp;quot;content&amp;quot;,&amp;quot;枚举单例模式可以防反射攻击。&amp;quot;) .field(&amp;quot;postdate&amp;quot;,&amp;quot;2018-02-03&amp;quot;) .field(&amp;quot;url&amp;quot;,&amp;quot;csdn.net/79247746&amp;quot;) .endObject(); IndexResponse response = client.prepareIndex(&amp;quot;index1&amp;quot;, &amp;quot;blog&amp;quot;, null) .</description>
+    </item>
+    
+    <item>
+      <title>ElasticSearch原理</title>
+      <link>https://xuziyan.ga/archive/1563940854/</link>
+      <pubDate>Wed, 24 Jul 2019 12:00:54 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1563940854/</guid>
+      <description>3 ElasticSearch原理 3.1 解析es的分布式架构 3.1.1 分布式架构的透明隐藏特性 ElasticSearch是一个分布式系统，隐藏了复杂的处理机制
+分片机制：我们不用关心数据是按照什么机制分片的、最后放入到哪个分片中
+分片的副本：
+集群发现机制(cluster discovery)：比如当前我们启动了一个es进程，当启动了第二个es进程时，这个进程作为一个node自动就发现了集群，并且加入了进去
+shard负载均衡：比如现在有10shard，集群中有3个节点，es会进行均衡的进行分配，以保持每个节点均衡的负载请求
+请求路由
+3.1.2 扩容机制 垂直扩容：购置新的机器，替换已有的机器
+水平扩容：直接增加机器
+3.1.3 rebalance 增加或减少节点时会自动均衡
+3.1.4 master节点 主节点的主要职责是和集群操作相关的内容，如创建或删除索引，跟踪哪些节点是群集的一部分，并决定哪些分片分配给相关的节点。稳定的主节点对集群的健康是非常重要的。
+3.1.5 节点对等 每个节点都能接收请求 每个节点接收到请求后都能把该请求路由到有相关数据的其它节点上 接收原始请求的节点负责采集数据并返回给客户端
+3.2 分片和副本机制 1.index包含多个shard
+2.每个shard都是一个最小工作单元，承载部分数据；每个shard都是一个lucene实例，有完整的建立索引和处理请求的能力
+3.增减节点时，shard会自动在nodes中负载均衡
+4.primary shard和replica shard，每个document肯定只存在于某一个primary shard以及其对应的replica shard中，不可能存在于多个primary shard
+5.replica shard是primary shard的副本，负责容错，以及承担读请求负载
+6.primary shard的数量在创建索引的时候就固定了，replica shard的数量可以随时修改
+7.primary shard的默认数量是5，replica默认是1，默认有10个shard，5个primary shard，5个replica shard
+8.primary shard不能和自己的replica shard放在同一个节点上（否则节点宕机，primary shard和副本都丢失，起不到容错的作用），但是可以和其他primary shard的replica shard放在同一个节点上
+3.3 单节点环境下创建索引分析 PUT /myindex { &amp;quot;settings&amp;quot; : { &amp;quot;number_of_shards&amp;quot; : 3, &amp;quot;number_of_replicas&amp;quot; : 1 } }  这个时候，只会将3个primary shard分配到仅有的一个node上去，另外3个replica shard是无法分配的（一个shard的副本replica，他们两个是不能在同一个节点的）。集群可以正常工作，但是一旦出现节点宕机，数据全部丢失，而且集群不可用，无法接收任何请求。</description>
+    </item>
+    
+    <item>
+      <title>ES的嵌套字段</title>
+      <link>https://xuziyan.ga/archive/1563796794/</link>
+      <pubDate>Mon, 22 Jul 2019 19:59:54 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1563796794/</guid>
+      <description>2.11 嵌套字段  由于在 Elasticsearch 中单个文档的增删改都是原子性操作,那么将相关实体数据都存储在同一文档中也就理所当然。 比如说,我们可以将订单及其明细数据存储在一个文档中。又比如,我们可以将一篇博客文章的评论以一个 comments 数组的形式和博客文章放在一起：
+ PUT /my_index/blogpost/1 { &amp;quot;title&amp;quot;: &amp;quot;Nest eggs&amp;quot;, &amp;quot;body&amp;quot;: &amp;quot;Making your money work...&amp;quot;, &amp;quot;tags&amp;quot;: [ &amp;quot;cash&amp;quot;, &amp;quot;shares&amp;quot; ], &amp;quot;comments&amp;quot;: [ { &amp;quot;name&amp;quot;: &amp;quot;John Smith&amp;quot;, &amp;quot;comment&amp;quot;: &amp;quot;Great article&amp;quot;, &amp;quot;age&amp;quot;: 28, &amp;quot;stars&amp;quot;: 4, &amp;quot;date&amp;quot;: &amp;quot;2014-09-01&amp;quot; }, { &amp;quot;name&amp;quot;: &amp;quot;Alice White&amp;quot;, &amp;quot;comment&amp;quot;: &amp;quot;More like this please&amp;quot;, &amp;quot;age&amp;quot;: 31, &amp;quot;stars&amp;quot;: 5, &amp;quot;date&amp;quot;: &amp;quot;2014-10-22&amp;quot; } ] }  如果我们依赖字段自动映射,那么 comments 字段会自动映射为 object 类型。
+由于所有的信息都在一个文档中,当我们查询时就没有必要去联合文章和评论文档,查询效率就很高。
+但是当我们使用如下查询时,上面的文档也会被当做是符合条件的结果：
+GET /_search { &amp;quot;query&amp;quot;: { &amp;quot;bool&amp;quot;: { &amp;quot;must&amp;quot;: [ { &amp;quot;match&amp;quot;: { &amp;quot;name&amp;quot;: &amp;quot;Alice&amp;quot; }}, { &amp;quot;match&amp;quot;: { &amp;quot;age&amp;quot;: 28 }} ] } } }  ==Alice实际是31岁,不是28!</description>
+    </item>
+    
+    <item>
+      <title>ES的聚合&amp;复合查询</title>
+      <link>https://xuziyan.ga/archive/1563681594/</link>
+      <pubDate>Sun, 21 Jul 2019 11:59:54 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1563681594/</guid>
+      <description>2.9 聚合查询 (1)sum
+GET /lib4/items/_search { &amp;quot;size&amp;quot;:0, &amp;quot;aggs&amp;quot;: { &amp;quot;price_of_sum&amp;quot;: { &amp;quot;sum&amp;quot;: { &amp;quot;field&amp;quot;: &amp;quot;price&amp;quot; } } } }  (2)min
+GET /lib4/items/_search { &amp;quot;size&amp;quot;: 0, &amp;quot;aggs&amp;quot;: { &amp;quot;price_of_min&amp;quot;: { &amp;quot;min&amp;quot;: { &amp;quot;field&amp;quot;: &amp;quot;price&amp;quot; } } } }  (3)max
+GET /lib4/items/_search { &amp;quot;size&amp;quot;: 0, &amp;quot;aggs&amp;quot;: { &amp;quot;price_of_max&amp;quot;: { &amp;quot;max&amp;quot;: { &amp;quot;field&amp;quot;: &amp;quot;price&amp;quot; } } } }  (4)avg
+GET /lib4/items/_search { &amp;quot;size&amp;quot;:0, &amp;quot;aggs&amp;quot;: { &amp;quot;price_of_avg&amp;quot;: { &amp;quot;avg&amp;quot;: { &amp;quot;field&amp;quot;: &amp;quot;price&amp;quot; } } } }  (5)cardinality:求基数</description>
+    </item>
+    
+    <item>
+      <title>ES的filter查询</title>
+      <link>https://xuziyan.ga/archive/1563598794/</link>
+      <pubDate>Sat, 20 Jul 2019 12:59:54 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1563598794/</guid>
+      <description>2.8 Filter查询 filter是不计算相关性的，同时可以cache。因此，filter速度要快于query。
+POST /lib4/items/_bulk {&amp;quot;index&amp;quot;: {&amp;quot;_id&amp;quot;: 1}} {&amp;quot;price&amp;quot;: 40,&amp;quot;itemID&amp;quot;: &amp;quot;ID100123&amp;quot;} {&amp;quot;index&amp;quot;: {&amp;quot;_id&amp;quot;: 2}} {&amp;quot;price&amp;quot;: 50,&amp;quot;itemID&amp;quot;: &amp;quot;ID100124&amp;quot;} {&amp;quot;index&amp;quot;: {&amp;quot;_id&amp;quot;: 3}} {&amp;quot;price&amp;quot;: 25,&amp;quot;itemID&amp;quot;: &amp;quot;ID100124&amp;quot;} {&amp;quot;index&amp;quot;: {&amp;quot;_id&amp;quot;: 4}} {&amp;quot;price&amp;quot;: 30,&amp;quot;itemID&amp;quot;: &amp;quot;ID100125&amp;quot;} {&amp;quot;index&amp;quot;: {&amp;quot;_id&amp;quot;: 5}} {&amp;quot;price&amp;quot;: null,&amp;quot;itemID&amp;quot;: &amp;quot;ID100127&amp;quot;}  2.8.1 简单的过滤查询 GET /lib4/items/_search { &amp;quot;post_filter&amp;quot;: { &amp;quot;term&amp;quot;: { &amp;quot;price&amp;quot;: 40 } } } GET /lib4/items/_search { &amp;quot;post_filter&amp;quot;: { &amp;quot;terms&amp;quot;: { &amp;quot;price&amp;quot;: [25,40] } } } GET /lib4/items/_search { &amp;quot;post_filter&amp;quot;: { &amp;quot;term&amp;quot;: { &amp;quot;itemID&amp;quot;: &amp;quot;ID100123&amp;quot; } } }  查看分词器分析的结果：</description>
+    </item>
+    
+    <item>
+      <title>ES基本查询</title>
+      <link>https://xuziyan.ga/archive/1563522787/</link>
+      <pubDate>Fri, 19 Jul 2019 15:53:07 +0000</pubDate>
+      
+      <guid>https://xuziyan.ga/archive/1563522787/</guid>
+      <description>2.7 基本查询(Query查询) 2.7.1数据准备 PUT /lib3 { &amp;quot;settings&amp;quot;:{ &amp;quot;number_of_shards&amp;quot; : 3, &amp;quot;number_of_replicas&amp;quot; : 0 }, &amp;quot;mappings&amp;quot;:{ &amp;quot;user&amp;quot;:{ &amp;quot;properties&amp;quot;:{ &amp;quot;name&amp;quot;: {&amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;}, &amp;quot;address&amp;quot;: {&amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;}, &amp;quot;age&amp;quot;: {&amp;quot;type&amp;quot;:&amp;quot;integer&amp;quot;}, &amp;quot;interests&amp;quot;: {&amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;}, &amp;quot;birthday&amp;quot;: {&amp;quot;type&amp;quot;:&amp;quot;date&amp;quot;} } } } } GET /lib3/user/_search?q=name:lisi GET /lib3/user/_search?q=name:zhaoliu&amp;amp;sort=age:desc  2.7.2 term查询和terms查询 term query会去倒排索引中寻找确切的term，它并不知道分词器的存在。这种查询适合keyword 、numeric、date。
+term:查询某个字段里含有某个关键词的文档
+GET /lib3/user/_search/ { &amp;quot;query&amp;quot;: { &amp;quot;term&amp;quot;: {&amp;quot;interests&amp;quot;: &amp;quot;changge&amp;quot;} } }  terms:查询某个字段里含有多个关键词的文档
+GET /lib3/user/_search { &amp;quot;query&amp;quot;:{ &amp;quot;terms&amp;quot;:{ &amp;quot;interests&amp;quot;: [&amp;quot;hejiu&amp;quot;,&amp;quot;changge&amp;quot;] } } }  2.7.3 控制查询返回的数量 from：从哪一个文档开始 size：需要的个数</description>
+    </item>
     
     <item>
       <title>ES基本操作</title>

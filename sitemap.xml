@@ -3,6 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://xuziyan.ga/archive/1564215157/</loc>
+    <lastmod>2019-07-27T16:12:37+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuziyan.ga/archive/1563940854/</loc>
+    <lastmod>2019-07-24T12:00:54+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuziyan.ga/archive/1563796794/</loc>
+    <lastmod>2019-07-22T19:59:54+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuziyan.ga/archive/1563681594/</loc>
+    <lastmod>2019-07-21T11:59:54+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuziyan.ga/archive/1563598794/</loc>
+    <lastmod>2019-07-20T12:59:54+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://xuziyan.ga/archive/1563522787/</loc>
+    <lastmod>2019-07-19T15:53:07+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://xuziyan.ga/archive/1563415780/</loc>
     <lastmod>2019-07-18T10:09:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -263,7 +305,7 @@
   
   <url>
     <loc>https://xuziyan.ga/archive/</loc>
-    <lastmod>2019-07-18T10:09:40+00:00</lastmod>
+    <lastmod>2019-07-27T16:12:37+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -276,7 +318,7 @@
   
   <url>
     <loc>https://xuziyan.ga/tags/elasticsearch/</loc>
-    <lastmod>2019-07-18T10:09:40+00:00</lastmod>
+    <lastmod>2019-07-27T16:12:37+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -360,7 +402,7 @@
   
   <url>
     <loc>https://xuziyan.ga/tags/</loc>
-    <lastmod>2019-07-18T10:09:40+00:00</lastmod>
+    <lastmod>2019-07-27T16:12:37+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -388,7 +430,7 @@
   
   <url>
     <loc>https://xuziyan.ga/</loc>
-    <lastmod>2019-07-18T10:09:40+00:00</lastmod>
+    <lastmod>2019-07-27T16:12:37+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
